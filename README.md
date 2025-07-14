@@ -21,4 +21,7 @@
 - if name of the service or endpoint changes, just need to update the config map.
 - username & password is kept inside secrets(base 64 encoded), another type config map.
 - both config map & secrets are configured with the application pod.
+# data storage
+- if the pod restarted, then data will be lost.
+- attaching volumes (physical storage) to the pod. It can be local or remote(outside K8s cluster) w.r.t the node.
  
