@@ -13,5 +13,12 @@
 - life cycle of service & pod are not connected.
 - services are also inside the node.
 - we need external service to access our application in the browser.
-- 
+- ingress is an external service. Request go thought ingress service to internal service (application).
+# config map & secrets
+- my application wants to connect with mongo-db service.
+- external configuration of our application.
+- database URL is kept in this config map.
+- if name of the service or endpoint changes, just need to update the config map.
+- username & password is kept inside secrets(base 64 encoded), another type config map.
+- both config map & secrets are configured with the application pod.
  
