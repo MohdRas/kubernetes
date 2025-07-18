@@ -4,12 +4,16 @@
 - if this node failes, application will be down. so k8s cluster comes in picture.
 - k8s cluster is a set of nodes grouped together.
 - controlplane( master node) help to manages these working nodes.
+- a cluster will have master & worker nodes together.
 - master node
   - api server
      - acts as front end for k8s.
   - etcd
+      - disributed key-value store.
   - controller-manager
-  - kube-scheduler.
+      - brain for the orchestration of the nodes.
+  - kube-scheduler
+      - distributing across multiple nodes.
 - worker node
   - kublet
   - kubeproxy
@@ -51,5 +55,28 @@
   - payment service 2 instances.
   - redis service 3 instances.
   - database service 1 instance.
+# kubectl 
+- kubectl version
+    - show version of "client" and "server" of kubectl
+- kubectl --help
+- kubectl get pods/nodes/replicatsets
+- kubectl get pods/nodes/replicatsets -o wide
+- kubectl run my-pod --image=nginx
+    - creating pod from nginx image
+- pod-definition.yaml
+    - apiVersion:v1 (kubectl api-resources)
+    - kind:Pod (kubectl api-resources)
+    - metadata: (data about the object - pod)
+        - name: myapp-pod (name of the pod)
+        - labels:
+            - app: myapp (group name like front-end, back-end, sales order service)
+            - type: front-end
+   - spec:
+      - containers: (List of containers)
+        - -name: nginx-container (first container)
+        - image: nginx
+        - -name: nginx-container (second container)
+        - image: buxybox
+
 
  
