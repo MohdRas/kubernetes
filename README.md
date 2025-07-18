@@ -89,7 +89,7 @@
 - group of 1 or more Pods
 - spans across the cluster ( 1 or more worker nodes)
 - Even if replicaset has 1 Pod and it fails. Replicaset automatically create another Pod in place of the failed one.
-- Replicaset will always make sure that "minimum" number of Pods are always up.
+- Replicaset will always make sure that "desired" number of Pods are always up.
 - replicaset-definition.yaml
     - apiVersion: apps/v1---------------------------------------kubectl api-resources
     - kind: ReplicaSet--------------------------------------------kubectl api-resources
@@ -116,6 +116,10 @@
           - matchLabels:
               - type: front-end---------Replicaset monitors only such Pods with same label as "front-end"
 - kubectl create -f replicatset.yaml
+- kubectl replace -f replicatset.yaml
+    - To scal up as per the desired number of pods in file.
+- kubectl scale --replicas=10 -f replicatset.yaml
+    - To scale Pods upto 10.
 - kubectl get replicasets
 - kubectl describe replicasets myapp-replicaset
 - kubectl delete replicasets myapp-replicaset
