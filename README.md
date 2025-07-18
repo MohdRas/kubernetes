@@ -111,10 +111,14 @@
               - image: nginx
               - -name: nginx-container--------------------------second container
               - image: buxybox
-      - replicas: 3 ---------------------------------------Number of Pods
+      - replicas: 3 ---------------------------------------3 PODS always ACTIVE all the time.
       - selectors:
           - matchLabels:
-              - type: front-end---------matched with Pod's label. Applicable for existing Pods of same label.
+              - type: front-end---------Replicaset monitors only such Pods with same label as "front-end"
+- kubectl create -f replicatset.yaml
+- kubectl get replicasets
+- kubectl describe replicasets myapp-replicaset
+- kubectl delete replicasets myapp-replicaset
 
 
  
