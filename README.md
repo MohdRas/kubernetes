@@ -82,6 +82,8 @@
 - kubectl create -f pod-definition.yaml
 - kubectl describe pods/nodes/replicasets/deployments NAME_OF_OBJECT
     - details about object.
+- kubectl delete pods/nodes/replicasets/deployments NAME_OF_OBJECT
+    - delete an object
 
 
  
