@@ -1,5 +1,4 @@
 # kubernetes
-https://g.co/gemini/share/efb17e4bb103
 # Node
 - a server ( Physical or VM) on which k8s is installed.
 - if this node failes, application will be down. so k8s cluster comes in picture.
@@ -56,7 +55,8 @@ https://g.co/gemini/share/efb17e4bb103
   - payment service 2 instances.
   - redis service 3 instances.
   - database service 1 instance.
-# kubectl 
+# kubectl
+# Pod
 - kubectl version
     - show version of "client" and "server" of kubectl
 - kubectl --help
@@ -85,6 +85,32 @@ https://g.co/gemini/share/efb17e4bb103
     - details about object.
 - kubectl delete pods/nodes/replicasets/deployments NAME_OF_OBJECT
     - delete an object
+# Replicaset
+- group of 1 or more Pods
+- spans across the cluster ( 1 or more worker nodes)
+- Even if replicaset has 1 Pod and it fails. Replicaset automatically create another Pod in place of the failed one.
+- Replicaset will always make sure that "minimum" number of Pods are always up.
+- replica-definition.yaml
+    - apiVersion: apps/v1---------------------------------------kubectl api-resources
+    - kind: ReplicaSet--------------------------------------------kubectl api-resources
+    - metadata:-------------------------------------------data about the object - replicaset
+        - name: myapp-replicaset---------------------------------name of the replicaset
+        - labels:
+            - app: myapp----------------------------------group name like front-end, back-end, sales order service
+            - type: front-end
+   - spec:
+      - template: --------------------------------------- Template of a Pod (metadata + spec) of a POd
+          - metadata:----------------------------------------data about the object - pod
+            - name: myapp-pod--------------------------------name of the pod
+            - labels:
+              - app: myapp---------------------------------- -group name like front-end, back-end, sales order service
+              - type: front-end
+          - spec:
+            - containers:---------------------------------------List of containers
+              - -name: nginx-container--------------------------first container
+              - image: nginx
+              - -name: nginx-container--------------------------second container
+              - image: buxybox
 
 
  
