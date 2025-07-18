@@ -61,6 +61,8 @@
 - kubectl --help
 - kubectl get pods/nodes/replicatsets/deployments
 - kubectl get pods/nodes/replicatsets/deployments -o wide
+  - -o wide
+    - to get more details.
 - kubectl run my-pod --image=nginx
     - creating pod from nginx image
 - pod-definition.yaml
