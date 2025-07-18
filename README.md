@@ -1,4 +1,5 @@
 # kubernetes
+https://g.co/gemini/share/efb17e4bb103
 # Node
 - a server ( Physical or VM) on which k8s is installed.
 - if this node failes, application will be down. so k8s cluster comes in picture.
