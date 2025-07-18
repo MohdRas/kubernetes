@@ -90,20 +90,20 @@
 - spans across the cluster ( 1 or more worker nodes)
 - Even if replicaset has 1 Pod and it fails. Replicaset automatically create another Pod in place of the failed one.
 - Replicaset will always make sure that "minimum" number of Pods are always up.
-- replica-definition.yaml
+- replicaset-definition.yaml
     - apiVersion: apps/v1---------------------------------------kubectl api-resources
     - kind: ReplicaSet--------------------------------------------kubectl api-resources
     - metadata:-------------------------------------------data about the object - replicaset
         - name: myapp-replicaset---------------------------------name of the replicaset
         - labels:
-            - app: myapp----------------------------------group name like front-end, back-end, sales order service
+            - app: myapp----------------------------------group name like front-end, back-end
             - type: front-end
    - spec:
       - template: --------------------------------------- Template of a Pod (metadata + spec) of a POd
           - metadata:----------------------------------------data about the object - pod
             - name: myapp-pod--------------------------------name of the pod
             - labels:
-              - app: myapp---------------------------------- -group name like front-end, back-end, sales order service
+              - app: myapp-----------------------------------group name like front-end, back-end
               - type: front-end
           - spec:
             - containers:---------------------------------------List of containers
