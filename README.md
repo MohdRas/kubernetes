@@ -99,6 +99,7 @@
             - app: myapp----------------------------------group name like front-end, back-end
             - type: front-end
    - spec:
+      - replicas:3 ---------------------------------------Number of Pods 
       - template: --------------------------------------- Template of a Pod (metadata + spec) of a POd
           - metadata:----------------------------------------data about the object - pod
             - name: myapp-pod--------------------------------name of the pod
