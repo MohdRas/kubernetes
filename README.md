@@ -114,7 +114,7 @@
       - replicas: 3 ---------------------------------------Number of Pods
       - selectors:
           - matchLabels:
-              - type: front-end----------------------------matched with Pod's label
+              - type: front-end---------matched with Pod's label. Applicable for existing Pods of same label.
 
 
  
