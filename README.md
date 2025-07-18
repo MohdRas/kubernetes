@@ -59,8 +59,8 @@
 - kubectl version
     - show version of "client" and "server" of kubectl
 - kubectl --help
-- kubectl get pods/nodes/replicatsets
-- kubectl get pods/nodes/replicatsets -o wide
+- kubectl get pods/nodes/replicatsets/deployments
+- kubectl get pods/nodes/replicatsets/deployments -o wide
 - kubectl run my-pod --image=nginx
     - creating pod from nginx image
 - pod-definition.yaml
@@ -77,6 +77,9 @@
         - image: nginx
         - -name: nginx-container--------------------------second container
         - image: buxybox
+- kubectl create -f pod-definition.yaml
+- kubectl describe pods/nodes/replicasets/deployments NAME_OF_OBJECT
+    - details about object.
 
 
  
