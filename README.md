@@ -123,6 +123,8 @@
 - kubectl get replicasets
 - kubectl describe replicasets myapp-replicaset
 - kubectl delete replicasets myapp-replicaset
+# deployments
+- 
 
 
  
