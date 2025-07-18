@@ -64,18 +64,18 @@
 - kubectl run my-pod --image=nginx
     - creating pod from nginx image
 - pod-definition.yaml
-    - apiVersion:v1             -------------------------(kubectl api-resources)
-    - kind:Pod                  -------------------------(kubectl api-resources)
-    - metadata:                 -------------------------(data about the object - pod)
-        - name: myapp-pod -------------------------------(name of the pod)
+    - apiVersion:v1---------------------------------------kubectl api-resources
+    - kind:Pod--------------------------------------------kubectl api-resources
+    - metadata:-------------------------------------------data about the object - pod
+        - name: myapp-pod---------------------------------name of the pod
         - labels:
-            - app: myapp ----------------------------------(group name like front-end, back-end, sales order service)
+            - app: myapp----------------------------------group name like front-end, back-end, sales order service
             - type: front-end
    - spec:
-      - containers: --------------------------------------(List of containers)
-        - -name: nginx-container --------------------------(first container)
+      - containers:---------------------------------------List of containers
+        - -name: nginx-container--------------------------first container
         - image: nginx
-        - -name: nginx-container --------------------------(second container)
+        - -name: nginx-container--------------------------second container
         - image: buxybox
 
 
