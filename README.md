@@ -97,21 +97,24 @@
         - name: myapp-replicaset---------------------------------name of the replicaset
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end
-            - type: front-end
+            - type: front-end------------------------------label of Replicaset
    - spec:
-      - replicas:3 ---------------------------------------Number of Pods 
       - template: --------------------------------------- Template of a Pod (metadata + spec) of a POd
           - metadata:----------------------------------------data about the object - pod
             - name: myapp-pod--------------------------------name of the pod
             - labels:
               - app: myapp-----------------------------------group name like front-end, back-end
-              - type: front-end
+              - type: front-end-------------------------------label of Pod
           - spec:
             - containers:---------------------------------------List of containers
               - -name: nginx-container--------------------------first container
               - image: nginx
               - -name: nginx-container--------------------------second container
               - image: buxybox
+      - replicas: 3 ---------------------------------------Number of Pods
+      - selectors:
+          - matchLabels:
+              - type: front-end----------------------------matched with Pod's label
 
 
  
