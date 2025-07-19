@@ -56,6 +56,8 @@
   - redis service 3 instances.
   - database service 1 instance.
 # kubectl
+- kubectl get all
+    - all objects
 # Pod
 - kubectl version
     - show version of "client" and "server" of kubectl
@@ -124,7 +126,11 @@
 - kubectl describe replicasets myapp-replicaset
 - kubectl delete replicasets myapp-replicaset
 # deployments
-- 
+- Pod(one instance) -> Replicaset (Multiple instances) -> deployments
+- rolling(old version <-> new version) update of a production application.
+- rolling updates, undo changes, pause & resume changes can be done by deployments.
+- deployment-definition.yaml file is same as replicaset-definition.yaml except "kind:Deployment"
+- commands are same as replicasets.
 
 
  
