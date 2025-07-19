@@ -117,20 +117,20 @@
       - selectors:
           - matchLabels:
               - type: front-end---------Replicaset monitors only such Pods with same label as "front-end"
-- kubectl create -f replicatset.yaml
-- kubectl replace -f replicatset.yaml
-    - To scal up as per the desired number of pods in file.
-- kubectl scale --replicas=10 -f replicatset.yaml
-    - To scale Pods upto 10.
-- kubectl get replicasets
-- kubectl describe replicasets myapp-replicaset
-- kubectl delete replicasets myapp-replicaset
+
 # deployments
 - Pod(one instance) -> Replicaset (Multiple instances) -> deployments
 - rolling(old version <-> new version) update of a production application.
 - rolling updates, undo changes, pause & resume changes can be done by deployments.
 - deployment-definition.yaml file is same as replicaset-definition.yaml except "kind:Deployment"
 - commands are same as replicasets.
-
+- change the deployment file and run "kubectl apply -f deployment-definition.yaml"
+# services
+- IP of Pods is lost if it is started again.
+- communication between pods within k8s cluster.
+- expose application outside the cluster.
+- kluster IP service
+    - communication wetween pods within cluster.\
+- NodePort service 
 
  
