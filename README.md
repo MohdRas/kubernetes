@@ -167,5 +167,9 @@
     - cloud provider's load balancer to our service.
 - kubectl create -f cluster-ip-service.yaml
 - kubectl get services
+- __curl http://192.168.1.2:30008__
+- it uses __Random algorithm , sessioninfinity=yes__ for the purpose of __selection of Pods to forward request to__.
+- __istio & LinkerD__ is also used for load balancing.
+- __one pod per node, multiple pods per node, multiple pods across multiple nodes, same service definition will work, no additional setup needed__.
 
  
