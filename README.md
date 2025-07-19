@@ -130,7 +130,41 @@
 - communication between pods within k8s cluster.
 - expose application outside the cluster.
 - kluster IP service
-    - communication wetween pods within cluster.\
-- NodePort service 
+    - communication wetween pods within cluster.
+    - webserver tries to connect with redis server.
+    - label's of service is matched with Pod's label. Only those Pods are exposed to a service.
+    - cluster-ip-service.yaml
+        - apiVersion:v1---------------------------------------kubectl api-resources
+        - kind: Service--------------------------------------------kubectl api-resources
+        - metadata:-------------------------------------------data about the object - Service
+            - name: redis-service---------------------------------name of the Service
+       - spec:
+            - type: ClusterIP-----------------------------------------Service Type
+            - ports:
+                - -targetPort: 6379--------------------------Pod's port
+                - port: 6379-------------------Mandatory Port--------------Service is exposed on this port. 
+            - selectors
+                - app: myapp-------------------------------------selection of Pods
+                - mame: redis-pod---------------------------------selection of Pods
+- NodePort service
+    - exposed ternally on node IP and its port.
+    - nodeport-ip-service.yaml
+        - apiVersion:v1---------------------------------------kubectl api-resources
+        - kind: Service--------------------------------------------kubectl api-resources
+        - metadata:-------------------------------------------data about the object - Service
+            - name: redis-service---------------------------------name of the Service
+       - spec:
+            - type: ClusterIP-----------------------------------------Service Type
+            - ports:
+                - -targetPort: 6379--------------------------Pod's port
+                - port: 6379-------------------Mandatory Port--------------Service is exposed on this port.
+                - nodePort: 30008-------------------------------------Node's port
+            - selectors
+                - app: myapp-------------------------------------selection of Pods
+                - mame: redis-pod---------------------------------selection of Pods
+- load balancer
+    - cloud provider's load balancer to our service.
+- kubectl create -f cluster-ip-service.yaml
+- kubectl get services
 
  
