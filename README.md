@@ -69,8 +69,8 @@
 - kubectl run my-pod --image=nginx
     - creating pod from nginx image
 - pod-definition.yaml
-    - apiVersion:v1---------------------------------------kubectl api-resources
-    - kind:Pod--------------------------------------------kubectl api-resources
+    - apiVersion:v1---------------------------------------version
+    - kind:Pod--------------------------------------------type
     - metadata:-------------------------------------------data about the object - pod
         - name: myapp-pod---------------------------------name of the pod
         - labels:
@@ -93,8 +93,8 @@
 - Even if replicaset has 1 Pod and it fails. Replicaset automatically create another Pod in place of the failed one.
 - Replicaset will always make sure that "desired" number of Pods are always up.
 - replicaset-definition.yaml
-    - apiVersion: apps/v1---------------------------------------kubectl api-resources
-    - kind: ReplicaSet--------------------------------------------kubectl api-resources
+    - apiVersion: apps/v1---------------------------------------version
+    - kind: ReplicaSet--------------------------------------------type
     - metadata:-------------------------------------------data about the object - replicaset
         - name: myapp-replicaset---------------------------------name of the replicaset
         - labels:
@@ -134,8 +134,8 @@
     - webserver tries to connect with redis server.
     - label's of service is matched with Pod's label. Only those Pods are exposed to a service.
     - cluster-ip-service.yaml
-        - apiVersion:v1---------------------------------------kubectl api-resources
-        - kind: Service--------------------------------------------kubectl api-resources
+        - apiVersion:v1---------------------------------------version
+        - kind: Service--------------------------------------------type
         - metadata:-------------------------------------------data about the object - Service
             - name: redis-service---------------------------------name of the Service
        - spec:
@@ -149,16 +149,16 @@
 - NodePort service
     - exposed ternally on node IP and its port.
     - nodeport-ip-service.yaml
-        - apiVersion:v1---------------------------------------kubectl api-resources
-        - kind: Service--------------------------------------------kubectl api-resources
+        - apiVersion:v1---------------------------------------version
+        - kind: Service--------------------------------------------type
         - metadata:-------------------------------------------data about the object - Service
             - name: redis-service---------------------------------name of the Service
        - spec:
-            - type: ClusterIP-----------------------------------------Service Type
+            - type: NodePort-----------------------------------------Service Type
             - ports:
-                - -targetPort: 6379--------------------------Pod's port
-                - port: 6379-------------------Mandatory Port--------------Service is exposed on this port.
-                - nodePort: 30008-------------------------------------Node's port
+                - -targetPort: 6379--------------------------Pod's port - Optional(port value)
+                - port: 6379---------------------------------Service is exposed on this port - Mandatory.
+                - nodePort: 30008-------------------------------------Node's port - Optional(30000-32767)
             - selectors
                 - app: myapp-------------------------------------selection of Pods
                 - mame: redis-pod---------------------------------selection of Pods
