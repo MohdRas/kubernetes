@@ -154,11 +154,11 @@
         - metadata:-------------------------------------------Meta Data - Service
             - name: redis-service---------------------------------name of the Service
        - spec:
-            - type: NodePort-----------------------------------------Service Type
+            - type: __NodePort-----------------------------------------Service Type
             - ports:
                 - -targetPort: 6379--------------------------Pod port
                 - port: 6379---------------------------------Service port - mandatory
-                - nodePort: 30008-------------------------------------Node port (30000-32767)
+                - __nodePort: __30008-------------------------------------Node port (30000-32767)
             - selectors
                 - app: myapp-------------------------------------selection of Pods
                 - mame: redis-pod---------------------------------selection of Pods
