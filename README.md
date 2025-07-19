@@ -71,7 +71,7 @@
 - pod-definition.yaml
     - apiVersion:v1---------------------------------------version
     - kind:Pod--------------------------------------------type
-    - metadata:-------------------------------------------data about the object - pod
+    - metadata:-------------------------------------------Meta Data - pod
         - name: myapp-pod---------------------------------name of the pod
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end, sales order service
@@ -83,9 +83,9 @@
         - -name: nginx-container--------------------------second container
         - image: buxybox
 - kubectl create -f pod-definition.yaml
-- kubectl describe pods/nodes/replicasets/deployments NAME_OF_OBJECT
+- kubectl describe pods/nodes/replicasets/deployments/services NAME_OF_OBJECT
     - details about object.
-- kubectl delete pods/nodes/replicasets/deployments NAME_OF_OBJECT
+- kubectl delete pods/nodes/replicasets/deployments/services NAME_OF_OBJECT
     - delete an object
 # Replicaset
 - group of 1 or more Pods
@@ -95,14 +95,14 @@
 - replicaset-definition.yaml
     - apiVersion: apps/v1---------------------------------------version
     - kind: ReplicaSet--------------------------------------------type
-    - metadata:-------------------------------------------data about the object - replicaset
+    - metadata:-------------------------------------------Meta Data - replicaset
         - name: myapp-replicaset---------------------------------name of the replicaset
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end
             - type: front-end------------------------------label of Replicaset
    - spec:
       - template: --------------------------------------- Template of a Pod (metadata + spec) of a POd
-          - metadata:----------------------------------------data about the object - pod
+          - metadata:----------------------------------------Meta Data - pod
             - name: myapp-pod--------------------------------name of the pod
             - labels:
               - app: myapp-----------------------------------group name like front-end, back-end
@@ -136,13 +136,13 @@
     - cluster-ip-service.yaml
         - apiVersion:v1---------------------------------------version
         - kind: Service--------------------------------------------type
-        - metadata:-------------------------------------------data about the object - Service
+        - metadata:-------------------------------------------Meta Data - Service
             - name: redis-service---------------------------------name of the Service
        - spec:
             - type: ClusterIP-----------------------------------------Service Type
             - ports:
-                - -targetPort: 6379--------------------------Pod's port
-                - port: 6379-------------------Mandatory Port--------------Service is exposed on this port. 
+                - -targetPort: 6379--------------------------Pod port
+                - port: 6379---------------------------------Service port - mandatory
             - selectors
                 - app: myapp-------------------------------------selection of Pods
                 - mame: redis-pod---------------------------------selection of Pods
@@ -151,14 +151,14 @@
     - nodeport-ip-service.yaml
         - apiVersion:v1---------------------------------------version
         - kind: Service--------------------------------------------type
-        - metadata:-------------------------------------------data about the object - Service
+        - metadata:-------------------------------------------Meta Data - Service
             - name: redis-service---------------------------------name of the Service
        - spec:
             - type: NodePort-----------------------------------------Service Type
             - ports:
-                - -targetPort: 6379--------------------------Pod's port - Optional(port value)
-                - port: 6379---------------------------------Service is exposed on this port - Mandatory.
-                - nodePort: 30008-------------------------------------Node's port - Optional(30000-32767)
+                - -targetPort: 6379--------------------------Pod port
+                - port: 6379---------------------------------Service port - mandatory
+                - nodePort: 30008-------------------------------------Node port (30000-32767)
             - selectors
                 - app: myapp-------------------------------------selection of Pods
                 - mame: redis-pod---------------------------------selection of Pods
