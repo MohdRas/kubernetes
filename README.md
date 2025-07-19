@@ -56,28 +56,28 @@
   - redis service 3 instances.
   - database service 1 instance.
 # kubectl
-- kubectl get all
+- __kubectl get all__
     - all objects
 # Pod
 - kubectl version
     - show version of "client" and "server" of kubectl
 - kubectl --help
-- kubectl get pods/nodes/replicatsets/deployments
-- kubectl get pods/nodes/replicatsets/deployments -o wide
+- kubectl get pods/nodes/replicatsets/deployments/services
+- kubectl get pods/nodes/replicatsets/deployments/services -o wide
   - -o wide
     - to get more details.
 - kubectl run my-pod --image=nginx
     - creating pod from nginx image
 - pod-definition.yaml
     - apiVersion:v1---------------------------------------version
-    - kind:Pod--------------------------------------------type
+    - kind:__Pod__--------------------------------------------type
     - metadata:-------------------------------------------Meta Data - pod
         - name: myapp-pod---------------------------------name of the pod
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end, sales order service
             - type: front-end
    - spec:
-      - containers:---------------------------------------List of containers
+      - __containers__:---------------------------------------List of containers
         - -name: nginx-container--------------------------first container
         - image: nginx
         - -name: nginx-container--------------------------second container
@@ -93,36 +93,37 @@
 - Even if replicaset has 1 Pod and it fails. Replicaset automatically create another Pod in place of the failed one.
 - Replicaset will always make sure that "desired" number of Pods are always up.
 - replicaset-definition.yaml
-    - apiVersion: apps/v1---------------------------------------version
-    - kind: ReplicaSet--------------------------------------------type
+    - apiVersion: __apps/v1__---------------------------------------version
+    - kind: __ReplicaSet__--------------------------------------------type
     - metadata:-------------------------------------------Meta Data - replicaset
         - name: myapp-replicaset---------------------------------name of the replicaset
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end
             - type: front-end------------------------------label of Replicaset
    - spec:
-      - template: --------------------------------------- Template of a Pod (metadata + spec) of a POd
-          - metadata:----------------------------------------Meta Data - pod
+      - __template__: --------------------------------------- __Template of a Pod (metadata + spec) of a Pod__
+          - __metadata__:----------------------------------------Meta Data - pod
             - name: myapp-pod--------------------------------name of the pod
             - labels:
               - app: myapp-----------------------------------group name like front-end, back-end
-              - type: front-end-------------------------------label of Pod
-          - spec:
+              - type: front-end-------------------------------__label of Pod__
+          - __spec__:
             - containers:---------------------------------------List of containers
               - -name: nginx-container--------------------------first container
               - image: nginx
               - -name: nginx-container--------------------------second container
               - image: buxybox
-      - replicas: 3 ---------------------------------------3 PODS always ACTIVE all the time.
-      - selectors:
+      - __replicas__: 3 ---------------------------------------__3 PODS always ACTIVE all the time.__
+      - __selectors__:
           - matchLabels:
-              - type: front-end---------Replicaset monitors only such Pods with same label as "front-end"
+              - type: front-end-----------------------------------__label of Selector__
+- __Level of Pod is matched with label of selectors.__
 
 # deployments
 - Pod(one instance) -> Replicaset (Multiple instances) -> deployments
 - rolling(old version <-> new version) update of a production application.
 - rolling updates, undo changes, pause & resume changes can be done by deployments.
-- deployment-definition.yaml file is same as replicaset-definition.yaml except "kind:Deployment"
+- __deployment-definition.yaml file is same as replicaset-definition.yaml except "kind:Deployment"__
 - commands are same as replicasets.
 - change the deployment file and run "kubectl apply -f deployment-definition.yaml"
 # services
@@ -134,15 +135,15 @@
     - webserver tries to connect with redis server.
     - label's of service is matched with Pod's label. Only those Pods are exposed to a service.
     - cluster-ip-service.yaml
-        - apiVersion:v1---------------------------------------version
-        - kind: Service--------------------------------------------type
+        - apiVersion:__v1__---------------------------------------version
+        - kind: __Service__--------------------------------------------type
         - metadata:-------------------------------------------Meta Data - Service
             - name: redis-service---------------------------------name of the Service
        - spec:
-            - type: ClusterIP-----------------------------------------Service Type
+            - type: __ClusterIP__-----------------------------------------Service Type
             - ports:
-                - -targetPort: 6379--------------------------Pod port
-                - port: 6379---------------------------------Service port - mandatory
+                - -targetPort: 6379--------------------------__Pod port__
+                - port: 6379---------------------------------__Service port__ - mandatory
             - selectors
                 - app: myapp-------------------------------------selection of Pods
                 - mame: redis-pod---------------------------------selection of Pods
@@ -154,11 +155,11 @@
         - metadata:-------------------------------------------Meta Data - Service
             - name: redis-service---------------------------------name of the Service
        - spec:
-            - type: __NodePort-----------------------------------------Service Type
+            - type: __NodePort__-----------------------------------------Service Type
             - ports:
-                - -targetPort: 6379--------------------------Pod port
-                - port: 6379---------------------------------Service port - mandatory
-                - __nodePort: __30008-------------------------------------Node port (30000-32767)
+                - -targetPort: 6379--------------------------__Pod port__
+                - port: 6379---------------------------------__Service port__ - mandatory
+                - __nodePort__: __30008__-------------------------------------__Node port__ (30000-32767)
             - selectors
                 - app: myapp-------------------------------------selection of Pods
                 - mame: redis-pod---------------------------------selection of Pods
