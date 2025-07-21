@@ -1,5 +1,5 @@
 # kubernetes
-# install with Docker
+# install with kubeadm ( enable it in docker desktop )
  - settings -> kubernetes -> enable kubernetes
  - select kubeadm (Single Node Cluster). Apply & Restart. __One service & one node will be installed__.
  - kubectl get nodes [ __docker-desktop  Ready    control-plane__   14m   v1.32.2 ]
