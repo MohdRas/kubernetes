@@ -2,8 +2,12 @@
 # install with kubeadm ( enable it in docker desktop )
  - settings -> kubernetes -> enable kubernetes
  - select __kubeadm (Single Node Cluster)__. Apply & Restart. __One service & one node will be installed__.
- - kubectl get nodes [ __docker-desktop  Ready    control-plane__   14m   v1.32.2 ]
- - kubectl get services [ __kubernetes   ClusterIP__   10.96.0.1    <none>        443/TCP   14m ]
+ - kubectl get nodes
+   - __docker-desktop, control-plane (master node)__
+ - kubectl get services
+   - __kubernetes ,  ClusterIP__
+ - __kubelet__ runs on __each node__
+ - __kubectl__ is the command-line tool for __interacting with the Kubernetes cluster__. 
 # Node
 - a server ( Physical or VM) on which k8s is installed.
 - if this node failes, application will be down. so k8s cluster comes in picture.
