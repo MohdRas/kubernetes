@@ -1,4 +1,6 @@
 # kubernetes
+# virtualbox vs minicube vs kubectl
+
 # install with kubeadm ( enable it in docker desktop )
  - settings -> kubernetes -> enable kubernetes
  - select __kubeadm (Single Node Cluster)__. Apply & Restart. __One service & one node will be installed__.
