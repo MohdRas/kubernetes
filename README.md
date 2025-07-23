@@ -32,6 +32,8 @@
  
 # worker node
  - kubelet, container runtime ( docker ) , network proxy
+ - __api-server__-----------> instructions for Pod----------> __kubelet__----------> interact---------> __container runtime__-----------> manages -----------> __Container lifecycle
+ - __kubelet__ -------------> reports back the status ------------> __api-serber__
  - kubelet
     - is the main agent on each node. It receives Pod Specifications from the api-server and interact with container runtime to manage container lifecycle.
     - is intermediatory between api-server and container runtime.
