@@ -3,13 +3,13 @@
 
 # install with kubeadm ( enable it in docker desktop )
  - settings -> kubernetes -> enable kubernetes
- - select __kubeadm (Single Node Cluster)__. Apply & Restart. __One service & one node will be installed__.
+ - select **kubeadm (Single Node Cluster)**. Apply & Restart. **One service & one node will be installed**.
  - kubectl get nodes
-   - __docker-desktop, control-plane (master node)__
+   - **docker-desktop, control-plane (master node)**
  - kubectl get services
-   - __kubernetes ,  ClusterIP__
- - __kubelet__ runs on __each node__
- - __kubectl__ is the command-line tool for __interacting with the Kubernetes cluster__. 
+   - **kubernetes ,  ClusterIP**
+ - **kubelet** runs on **each node**
+ - **kubectl** is the command-line tool for **interacting with the Kubernetes cluster**. 
 # Node
 - a server ( Physical or VM) on which k8s is installed.
 - if this node failes, application will be down. so k8s cluster comes in picture.
@@ -31,9 +31,9 @@
   - container runtime.
  
 # worker node
- - kubelet, container runtime ( docker ) , network proxy
- - __api-server__-----------> instructions for Pod----------> __kubelet__----------> interact---------> __container runtime__-----------> manages -----------> Container lifecycle
- - __kubelet__ -------------> reports back the status ------------> __api-server__
+ - kubelet, container runtime ( docker ) and network proxy.
+ - **api-server**-----------> instructions for Pod----------> **kubelet**----------> interact---------> **container runtime**-----------> manages -----------> Container lifecycle
+ - **kubelet** -------------> reports back the status ------------> **api-server**
  - kubelet
     - is the main agent on each node of k8s cluster.
     - it ensures that containers described in "PodSpecs" are running & healthy on its node.
@@ -48,7 +48,7 @@
        - share node status ( available memory, disk space, cpu capacity ). if kubelet fails to reports status of a node, then it marked "not ready"
        - share pod status ( pending, running, succeeded & failed pod pr containers )
     - Executing health probes
-       - continuously running __health checks defined within pod's specification__
+       - continuously running **health checks defined within pod's specification**
        - Liveniness probe - check if container still running.
        - Readiness probe - check if container ready to accept traffic.
        - Startup probe - check if containerized application is started or not.
@@ -96,7 +96,7 @@
   - redis service 3 instances.
   - database service 1 instance.
 # kubectl
-- __kubectl get all__
+- **kubectl get all**
     - all objects
 # Pod
 - kubectl version
@@ -110,14 +110,14 @@
     - creating pod from nginx image
 - pod-definition.yaml
     - apiVersion:v1---------------------------------------version
-    - kind:__Pod__--------------------------------------------type
+    - kind:**Pod**--------------------------------------------type
     - metadata:-------------------------------------------Meta Data - pod
         - name: myapp-pod---------------------------------name of the pod
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end, sales order service
             - type: front-end
    - spec:
-      - __containers__:---------------------------------------List of containers
+      - **containers**:---------------------------------------List of containers
         - -name: nginx-container--------------------------first container
         - image: nginx
         - -name: nginx-container--------------------------second container
@@ -133,37 +133,37 @@
 - Even if replicaset has 1 Pod and it fails. Replicaset automatically create another Pod in place of the failed one.
 - Replicaset will always make sure that "desired" number of Pods are always up.
 - replicaset-definition.yaml
-    - apiVersion: __apps/v1__---------------------------------------version
-    - kind: __ReplicaSet__--------------------------------------------type
+    - apiVersion: **apps/v1**---------------------------------------version
+    - kind: **ReplicaSet**--------------------------------------------type
     - metadata:-------------------------------------------Meta Data - replicaset
         - name: myapp-replicaset---------------------------------name of the replicaset
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end
             - type: front-end------------------------------label of Replicaset
    - spec:
-      - __template__: --------------------------------------- __Template of a Pod (metadata + spec) of a Pod__
-          - __metadata__:----------------------------------------Meta Data - pod
+      - **template**: --------------------------------------- **Template of a Pod (metadata + spec) of a Pod**
+          - **metadata**:----------------------------------------Meta Data - pod
             - name: myapp-pod--------------------------------name of the pod
             - labels:
               - app: myapp-----------------------------------group name like front-end, back-end
-              - type: front-end-------------------------------__label of Pod__
-          - __spec__:
+              - type: front-end-------------------------------**label of Pod**
+          - **spec**:
             - containers:---------------------------------------List of containers
               - -name: nginx-container--------------------------first container
               - image: nginx
               - -name: nginx-container--------------------------second container
               - image: buxybox
-      - __replicas__: 3 ---------------------------------------__3 PODS always ACTIVE all the time.__
-      - __selectors__:
+      - **replicas**: 3 ---------------------------------------**3 PODS always ACTIVE all the time.**
+      - **selectors**:
           - matchLabels:
-              - type: front-end-----------------------------------__label of Selector__
-- __Level of Pod is matched with label of selectors.__
+              - type: front-end-----------------------------------**label of Selector**
+- **Level of Pod is matched with label of selectors.**
 
 # deployments
 - Pod(one instance) -> Replicaset (Multiple instances) -> deployments
 - rolling(old version <-> new version) update of a production application.
 - rolling updates, undo changes, pause & resume changes can be done by deployments.
-- __deployment-definition.yaml file is same as replicaset-definition.yaml except "kind:Deployment"__
+- **deployment-definition.yaml file is same as replicaset-definition.yaml except "kind:Deployment"**
 - commands are same as replicasets.
 - change the deployment file and run "kubectl apply -f deployment-definition.yaml"
 # services
@@ -175,15 +175,15 @@
     - webserver tries to connect with redis server.
     - label's of service is matched with Pod's label. Only those Pods are exposed to a service.
     - cluster-ip-service.yaml
-        - apiVersion:__v1__---------------------------------------version
-        - kind: __Service__--------------------------------------------type
+        - apiVersion:**v1**---------------------------------------version
+        - kind: **Service**--------------------------------------------type
         - metadata:-------------------------------------------Meta Data - Service
             - name: redis-service---------------------------------name of the Service
        - spec:
-            - type: __ClusterIP__-----------------------------------------Service Type
+            - type: **ClusterIP**-----------------------------------------Service Type
             - ports:
-                - -targetPort: 6379--------------------------__Pod port__
-                - port: 6379---------------------------------__Service port__ - mandatory
+                - -targetPort: 6379--------------------------**Pod port**
+                - port: 6379---------------------------------**Service port** - mandatory
             - selectors
                 - app: myapp-------------------------------------selection of Pods
                 - mame: redis-pod---------------------------------selection of Pods
@@ -195,11 +195,11 @@
         - metadata:-------------------------------------------Meta Data - Service
             - name: redis-service---------------------------------name of the Service
        - spec:
-            - type: __NodePort__-----------------------------------------Service Type
+            - type: **NodePort**-----------------------------------------Service Type
             - ports:
-                - -targetPort: 6379--------------------------__Pod port__
-                - port: 6379---------------------------------__Service port__ - mandatory
-                - __nodePort__: __30008__-------------------------------------__Node port__ (30000-32767)
+                - -targetPort: 6379--------------------------**Pod port**
+                - port: 6379---------------------------------**Service port** - mandatory
+                - **nodePort**: **30008**-------------------------------------**Node port** (30000-32767)
             - selectors
                 - app: myapp-------------------------------------selection of Pods
                 - mame: redis-pod---------------------------------selection of Pods
@@ -207,9 +207,9 @@
     - cloud provider's load balancer to our service.
 - kubectl create -f cluster-ip-service.yaml
 - kubectl get services
-- __curl http://192.168.1.2:30008__
-- it uses __Random algorithm , sessioninfinity=yes__ for the purpose of __selection of Pods to forward request to__.
-- __istio & LinkerD__ is also used for load balancing.
-- __one pod per node, multiple pods per node, multiple pods across multiple nodes, same service definition will work, no additional setup needed__.
+- **curl http://192.168.1.2:30008**
+- it uses **Random algorithm , sessioninfinity=yes** for the purpose of **selection of Pods to forward request to**.
+- **istio & LinkerD** is also used for load balancing.
+- **one pod per node, multiple pods per node, multiple pods across multiple nodes, same service definition will work, no additional setup needed**.
 
  
