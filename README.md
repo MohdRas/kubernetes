@@ -29,6 +29,18 @@
   - kublet
   - kubeproxy
   - container runtime.
+ 
+# worker node
+ - kubelet, container runtime ( docker ) , network proxy
+ - kubelet
+    - is the main agent on each node. It receives Pod Specifications from the api-server and interact with container runtime to manage container lifecycle.
+    - is intermediatory between api-server and container runtime.
+ - container runtime ( docker or containerd)
+    - is responsible for managing container life cycle.
+ - network proxy
+    - runs on each node.
+    - defined network rules on the node.
+    - handles service discovery, load balancing of the nodes.
 # Pod
 - small unit in K8s.
 - abstraction over a container.
