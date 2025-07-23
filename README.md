@@ -95,6 +95,22 @@
     - runs on each node.
     - defined network rules on the node.
     - handles service discovery, load balancing of the nodes.
+    - **Kube-Proxy:**
+       - Service Discovery and Internal Load Balancing
+          - This proxy resolves **service name to IP** of one of the healthy Pods.
+          - This proxy load balances the traffic across all available Pods for that Service.
+    - **Ingress Controller:**
+       - A specialized proxy (like NGINX, HAProxy, or Traefik) that manages external access to the cluster.
+       - This role acts as the **"front door" to the cluster**, managing how external users and systems access your applications.
+       - Manages external HTTP/S traffic, **routing it to internal Services.**
+    - **Service Mesh Sidecar:**
+       - A proxy (like Envoy or Linkerd-proxy) that runs alongside each pod to manage inter-service communication.
+       - to secure the traffic between services inside the cluster.
+       - This proxy intercepts all incoming and outgoing network traffic for that Pod.
+       - **Secure:**
+          - Automatically encrypt all traffic between services using mutual TLS (mTLS), establishing a **"zero-trust" network** where identity is verified for every request.
+       - **Observe:** '
+          - Generate detailed metrics (request rates, error rates, latencies), distributed traces, and access logs for all traffic without any changes to the application code.
 # Pod
 - small unit in K8s.
 - abstraction over a container.
@@ -205,8 +221,6 @@
 - change the deployment file and run "kubectl apply -f deployment-definition.yaml"
 # services
 - IP of Pods is lost if it is started again.
-- communication between pods within k8s cluster.
-- expose application outside the cluster.
 - kluster IP service
     - communication wetween pods within cluster.
     - webserver tries to connect with redis server.
@@ -226,6 +240,9 @@
                 - mame: redis-pod---------------------------------selection of Pods
 - NodePort service
     - exposed ternally on node IP and its port.
+    - Layer 4 (TCP/UDP)
+    - Based on NodeIP:Port'
+    - It opens a specific static port (e.g., 30080) on the IP address of every node in the cluster. Any traffic hitting [Any-Node-IP]:30080 is forwarded to your service.
     - nodeport-ip-service.yaml
         - apiVersion:v1---------------------------------------version
         - kind: Service--------------------------------------------type
