@@ -37,12 +37,21 @@
  - kubelet
     - is the main agent on each node of k8s cluster.
     - it ensures that containers described in "PodSpecs" are running & healthy on its node.
-    - manages entire life cycle of the Pods of it's node.
-    - recieves PodSpecs ( specifications for Pods) from api-server and works on this task.
+    - Pod life cycle management
+       - manages entire life cycle of the Pods of it's node.
+       - recieves PodSpecs ( specifications for Pods) from api-server and works on this task.
        - creating containers
        - running containers
-       - stopping & deleting containers if pod is terminated or stopped. 
-    - is intermediatory between api-server and container runtime.
+       - stopping & deleting containers if pod is terminated or stopped.
+    - Node & Pod Status reporting
+       - constantly communicates with api-server.
+       - share node status ( available memory, disk space, cpu capacity ). if kubelet fails to reports status of a node, then it marked "not ready"
+       - share pod status ( pending, running, succeeded & failed pod pr containers )
+    - Executing health probes
+       - continuously running __health checks defined within pod's specification__
+       - Liveniness probe - check if container still running.
+       - Readiness probe - check if container ready to accept traffic.
+       - Startup probe - check if containerized application is started or not.
  - container runtime ( docker or containerd)
     - is responsible for managing container life cycle.
  - network proxy
