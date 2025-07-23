@@ -32,10 +32,10 @@
     - New Flow: **kubelet -> containerd (or CRI-O)**
     - The Present: The CRI-Compliant Era (Kubernetes 1.24+)
     - Now, the kubelet only communicates with runtimes that directly implement the CRI standard. The two most popular CRI-compliant runtimes today are:
-    - containerd:
+    - **containerd:**
        - high-level container runtime that Docker itself uses under the hood! When you install Docker, you are also installing containerd.
        - Kubernetes can now bypass the Docker daemon and talk directly to containerd.
-    - CRI-O:
+    - **CRI-O:**
        - Container Runtime Interface
        - lightweight container runtime built specifically for Kubernetes. It implements the CRI and nothing more.
 
