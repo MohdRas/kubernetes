@@ -65,9 +65,9 @@
        - Persistent Storage:
           - The kubelet now knows its mission: **"I must make the storage described by this PV available to the container(s) in this Pod."**
           - "Pod needs storage" request-------->into-------> providing that storage to a container on its specific node.
-          - PersistentVolume (PV): storage that exists on (e.g., an Amazon EBS volume, a Google Persistent Disk, or an NFS share).
-          - PersistentVolumeClaim (PVC): A Pod's request for storage. **PodSpec** ->>>> **volume** section ->>>>> points to -->>>>>a **PersistentVolumeClaim**
-          - Container Storage Interface (CSI) Driver:
+          - **PersistentVolume (PV):** storage that exists on (e.g., an Amazon EBS volume, a Google Persistent Disk, or an NFS share).
+          - **PersistentVolumeClaim (PVC):** A Pod's request for storage. **PodSpec** ->>>> **volume** section ->>>>> points to -->>>>>a **PersistentVolumeClaim**
+          - **Container Storage Interface (CSI) Driver:**
              - **The CSI driver typically runs on every worker node.** .
              - Kublet call this CSI driver to talk to a PV to provide required PVC.
              - Kubelet-->>> call CSI driver- -->>> to talk to ---->> PV ----->>> to provide ---->>> required PVC for the pod.
