@@ -32,8 +32,8 @@
  
 # worker node
  - kubelet, container runtime ( docker ) and network proxy.
- - **api-server**-----------> PodSpecs----------> **kubelet**----------> interact---------> **container runtime**-----------> manages -----------> Container lifecycle
- - **kubelet** -------------> reports status back to ------------> **api-server**
+ - **api-server**---> PodSpecs---> **kubelet**---> interact---> **container runtime**---> manages ---> Container lifecycle
+ - **kubelet** ---> reports status back to ---> **api-server**
  - **kubelet**
     - is the main agent on worker node of k8s cluster.
     - it ensures that containers described in **PodSpecs** are running & healthy on its node.
