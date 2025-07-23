@@ -85,7 +85,12 @@
              - The kubelet instructs the container runtime (*containerd or CRI-O*).
              - It says: "Start this container, and when you do, take the directory **/var/lib/kubelet/.../mount** from the host node and make it appear inside the container at the path **/data.**"
  - **container runtime ( docker or containerd)**
-    - is responsible for managing container life cycle.
+    - kubelet decides what to do, the container runtime is the one that does it.
+    - Running and Managing Containers
+    - Managing Images
+    - Managing Container Storage and Networking
+    - Pod Sandbox Management
+       - A Pod is a group of one or more containers that share a network and storage environment. The runtime is responsible for creating this shared environment
  - **network proxy**
     - runs on each node.
     - defined network rules on the node.
