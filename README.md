@@ -28,10 +28,10 @@
 - worker node
   - kublet
   - kubeproxy
-  - container runtime.
+  - container runtime ( **containerd or CRI-O**)
  
 # worker node
- - kubelet, container runtime ( docker ) and network proxy.
+ - kubelet, container runtime ( containerd or CRI-O ) and network proxy.
  - **api-server**---> PodSpecs---> **kubelet**---> interact---> **container runtime**---> manages ---> Container lifecycle
  - **kubelet** ---> reports status back to ---> **api-server**
  - **kubelet**
@@ -44,7 +44,7 @@
     - **Pods life cycle management - The "Doer"**
        - manages entire life cycle of the Pods of the node.
        - recieves PodSpecs ( specifications for Pods ) from api-server and instruct container runtime to work on it.
-       - instruct container runtime
+       - instruct container runtime (containerd or CRI-O)
            - to pull image
            - to create container from the image.
            - to stop & remove container only if the corresponding pod is deleted or terminated.
@@ -72,7 +72,7 @@
              - Kublet call this CSI driver to talk to a PV to provide required PVC.
              - Kubelet-->>> call CSI driver- -->>> to talk to ---->> PV ----->>> to provide ---->>> required PVC for the pod.
              - The volume is now mounted to **a temporary, kubelet-managed path on the node (Node's file system)**.
-             - The kubelet instructs the container runtime (like containerd).
+             - The kubelet instructs the container runtime (*containerd or CRI-O*).
              - It says: "Start this container, and when you do, take the directory **/var/lib/kubelet/.../mount** from the host node and make it appear inside the container at the path **/data.**"
  - **container runtime ( docker or containerd)**
     - is responsible for managing container life cycle.
