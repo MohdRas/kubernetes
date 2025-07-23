@@ -62,7 +62,17 @@
        - Mounting Volumes:
           - For volumes like ConfigMaps, Secrets, or emptyDir, it mounts them into the container.
        - Persistent Storage:
-          - For PersistentVolumes, the kubelet communicates with storage plugins through CSI to attach the external storage (like an AWS EBS volume or Google Persistent Disk) and mount it to the node so it can be made available to the Pod.
+          - The kubelet now knows its mission: **"I must make the storage described by this PV available to the container(s) in this Pod."**
+          - "Pod needs storage" request-------->into-------> providing that storage to a container on its specific node.
+          - PersistentVolume (PV): storage that exists on (e.g., an Amazon EBS volume, a Google Persistent Disk, or an NFS share).
+          - PersistentVolumeClaim (PVC): A Pod's request for storage. **PodSpec** ->>>> **volume** section ->>>>> points to -->>>>>a **PersistentVolumeClaim**
+          - Container Storage Interface (CSI) Driver:
+             - **The CSI driver typically runs on every worker node.** .
+             - Kublet call this CSI driver to talk to a PV to provide required PVC.
+             - Kubelet-->>> call CSI driver- -->>> to talk to ---->> PV ----->>> to provide ---->>> required PVC for the pod.
+             - The volume is now mounted to **a temporary, kubelet-managed path on the node (Node's file system)**.
+             - The kubelet instructs the container runtime (like containerd).
+             - It says: "Start this container, and when you do, take the directory **/var/lib/kubelet/.../mount** from the host node and make it appear inside the container at the path **/data.**"
  - **container runtime ( docker or containerd)**
     - is responsible for managing container life cycle.
  - **network proxy**
