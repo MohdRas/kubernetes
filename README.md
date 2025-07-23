@@ -44,6 +44,13 @@
  - kubelet, container runtime ( containerd or CRI-O ) and network proxy.
  - **api-server**---> PodSpecs---> **kubelet**---> interact---> **container runtime**---> manages ---> Container lifecycle
  - **kubelet** ---> reports status back to ---> **api-server**
+ - **CONATINER RUNTIME ( docker or containerd)**
+    - kubelet decides what to do, the container runtime is the one that does it.
+    - Running and Managing Containers
+    - Managing Images
+    - Managing Container Storage and Networking
+    - Pod Sandbox Management
+       - A Pod is a group of one or more containers that share a network and storage environment. The runtime is responsible for creating this shared environment
  - **KUBELET**
     - is the main agent on worker node of a k8s cluster.
         - listens for instructions from the control plane - **The Lister**.
@@ -84,13 +91,6 @@
              - The volume is now mounted to **a temporary, kubelet-managed path on the node (Node's file system)**.
              - The kubelet instructs the container runtime (*containerd or CRI-O*).
              - It says: "Start this container, and when you do, take the directory **/var/lib/kubelet/.../mount** from the host node and make it appear inside the container at the path **/data.**"
- - **CONATINER RUNTIME ( docker or containerd)**
-    - kubelet decides what to do, the container runtime is the one that does it.
-    - Running and Managing Containers
-    - Managing Images
-    - Managing Container Storage and Networking
-    - Pod Sandbox Management
-       - A Pod is a group of one or more containers that share a network and storage environment. The runtime is responsible for creating this shared environment
  - **NETWORK PROXY**
     - runs on each node.
     - defined network rules on the node.
