@@ -35,7 +35,13 @@
  - __api-server__-----------> instructions for Pod----------> __kubelet__----------> interact---------> __container runtime__-----------> manages -----------> Container lifecycle
  - __kubelet__ -------------> reports back the status ------------> __api-server__
  - kubelet
-    - is the main agent on each node. It receives Pod Specifications from the api-server and interact with container runtime to manage container lifecycle.
+    - is the main agent on each node of k8s cluster.
+    - it ensures that containers described in "PodSpecs" are running & healthy on its node.
+    - manages entire life cycle of the Pods of it's node.
+    - recieves PodSpecs ( specifications for Pods) from api-server and works on this task.
+       - creating containers
+       - running containers
+       - stopping & deleting containers if pod is terminated or stopped. 
     - is intermediatory between api-server and container runtime.
  - container runtime ( docker or containerd)
     - is responsible for managing container life cycle.
