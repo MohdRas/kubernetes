@@ -35,23 +35,34 @@
  - **api-server**---> PodSpecs---> **kubelet**---> interact---> **container runtime**---> manages ---> Container lifecycle
  - **kubelet** ---> reports status back to ---> **api-server**
  - **kubelet**
-    - is the main agent on worker node of k8s cluster.
-    - it ensures that containers described in **PodSpecs** are running & healthy on its node.
-    - **Pods life cycle management**
+    - is the main agent on worker node of a k8s cluster.
+        - listens for instructions from the control plane.
+        - does the work of running and managing containers.
+        - monitors their health.
+        - reports the node's status back
+    - **Pods life cycle management - The "Doer"**
        - manages entire life cycle of the Pods of the node.
-       - recieves PodSpecs ( specifications for Pods ) from api-server and works on this task.
-       - creating containers
-       - running containers
-       - stopping & deleting containers if pod is terminated or stopped.
-    - **Node & Pod Status reporting**
-       - constantly communicates with api-server.
-       - share node status ( available memory, disk space, cpu capacity ). if kubelet fails to reports status of a node, then node marked "not ready"
-       - share pod status ( pending, running, succeeded & failed pods)
-    - **Executing health probes**
+       - recieves PodSpecs ( specifications for Pods ) from api-server and instruct container runtime to work on it.
+       - instruct container runtime
+           - to pull image
+           - to create container from the image.
+           - to stop & remove container only if the corresponding pod is deleted or terminated.
+    - **Executing health probes & monitoring of the containers of the pod - The "Doctor"**
        - continuously running **health checks defined within pod's specification**
        - Liveniness probe - check if container still running.
        - Readiness probe - check if container ready to accept traffic.
        - Startup probe - check if containerized application is started or not.
+       - helps to achieve **Kubernetes' self-healing and high-availability features.**
+    - **Node & Pod Status reporting - The "Reporter"**
+       - constantly communicates with api-server.
+       - share node status ( available memory, disk space, cpu capacity ) to api-server.
+       - share pod status ( pending, running, succeeded & failed pods) to api server.
+       - **it helps scheduler to function effectively. Without accurate node status, the scheduler might place Pods on unhealthy or overloaded nodes**.
+    - **Managing Volumes and Secrets (The "Supplier")**
+       - Mounting Volumes:
+          - For volumes like ConfigMaps, Secrets, or emptyDir, it mounts them into the container.
+       - Persistent Storage:
+          - For PersistentVolumes, the kubelet communicates with storage plugins through CSI to attach the external storage (like an AWS EBS volume or Google Persistent Disk) and mount it to the node so it can be made available to the Pod.
  - **container runtime ( docker or containerd)**
     - is responsible for managing container life cycle.
  - **network proxy**
