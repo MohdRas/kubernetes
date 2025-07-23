@@ -36,10 +36,11 @@
  - **kubelet** ---> reports status back to ---> **api-server**
  - **kubelet**
     - is the main agent on worker node of a k8s cluster.
-        - listens for instructions from the control plane.
-        - does the work of running and managing containers.
-        - monitors their health.
-        - reports the node's status back
+        - listens for instructions from the control plane - **The Lister**.
+        - does the work of running and managing containers - **The Doer**.
+        - monitors their health - **The Docker - The Monitor**.
+        - reports the node's status back - **The Reporter**
+        - provides required persistent volumes to the pod. - **The Provider or The Supplier**
     - **Pods life cycle management - The "Doer"**
        - manages entire life cycle of the Pods of the node.
        - recieves PodSpecs ( specifications for Pods ) from api-server and instruct container runtime to work on it.
