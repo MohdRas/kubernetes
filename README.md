@@ -32,29 +32,29 @@
  
 # worker node
  - kubelet, container runtime ( docker ) and network proxy.
- - **api-server**-----------> instructions for Pod----------> **kubelet**----------> interact---------> **container runtime**-----------> manages -----------> Container lifecycle
- - **kubelet** -------------> reports back the status ------------> **api-server**
- - kubelet
-    - is the main agent on each node of k8s cluster.
-    - it ensures that containers described in "PodSpecs" are running & healthy on its node.
-    - Pod life cycle management
-       - manages entire life cycle of the Pods of it's node.
-       - recieves PodSpecs ( specifications for Pods) from api-server and works on this task.
+ - **api-server**-----------> PodSpecs----------> **kubelet**----------> interact---------> **container runtime**-----------> manages -----------> Container lifecycle
+ - **kubelet** -------------> reports status back to ------------> **api-server**
+ - **kubelet**
+    - is the main agent on worker node of k8s cluster.
+    - it ensures that containers described in **PodSpecs** are running & healthy on its node.
+    - **Pods life cycle management**
+       - manages entire life cycle of the Pods of the node.
+       - recieves PodSpecs ( specifications for Pods ) from api-server and works on this task.
        - creating containers
        - running containers
        - stopping & deleting containers if pod is terminated or stopped.
-    - Node & Pod Status reporting
+    - **Node & Pod Status reporting**
        - constantly communicates with api-server.
-       - share node status ( available memory, disk space, cpu capacity ). if kubelet fails to reports status of a node, then it marked "not ready"
-       - share pod status ( pending, running, succeeded & failed pod pr containers )
-    - Executing health probes
+       - share node status ( available memory, disk space, cpu capacity ). if kubelet fails to reports status of a node, then node marked "not ready"
+       - share pod status ( pending, running, succeeded & failed pods)
+    - **Executing health probes**
        - continuously running **health checks defined within pod's specification**
        - Liveniness probe - check if container still running.
        - Readiness probe - check if container ready to accept traffic.
        - Startup probe - check if containerized application is started or not.
- - container runtime ( docker or containerd)
+ - **container runtime ( docker or containerd)**
     - is responsible for managing container life cycle.
- - network proxy
+ - **network proxy**
     - runs on each node.
     - defined network rules on the node.
     - handles service discovery, load balancing of the nodes.
