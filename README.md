@@ -39,7 +39,14 @@
        - Container Runtime Interface
        - lightweight container runtime built specifically for Kubernetes. It implements the CRI and nothing more.
 
- 
+# Control Plane - Master Node
+- api-server
+- etdc
+- control manager
+- scheduler
+- api-server
+  - gatway to the cluster for users & other components.
+
 # worker node
  - kubelet, container runtime ( containerd or CRI-O ) and network proxy.
  - **api-server**---> PodSpecs---> **kubelet**---> interact---> **container runtime**---> manages ---> Container lifecycle
