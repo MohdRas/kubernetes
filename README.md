@@ -8,7 +8,7 @@
     - certificate-authority-data: DATA+OMITTED
     - server: https://kubernetes.docker.internal:6443
 - contexts:
-- name: docker-desktop
+  - name: docker-desktop
   - context:
     - cluster: docker-desktop
     - user: docker-desktop
@@ -16,9 +16,10 @@
 preferences: {}
 - users:
   - name: docker-desktop
-    - user:
-      - client-certificate-data: DATA+OMITTED
-      - client-key-data: DATA+OMITTED
+  - user:
+    - client-certificate-data: DATA+OMITTED
+    - client-key-data: DATA+OMITTED
+    - 
 # virtualbox vs minicube vs kubectl
 
 # install with kubeadm ( enable it in docker desktop )
