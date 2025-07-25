@@ -15,10 +15,10 @@
 - current-context: docker-desktop
 preferences: {}
 - users:
-- name: docker-desktop
-  - user:
-    - client-certificate-data: DATA+OMITTED
-    - client-key-data: DATA+OMITTED
+  - name: docker-desktop
+    - user:
+      - client-certificate-data: DATA+OMITTED
+      - client-key-data: DATA+OMITTED
 # virtualbox vs minicube vs kubectl
 
 # install with kubeadm ( enable it in docker desktop )
