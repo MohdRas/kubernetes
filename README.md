@@ -1,20 +1,20 @@
 # kubernetes
 # kubeconfig
-- apiVersion: v1
-- kind: Config
-- clusters:
+- **apiVersion:** v1
+- **kind:** Config
+- **clusters:**
   - name: docker-desktop
   - cluster:
     - certificate-authority-data: DATA+OMITTED
     - server: https://kubernetes.docker.internal:6443
-- contexts:
+- **contexts:**
   - name: docker-desktop
   - context:
     - cluster: docker-desktop
     - user: docker-desktop
-- current-context: docker-desktop
-preferences: {}
-- users:
+- **current-context:** docker-desktop
+- preferences: {}
+- **users:**
   - name: docker-desktop
   - user:
     - client-certificate-data: DATA+OMITTED
