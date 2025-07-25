@@ -1,5 +1,6 @@
 # kubernetes
-# kubeconfig
+# kubeconfig - "C:\Users\mohdr\.kube\config"
+- current context binds "user" and "cluster"
 - **apiVersion:** v1
 - **kind:** Config
 - **clusters:**
