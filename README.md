@@ -1,4 +1,24 @@
 # kubernetes
+# kubeconfig
+- apiVersion: v1
+- kind: Config
+- clusters:
+  - cluster:
+    - certificate-authority-data: DATA+OMITTED
+    - server: https://kubernetes.docker.internal:6443
+  - name: docker-desktop
+- contexts:
+  - context:
+    - cluster: docker-desktop
+    - user: docker-desktop
+  - name: docker-desktop
+- current-context: docker-desktop
+preferences: {}
+- users:
+- name: docker-desktop
+  - user:
+    - client-certificate-data: DATA+OMITTED
+    - client-key-data: DATA+OMITTED
 # virtualbox vs minicube vs kubectl
 
 # install with kubeadm ( enable it in docker desktop )
