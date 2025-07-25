@@ -3,15 +3,15 @@
 - apiVersion: v1
 - kind: Config
 - clusters:
+  - name: docker-desktop
   - cluster:
     - certificate-authority-data: DATA+OMITTED
     - server: https://kubernetes.docker.internal:6443
-  - name: docker-desktop
 - contexts:
+- name: docker-desktop
   - context:
     - cluster: docker-desktop
     - user: docker-desktop
-  - name: docker-desktop
 - current-context: docker-desktop
 preferences: {}
 - users:
