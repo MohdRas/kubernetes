@@ -1,6 +1,7 @@
 # kubernetes
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view**
+- https://aistudio.google.com/app/prompts/1UdrMUn0yGZZqa46FN3rq75MaZEP-070X
 - current context binds "user" and "cluster"
 - client = kubectl, server = api-server
 - kubectl is a command-line interface (CLI) client. Its sole purpose is to take your commands, format them into standard REST API calls, and send them to the Kubernetes API server specified in your kubeconfig file. It is the active "messenger."
