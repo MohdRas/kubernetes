@@ -1,13 +1,17 @@
 # kubernetes
 # kubeconfig - "C:\Users\mohdr\.kube\config"
+- **kubectl config view**
 - current context binds "user" and "cluster"
+- client = kubectl, server = api-server
+- kubectl is a command-line interface (CLI) client. Its sole purpose is to take your commands, format them into standard REST API calls, and send them to the Kubernetes API server specified in your kubeconfig file. It is the active "messenger."
+- Docker Desktop is not the client in this interaction. Instead, Docker Desktop is the provider or host of the Kubernetes server. It's the application that runs all the control plane components (like the API server) in a virtual machine on your local machine.
 - **apiVersion:** v1
 - **kind:** Config
 - **clusters:**
   - name: docker-desktop
   - cluster:
-    - certificate-authority-data: DATA+OMITTED
-    - server: https://kubernetes.docker.internal:6443
+    - certificate-authority-data: DATA+OMITTED - **authority**
+    - server: https://kubernetes.docker.internal:6443 - **verifyer**
 - **contexts:**
   - name: docker-desktop
   - context:
@@ -18,8 +22,8 @@
 - **users:**
   - name: docker-desktop
   - user:
-    - client-certificate-data: DATA+OMITTED
-    - client-key-data: DATA+OMITTED
+    - client-certificate-data: DATA+OMITTED - **public key**
+    - client-key-data: DATA+OMITTED - **private key**
     - 
 # virtualbox vs minicube vs kubectl
 
