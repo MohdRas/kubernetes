@@ -1,6 +1,7 @@
 # kubernetes
 # kubeconfig - "C:\Users\mohdr\.kube\config"
-- **kubectl config view**
+- **kubectl config view** - to view kubeconfig file
+- **kubectl get --raw /api/v1/namespaces/default/pods/nginx** - value in etdc database
 - https://aistudio.google.com/app/prompts/1UdrMUn0yGZZqa46FN3rq75MaZEP-070X
 - current context binds "user" and "cluster"
 - client = kubectl, server = api-server
