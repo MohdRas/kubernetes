@@ -1,4 +1,6 @@
 # kubernetes
+# https://www.youtube.com/watch?v=X48VuDVv0do
+- 
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view** - to view kubeconfig file
 - **kubectl get --raw /api/v1/namespaces/default/pods/nginx** - value in etdc database
