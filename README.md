@@ -3,6 +3,10 @@
 - Open source container orchestration tool, developed by Google.
 - Manages containerized applications in all env - **Physical, Virtual or Cloud and even Hybrid**
 - Changes from **Monolith to Microservices** caused rise of **managing containerized application**.
+- what is advantage
+    - High Availability or no downtime.
+    - Scalability or High performance.
+    - Disater recovery - backup and restore.
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view** - to view kubeconfig file
 - **kubectl get --raw /api/v1/namespaces/default/pods/nginx** - value in etdc database
