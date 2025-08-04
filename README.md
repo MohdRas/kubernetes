@@ -1,5 +1,7 @@
 # kubernetes
 # Tech with Nana - https://www.youtube.com/watch?v=X48VuDVv0do
+- Open source container orchestration tool, developed by Google.
+- Manages containerized applications in all env - **Physical, Virtual or Cloud and even Hybrid**
 - 
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view** - to view kubeconfig file
