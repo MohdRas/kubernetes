@@ -1,5 +1,5 @@
 # kubernetes
-# https://www.youtube.com/watch?v=X48VuDVv0do
+# Tech with Nana - https://www.youtube.com/watch?v=X48VuDVv0do
 - 
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view** - to view kubeconfig file
