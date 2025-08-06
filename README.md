@@ -29,6 +29,7 @@
 - both config map & secrets are **configured with the POD**.
 - can be used as **environment variables** or even as **properties file**.
 # data storage - volumes
+- **kubernetes does not manage this data storage.** We need to explicity manage it.
 - if the POD restarted, then data will be lost.
 - **attaching volumes to the POD**. It can be **local to the node** or **remote(outside K8s cluster) to the node**
 
