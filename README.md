@@ -43,8 +43,9 @@
 - deployments
     - for stateless applications.
     - **blue print for pods of my application**
-    - **Pod is abstraction on the container. Deployment is another layer of abstraction over the pod.**
+    - Pod is abstraction on the container. **Deployment is another layer of abstraction over the pod.**
 - statefulset
+    - ideally we don't do this because we keep **databases outside of the K8s cluster.**
     - for statefull applications ( mysql, postgress etc )
     - databases cannnot be replicated using deployments. Reason - databases has state ( storage outside the node )
     - Need to manage, which pod is writing to the storage and reading.
