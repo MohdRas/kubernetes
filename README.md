@@ -1,6 +1,8 @@
 # kubernetes
 
 # Tech with Nana - https://www.youtube.com/watch?v=X48VuDVv0do
+
+# Kubernetes
 - Open source container orchestration tool, developed by Google.
 - Manages containerized applications in all env - **Physical, Virtual or Cloud and even Hybrid**
 - Changes from **Monolith to Microservices** caused rise of **managing containerized application**.
@@ -38,8 +40,7 @@
 - if the POD restarted, then data will be lost.
 - **attaching volumes to the POD**. It can be **local to the node** or **remote(outside K8s cluster) to the node**
 - 
-# replicate everything
-
+# Replication of nodes
 - deployments
     - for stateless applications.
     - **blue print for pods of my application**
@@ -50,11 +51,11 @@
     - databases cannnot be replicated using deployments. Reason - databases has state ( storage outside the node )
     - Need to manage, which pod is writing to the storage and reading.
 
-
-# minicube and kubectl
+# Development Tools - minicube and kubectl
 - minukube is a one node cluster ( acts as master as well as worker node too).
-- As it as a master node and worker node so **all the components of master & worker node already be installed.**
-- Minikube create virtual box on our laptop. **Basically minikube is a one node cluster which inside a virtual box on my laptop**.
+- As it as a master & worker node so **all the components of master & worker node already be installed.**
+- **Minikube create virtual box on my machine.**
+- **Basically minikube is a one node cluster inside a virtual box**.
 - kubectl interacts with k8s cluster.
 - 
 # install with kubeadm ( enable it in docker desktop )
@@ -66,6 +67,7 @@
    - **kubernetes ,  ClusterIP**
  - **kubelet** runs on **each node**
  - **kubectl** is the command-line tool for **interacting with the Kubernetes cluster**. 
+
 # Node
 - a server ( Physical or VM) on which k8s is installed.
 - if this node failes, application will be down. so k8s cluster comes in picture.
@@ -82,7 +84,7 @@
   - container runtime ( **containerd or CRI-O**)
   - kubeproxy
  
-# Control Plane - Master Node
+# Master Node - Control Plane
 - api-server
 - etdc
 - control manager
@@ -90,29 +92,19 @@
 - api-server
   - gatway to the cluster for users & other components.
 
-# worker node
+# Worker node
   - kublet
   - kubeproxy
   - container runtime ( **containerd or CRI-O**)
-    - New Flow: **kubelet -> containerd (or CRI-O)**
-    - The Present: The CRI-Compliant Era (Kubernetes 1.24+)
-    - Now, the kubelet only communicates with runtimes that directly implement the CRI standard. The two most popular CRI-compliant runtimes today are:
+    - Now, **the kubelet only communicates with runtimes that directly implement the CRI standard** [ The CRI-Compliant Era (Kubernetes 1.24+) ]
+    - The two most popular CRI-compliant runtimes today are:
     - **containerd:**
        - high-level container runtime that Docker itself uses under the hood! When you install Docker, you are also installing containerd.
        - Kubernetes can now bypass the Docker daemon and talk directly to containerd.
     - **CRI-O:**
        - Container Runtime Interface
        - lightweight container runtime built specifically for Kubernetes. It implements the CRI and nothing more.
- - kubelet, container runtime ( containerd or CRI-O ) and network proxy.
- - **api-server**---> PODSpecs---> **kubelet**---> interact---> **container runtime**---> manages ---> Container lifecycle
- - **kubelet** ---> reports status back to ---> **api-server**
- - **CONATINER RUNTIME ( docker or containerd)**
-    - kubelet decides what to do, the container runtime is the one that does it.
-    - Running and Managing Containers
-    - Managing Images
-    - Managing Container Storage and Networking
-    - POD Sandbox Management
-       - A POD is a group of one or more containers that share a network and storage environment. The runtime is responsible for creating this shared environment
+       - 
  - **KUBELET**
     - is the main agent on worker node of a k8s cluster.
         - listens for instructions from the control plane - **The Lister**.
@@ -152,7 +144,15 @@
              - Kubelet-->>> call CSI driver- -->>> to talk to ---->> PV ----->>> to provide ---->>> required PVC for the POD.
              - The volume is now mounted to **a temporary, kubelet-managed path on the node (Node's file system)**.
              - The kubelet instructs the container runtime (*containerd or CRI-O*).
-             - It says: "Start this container, and when you do, take the directory **/var/lib/kubelet/.../mount** from the host node and make it appear inside the container at the path **/data.**"
+             - It says: "Start this container, and when you do, take the directory **/var/lib/kubelet/.../mount** from the host node and make it appear inside the container at the path **/data.**
+             - 
+- **CONATINER RUNTIME ( docker or containerd)**
+    - kubelet decides what to do, the container runtime is the one that does it.
+    - Running and Managing Containers
+    - Managing Images
+    - Managing Container Storage and Networking
+    - POD Sandbox Management
+       - A POD is a group of one or more containers that share a network and storage environment. The runtime is responsible for creating this shared environment         - 
  - **NETWORK PROXY**
     - runs on each node.
     - defined network rules on the node.
