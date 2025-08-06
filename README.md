@@ -51,14 +51,14 @@
     - databases cannnot be replicated using deployments. Reason - databases has state ( storage outside the node )
     - Need to manage, which pod is writing to the storage and reading.
 
-# Development Tools - minicube and kubectl
+# Development Tools - minicube
 - minukube is a one node cluster ( acts as master as well as worker node too).
 - As it as a master & worker node so **all the components of master & worker node already be installed.**
 - **Minikube create virtual box on my machine.**
 - **Basically minikube is a one node cluster inside a virtual box**.
 - kubectl interacts with k8s cluster.
 - 
-# Development Tools - kubeadm ( docker desktop )
+# Development Tools - kubeadm
  - settings -> kubernetes -> enable kubernetes
  - select **kubeadm (Single Node Cluster)**. Apply & Restart.
  - **One service & one node will be already installed**.
