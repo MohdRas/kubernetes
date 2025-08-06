@@ -1,4 +1,5 @@
 # kubernetes
+
 # Tech with Nana - https://www.youtube.com/watch?v=X48VuDVv0do
 - Open source container orchestration tool, developed by Google.
 - Manages containerized applications in all env - **Physical, Virtual or Cloud and even Hybrid**
@@ -7,12 +8,14 @@
     - High Availability or no downtime.
     - Scalability or High performance.
     - Disater recovery - backup and restore.
+    - 
 # POD
 - small unit in K8s.
 - abstraction over a container.
 - one **container/application/IP** per POD.
 - new IP , every time a POD created.
 - **multiple PODs** per Node.
+- 
 # Service & Ingress
 - one service per POD.
 - each service will have **one permanet IP and act as load balancer**.
@@ -20,6 +23,7 @@
 - services are also inside the node.
 - we need external service to access our application for example - in the browser.
 - ingress is an external service. Request go though **(ingress service)** to **(internal service)** to **(Pod)** to **(Container)** to **(application inside container)**
+- 
 # Config map & Secrets - External configuration to the Pod ( Application )
 - our application wants to connect with mongo-db service.
 - external configuration of our application.
@@ -28,16 +32,22 @@
 - **username & password** is kept inside **secrets(base 64 encoded)**, this is another type of config map.
 - both config map & secrets are **configured with the POD**.
 - can be used as **environment variables** or even as **properties file**.
+- 
 # data storage - volumes
 - **kubernetes does not manage this data storage.** We need to explicity manage it.
 - if the POD restarted, then data will be lost.
 - **attaching volumes to the POD**. It can be **local to the node** or **remote(outside K8s cluster) to the node**
+- 
 # replicate everything
-- replicaset
+
+- deployments
+    - for stateless applications.
+    - **blue print for pods of my application**
+    - **Pod is abstraction on the container. Deployment is another layer of abstraction over the pod.**
+- statefulset
+    - for statefull applications ( mysql, postgress etc )
     - databases cannnot be replicated using deployments. Reason - databases has state ( storage outside the node )
     - Need to manage, which pod is writing to the storage and reading.
-- deployments - **blue print for pods of my application**
-- **Pod is abstraction on the container. Deployment is another layer of abstraction over the pod.**
 
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view** - to view kubeconfig file
