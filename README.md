@@ -82,7 +82,8 @@
 # minicube and kubectl
 - minukube is a one node cluster ( acts as master as well as worker node too).
 - As it as a master node and worker node the **all the components of master & worker node already be installed.**
-
+- Minikube create virtual box on our laptop. **Basically minikube is a one node cluster which inside a virtual box on my laptop**.
+- 
 # install with kubeadm ( enable it in docker desktop )
  - settings -> kubernetes -> enable kubernetes
  - select **kubeadm (Single Node Cluster)**. Apply & Restart. **One service & one node will be installed**.
