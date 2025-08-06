@@ -28,9 +28,9 @@
 - **username & password** is kept inside **secrets(base 64 encoded)**, this is another type of config map.
 - both config map & secrets are **configured with the POD**.
 - can be used as **environment variables** or even as **properties file**.
-# data storage
+# data storage - volumes
 - if the POD restarted, then data will be lost.
-- attaching volumes (physical storage) to the POD. It can be local or remote(outside K8s cluster) w.r.t the node.
+- **attaching volumes to the POD**. It can be **local to the node** or **remote(outside K8s cluster) to the node**
 
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view** - to view kubeconfig file
