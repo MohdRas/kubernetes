@@ -19,7 +19,7 @@
 - **life cycle of service & POD are not connected.**
 - services are also inside the node.
 - we need external service to access our application for example - in the browser.
-- ingress is an external service. Request go thought **(ingress service) to (internal service) to (Pod) to (Container) to (application inside container)**
+- ingress is an external service. Request go though **(ingress service)** to **(internal service)** to **(Pod)** to **(Container)** to **(application inside container)**
 # config map & secrets
 - my application wants to connect with mongo-db service.
 - external configuration of our application.
