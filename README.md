@@ -58,13 +58,13 @@
 - **Basically minikube is a one node cluster inside a virtual box**.
 - kubectl interacts with k8s cluster.
 - 
-# install with kubeadm ( enable it in docker desktop )
+# Development Tools - kubeadm ( docker desktop )
  - settings -> kubernetes -> enable kubernetes
- - select **kubeadm (Single Node Cluster)**. Apply & Restart. **One service & one node will be installed**.
- - kubectl get nodes
-   - **docker-desktop, control-plane (master node)**
- - kubectl get services
-   - **kubernetes ,  ClusterIP**
+ - select **kubeadm (Single Node Cluster)**. Apply & Restart.
+ - **One service & one node will be already installed**.
+ - kubectl get nodes/services
+   - docker-desktop, control-plane (master node)
+   - kubernetes ,  ClusterIP
  - **kubelet** runs on **each node**
  - **kubectl** is the command-line tool for **interacting with the Kubernetes cluster**. 
 
