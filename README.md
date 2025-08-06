@@ -7,7 +7,30 @@
     - High Availability or no downtime.
     - Scalability or High performance.
     - Disater recovery - backup and restore.
-- 
+# POD
+- small unit in K8s.
+- abstraction over a container.
+- one **container/application/IP** per POD.
+- new IP , every time a POD created.
+- **multiple PODs** per Node.
+# Service & Ingress
+- one service per POD.
+- each service will have one permanet IP.
+- **life cycle of service & POD are not connected.**
+- services are also inside the node.
+- we need external service to access our application for example - in the browser.
+- ingress is an external service. Request go thought **(ingress service) to (internal service) to (Pod) to (Container) to (application inside container)**
+# config map & secrets
+- my application wants to connect with mongo-db service.
+- external configuration of our application.
+- database URL is kept in this config map.
+- if name of the service or endpoint changes, just need to update the config map.
+- username & password is kept inside secrets(base 64 encoded), another type config map.
+- both config map & secrets are configured with the application POD.
+# data storage
+- if the POD restarted, then data will be lost.
+- attaching volumes (physical storage) to the POD. It can be local or remote(outside K8s cluster) w.r.t the node.
+
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view** - to view kubeconfig file
 - **kubectl get --raw /api/v1/namespaces/default/PODs/nginx** - value in etdc database
@@ -155,29 +178,6 @@
           - Automatically encrypt all traffic between services using mutual TLS (mTLS), establishing a **"zero-trust" network** where identity is verified for every request.
        - **Observe:** '
           - Generate detailed metrics (request rates, error rates, latencies), distributed traces, and access logs for all traffic without any changes to the application code.
-# POD
-- small unit in K8s.
-- abstraction over a container.
-- one **container/application/IP** per POD.
-- new IP , every time a POD created.
-- **multiple PODs** per Node.
-# service
-- one service per POD.
-- each service will have one permanet IP.
-- life cycle of service & POD are not connected.
-- services are also inside the node.
-- we need external service to access our application in the browser.
-- ingress is an external service. Request go thought ingress service to internal service (application).
-# config map & secrets
-- my application wants to connect with mongo-db service.
-- external configuration of our application.
-- database URL is kept in this config map.
-- if name of the service or endpoint changes, just need to update the config map.
-- username & password is kept inside secrets(base 64 encoded), another type config map.
-- both config map & secrets are configured with the application POD.
-# data storage
-- if the POD restarted, then data will be lost.
-- attaching volumes (physical storage) to the POD. It can be local or remote(outside K8s cluster) w.r.t the node.
 
 # Kubernetes https://www.youtube.com/watch?v=XuSQU5Grv1g
 - With docker, we run one instance of an application.
