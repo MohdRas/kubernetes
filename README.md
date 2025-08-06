@@ -7,9 +7,10 @@
     - High Availability or no downtime.
     - Scalability or High performance.
     - Disater recovery - backup and restore.
+- 
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view** - to view kubeconfig file
-- **kubectl get --raw /api/v1/namespaces/default/pods/nginx** - value in etdc database
+- **kubectl get --raw /api/v1/namespaces/default/PODs/nginx** - value in etdc database
 - https://aistudio.google.com/app/prompts/1UdrMUn0yGZZqa46FN3rq75MaZEP-070X
 - current context binds "user" and "cluster"
 - client = kubectl, server = api-server
@@ -85,52 +86,52 @@
 
 # worker node
  - kubelet, container runtime ( containerd or CRI-O ) and network proxy.
- - **api-server**---> PodSpecs---> **kubelet**---> interact---> **container runtime**---> manages ---> Container lifecycle
+ - **api-server**---> PODSpecs---> **kubelet**---> interact---> **container runtime**---> manages ---> Container lifecycle
  - **kubelet** ---> reports status back to ---> **api-server**
  - **CONATINER RUNTIME ( docker or containerd)**
     - kubelet decides what to do, the container runtime is the one that does it.
     - Running and Managing Containers
     - Managing Images
     - Managing Container Storage and Networking
-    - Pod Sandbox Management
-       - A Pod is a group of one or more containers that share a network and storage environment. The runtime is responsible for creating this shared environment
+    - POD Sandbox Management
+       - A POD is a group of one or more containers that share a network and storage environment. The runtime is responsible for creating this shared environment
  - **KUBELET**
     - is the main agent on worker node of a k8s cluster.
         - listens for instructions from the control plane - **The Lister**.
         - does the work of running and managing containers - **The Doer**.
         - monitors their health - **The Docker - The Monitor**.
         - reports the node's status back - **The Reporter**
-        - provides required persistent volumes to the pod. - **The Provider or The Supplier**
-    - **Pods life cycle management - The "Doer"**
-       - manages entire life cycle of the Pods of the node.
-       - recieves PodSpecs ( specifications for Pods ) from api-server and instruct container runtime to work on it.
+        - provides required persistent volumes to the POD. - **The Provider or The Supplier**
+    - **PODs life cycle management - The "Doer"**
+       - manages entire life cycle of the PODs of the node.
+       - recieves PODSpecs ( specifications for PODs ) from api-server and instruct container runtime to work on it.
        - instruct container runtime (containerd or CRI-O)
            - to pull image
            - to create container from the image.
-           - to stop & remove container only if the corresponding pod is deleted or terminated.
-    - **Executing health probes & monitoring of the containers of the pod - The "Doctor"**
-       - continuously running **health checks defined within pod's specification**
+           - to stop & remove container only if the corresponding POD is deleted or terminated.
+    - **Executing health probes & monitoring of the containers of the POD - The "Doctor"**
+       - continuously running **health checks defined within POD's specification**
        - Liveniness probe - check if container still running.
        - Readiness probe - check if container ready to accept traffic.
        - Startup probe - check if containerized application is started or not.
        - helps to achieve **Kubernetes' self-healing and high-availability features.**
-    - **Node & Pod Status reporting - The "Reporter"**
+    - **Node & POD Status reporting - The "Reporter"**
        - constantly communicates with api-server.
        - share node status ( available memory, disk space, cpu capacity ) to api-server.
-       - share pod status ( pending, running, succeeded & failed pods) to api server.
-       - **it helps scheduler to function effectively. Without accurate node status, the scheduler might place Pods on unhealthy or overloaded nodes**.
+       - share POD status ( pending, running, succeeded & failed PODs) to api server.
+       - **it helps scheduler to function effectively. Without accurate node status, the scheduler might place PODs on unhealthy or overloaded nodes**.
     - **Managing Volumes and Secrets (The "Supplier")**
        - Mounting Volumes:
           - For volumes like ConfigMaps, Secrets, or emptyDir, it mounts them into the container.
        - Persistent Storage:
-          - The kubelet now knows its mission: **"I must make the storage described by this PV available to the container(s) in this Pod."**
-          - "Pod needs storage" request-------->into-------> providing that storage to a container on its specific node.
+          - The kubelet now knows its mission: **"I must make the storage described by this PV available to the container(s) in this POD."**
+          - "POD needs storage" request-------->into-------> providing that storage to a container on its specific node.
           - **PersistentVolume (PV):** storage that exists on (e.g., an Amazon EBS volume, a Google Persistent Disk, or an NFS share).
-          - **PersistentVolumeClaim (PVC):** A Pod's request for storage. **PodSpec** ->>>> **volume** section ->>>>> points to -->>>>>a **PersistentVolumeClaim**
+          - **PersistentVolumeClaim (PVC):** A POD's request for storage. **PODSpec** ->>>> **volume** section ->>>>> points to -->>>>>a **PersistentVolumeClaim**
           - **Container Storage Interface (CSI) Driver:**
              - **The CSI driver typically runs on every worker node.** .
              - Kublet call this CSI driver to talk to a PV to provide required PVC.
-             - Kubelet-->>> call CSI driver- -->>> to talk to ---->> PV ----->>> to provide ---->>> required PVC for the pod.
+             - Kubelet-->>> call CSI driver- -->>> to talk to ---->> PV ----->>> to provide ---->>> required PVC for the POD.
              - The volume is now mounted to **a temporary, kubelet-managed path on the node (Node's file system)**.
              - The kubelet instructs the container runtime (*containerd or CRI-O*).
              - It says: "Start this container, and when you do, take the directory **/var/lib/kubelet/.../mount** from the host node and make it appear inside the container at the path **/data.**"
@@ -140,30 +141,30 @@
     - handles service discovery, load balancing of the nodes.
     - **Kube-Proxy:**
        - Service Discovery and Internal Load Balancing
-          - This proxy resolves **service name to IP** of one of the healthy Pods.
-          - This proxy load balances the traffic across all available Pods for that Service.
+          - This proxy resolves **service name to IP** of one of the healthy PODs.
+          - This proxy load balances the traffic across all available PODs for that Service.
     - **Ingress Controller:**
        - A specialized proxy (like NGINX, HAProxy, or Traefik) that manages external access to the cluster.
        - This role acts as the **"front door" to the cluster**, managing how external users and systems access your applications.
        - Manages external HTTP/S traffic, **routing it to internal Services.**
     - **Service Mesh Sidecar:**
-       - A proxy (like Envoy or Linkerd-proxy) that runs alongside each pod to manage inter-service communication.
+       - A proxy (like Envoy or Linkerd-proxy) that runs alongside each POD to manage inter-service communication.
        - to secure the traffic between services inside the cluster.
-       - This proxy intercepts all incoming and outgoing network traffic for that Pod.
+       - This proxy intercepts all incoming and outgoing network traffic for that POD.
        - **Secure:**
           - Automatically encrypt all traffic between services using mutual TLS (mTLS), establishing a **"zero-trust" network** where identity is verified for every request.
        - **Observe:** '
           - Generate detailed metrics (request rates, error rates, latencies), distributed traces, and access logs for all traffic without any changes to the application code.
-# Pod
+# POD
 - small unit in K8s.
 - abstraction over a container.
-- one container/application/IP per pod.
-- new IP , every time a pod created.
-- multiple Pods per node.
+- one **container/application/IP** per POD.
+- new IP , every time a POD created.
+- **multiple PODs** per Node.
 # service
-- one service per Pod.
+- one service per POD.
 - each service will have one permanet IP.
-- life cycle of service & pod are not connected.
+- life cycle of service & POD are not connected.
 - services are also inside the node.
 - we need external service to access our application in the browser.
 - ingress is an external service. Request go thought ingress service to internal service (application).
@@ -173,10 +174,10 @@
 - database URL is kept in this config map.
 - if name of the service or endpoint changes, just need to update the config map.
 - username & password is kept inside secrets(base 64 encoded), another type config map.
-- both config map & secrets are configured with the application pod.
+- both config map & secrets are configured with the application POD.
 # data storage
-- if the pod restarted, then data will be lost.
-- attaching volumes (physical storage) to the pod. It can be local or remote(outside K8s cluster) w.r.t the node.
+- if the POD restarted, then data will be lost.
+- attaching volumes (physical storage) to the POD. It can be local or remote(outside K8s cluster) w.r.t the node.
 
 # Kubernetes https://www.youtube.com/watch?v=XuSQU5Grv1g
 - With docker, we run one instance of an application.
@@ -194,21 +195,21 @@
 # kubectl
 - **kubectl get all**
     - all objects
-# Pod
+# POD
 - kubectl version
     - show version of "client" and "server" of kubectl
 - kubectl --help
-- kubectl get pods/nodes/replicatsets/deployments/services
-- kubectl get pods/nodes/replicatsets/deployments/services -o wide
+- kubectl get PODs/nodes/replicatsets/deployments/services
+- kubectl get PODs/nodes/replicatsets/deployments/services -o wide
   - -o wide
     - to get more details.
-- kubectl run my-pod --image=nginx
-    - creating pod from nginx image
-- pod-definition.yaml
+- kubectl run my-POD --image=nginx
+    - creating POD from nginx image
+- POD-definition.yaml
     - apiVersion:v1---------------------------------------version
-    - kind:**Pod**--------------------------------------------type
-    - metadata:-------------------------------------------Meta Data - pod
-        - name: myapp-pod---------------------------------name of the pod
+    - kind:**POD**--------------------------------------------type
+    - metadata:-------------------------------------------Meta Data - POD
+        - name: myapp-POD---------------------------------name of the POD
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end, sales order service
             - type: front-end
@@ -218,16 +219,16 @@
         - image: nginx
         - -name: nginx-container--------------------------second container
         - image: buxybox
-- kubectl create -f pod-definition.yaml
-- kubectl describe pods/nodes/replicasets/deployments/services NAME_OF_OBJECT
+- kubectl create -f POD-definition.yaml
+- kubectl describe PODs/nodes/replicasets/deployments/services NAME_OF_OBJECT
     - details about object.
-- kubectl delete pods/nodes/replicasets/deployments/services NAME_OF_OBJECT
+- kubectl delete PODs/nodes/replicasets/deployments/services NAME_OF_OBJECT
     - delete an object
 # Replicaset
-- group of 1 or more Pods
+- group of 1 or more PODs
 - spans across the cluster ( 1 or more worker nodes)
-- Even if replicaset has 1 Pod and it fails. Replicaset automatically create another Pod in place of the failed one.
-- Replicaset will always make sure that "desired" number of Pods are always up.
+- Even if replicaset has 1 POD and it fails. Replicaset automatically create another POD in place of the failed one.
+- Replicaset will always make sure that "desired" number of PODs are always up.
 - replicaset-definition.yaml
     - apiVersion: **apps/v1**---------------------------------------version
     - kind: **ReplicaSet**--------------------------------------------type
@@ -237,12 +238,12 @@
             - app: myapp----------------------------------group name like front-end, back-end
             - type: front-end------------------------------label of Replicaset
    - spec:
-      - **template**: --------------------------------------- **Template of a Pod (metadata + spec) of a Pod**
-          - **metadata**:----------------------------------------Meta Data - pod
-            - name: myapp-pod--------------------------------name of the pod
+      - **template**: --------------------------------------- **Template of a POD (metadata + spec) of a POD**
+          - **metadata**:----------------------------------------Meta Data - POD
+            - name: myapp-POD--------------------------------name of the POD
             - labels:
               - app: myapp-----------------------------------group name like front-end, back-end
-              - type: front-end-------------------------------**label of Pod**
+              - type: front-end-------------------------------**label of POD**
           - **spec**:
             - containers:---------------------------------------List of containers
               - -name: nginx-container--------------------------first container
@@ -253,21 +254,21 @@
       - **selectors**:
           - matchLabels:
               - type: front-end-----------------------------------**label of Selector**
-- **Level of Pod is matched with label of selectors.**
+- **Level of POD is matched with label of selectors.**
 
 # deployments
-- Pod(one instance) -> Replicaset (Multiple instances) -> deployments
+- POD(one instance) -> Replicaset (Multiple instances) -> deployments
 - rolling(old version <-> new version) update of a production application.
 - rolling updates, undo changes, pause & resume changes can be done by deployments.
 - **deployment-definition.yaml file is same as replicaset-definition.yaml except "kind:Deployment"**
 - commands are same as replicasets.
 - change the deployment file and run "kubectl apply -f deployment-definition.yaml"
 # services
-- IP of Pods is lost if it is started again.
+- IP of PODs is lost if it is started again.
 - kluster IP service
-    - communication wetween pods within cluster.
+    - communication wetween PODs within cluster.
     - webserver tries to connect with redis server.
-    - label's of service is matched with Pod's label. Only those Pods are exposed to a service.
+    - label's of service is matched with POD's label. Only those PODs are exposed to a service.
     - cluster-ip-service.yaml
         - apiVersion:**v1**---------------------------------------version
         - kind: **Service**--------------------------------------------type
@@ -276,11 +277,11 @@
        - spec:
             - type: **ClusterIP**-----------------------------------------Service Type
             - ports:
-                - -targetPort: 6379--------------------------**Pod port**
+                - -targetPort: 6379--------------------------**POD port**
                 - port: 6379---------------------------------**Service port** - mandatory
             - selectors
-                - app: myapp-------------------------------------selection of Pods
-                - mame: redis-pod---------------------------------selection of Pods
+                - app: myapp-------------------------------------selection of PODs
+                - mame: redis-POD---------------------------------selection of PODs
 - NodePort service
     - exposed ternally on node IP and its port.
     - Layer 4 (TCP/UDP)
@@ -294,19 +295,19 @@
        - spec:
             - type: **NodePort**-----------------------------------------Service Type
             - ports:
-                - -targetPort: 6379--------------------------**Pod port**
+                - -targetPort: 6379--------------------------**POD port**
                 - port: 6379---------------------------------**Service port** - mandatory
                 - **nodePort**: **30008**-------------------------------------**Node port** (30000-32767)
             - selectors
-                - app: myapp-------------------------------------selection of Pods
-                - mame: redis-pod---------------------------------selection of Pods
+                - app: myapp-------------------------------------selection of PODs
+                - mame: redis-POD---------------------------------selection of PODs
 - load balancer
     - cloud provider's load balancer to our service.
 - kubectl create -f cluster-ip-service.yaml
 - kubectl get services
 - **curl http://192.168.1.2:30008**
-- it uses **Random algorithm , sessioninfinity=yes** for the purpose of **selection of Pods to forward request to**.
+- it uses **Random algorithm , sessioninfinity=yes** for the purpose of **selection of PODs to forward request to**.
 - **istio & LinkerD** is also used for load balancing.
-- **one pod per node, multiple pods per node, multiple pods across multiple nodes, same service definition will work, no additional setup needed**.
+- **one POD per node, multiple PODs per node, multiple PODs across multiple nodes, same service definition will work, no additional setup needed**.
 
  
