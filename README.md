@@ -50,35 +50,7 @@
     - databases cannnot be replicated using deployments. Reason - databases has state ( storage outside the node )
     - Need to manage, which pod is writing to the storage and reading.
 
-# kubeconfig - "C:\Users\mohdr\.kube\config"
-- ....
-- **kubectl config view** - to view kubeconfig file
-- **kubectl get --raw /api/v1/namespaces/default/PODs/nginx** - value in etdc database
-- https://aistudio.google.com/app/prompts/1UdrMUn0yGZZqa46FN3rq75MaZEP-070X
-- current context binds "user" and "cluster"
-- client = kubectl, server = api-server
-- kubectl is a command-line interface (CLI) client. Its sole purpose is to take your commands, format them into standard REST API calls, and send them to the Kubernetes API server specified in your kubeconfig file. It is the active "messenger."
-- Docker Desktop is not the client in this interaction. Instead, Docker Desktop is the provider or host of the Kubernetes server. It's the application that runs all the control plane components (like the API server) in a virtual machine on your local machine.
-- **apiVersion:** v1
-- **kind:** Config
-- **clusters:**
-  - name: docker-desktop
-  - cluster:
-    - certificate-authority-data: DATA+OMITTED - **authority**
-    - server: https://kubernetes.docker.internal:6443 - **verifyer**
-- **contexts:**
-  - name: docker-desktop
-  - context:
-    - cluster: docker-desktop
-    - user: docker-desktop
-- **current-context:** docker-desktop
-- preferences: {}
-- **users:**
-  - name: docker-desktop
-  - user:
-    - client-certificate-data: DATA+OMITTED - **public key**
-    - client-key-data: DATA+OMITTED - **private key**
-    - 
+
 # minicube and kubectl
 - minukube is a one node cluster ( acts as master as well as worker node too).
 - As it as a master node and worker node so **all the components of master & worker node already be installed.**
@@ -202,7 +174,37 @@
        - **Observe:** '
           - Generate detailed metrics (request rates, error rates, latencies), distributed traces, and access logs for all traffic without any changes to the application code.
 
-# Kubernetes https://www.youtube.com/watch?v=XuSQU5Grv1g
+# kubeconfig - "C:\Users\mohdr\.kube\config"
+- ....
+- **kubectl config view** - to view kubeconfig file
+- **kubectl get --raw /api/v1/namespaces/default/PODs/nginx** - value in etdc database
+- https://aistudio.google.com/app/prompts/1UdrMUn0yGZZqa46FN3rq75MaZEP-070X
+- current context binds "user" and "cluster"
+- client = kubectl, server = api-server
+- kubectl is a command-line interface (CLI) client. Its sole purpose is to take your commands, format them into standard REST API calls, and send them to the Kubernetes API server specified in your kubeconfig file. It is the active "messenger."
+- Docker Desktop is not the client in this interaction. Instead, Docker Desktop is the provider or host of the Kubernetes server. It's the application that runs all the control plane components (like the API server) in a virtual machine on your local machine.
+- **apiVersion:** v1
+- **kind:** Config
+- **clusters:**
+  - name: docker-desktop
+  - cluster:
+    - certificate-authority-data: DATA+OMITTED - **authority**
+    - server: https://kubernetes.docker.internal:6443 - **verifyer**
+- **contexts:**
+  - name: docker-desktop
+  - context:
+    - cluster: docker-desktop
+    - user: docker-desktop
+- **current-context:** docker-desktop
+- preferences: {}
+- **users:**
+  - name: docker-desktop
+  - user:
+    - client-certificate-data: DATA+OMITTED - **public key**
+    - client-key-data: DATA+OMITTED - **private key**
+    - 
+
+# Kubernetes Kodekloud https://www.youtube.com/watch?v=XuSQU5Grv1g 
 - With docker, we run one instance of an application.
 - But with k8s, we can run thousands of instances in a single command.
   - "kubectl run --replicas=1000 my-web-server" =========> starting 1000 instances.
