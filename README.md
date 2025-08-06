@@ -20,13 +20,14 @@
 - services are also inside the node.
 - we need external service to access our application for example - in the browser.
 - ingress is an external service. Request go though **(ingress service)** to **(internal service)** to **(Pod)** to **(Container)** to **(application inside container)**
-# config map & secrets
-- my application wants to connect with mongo-db service.
+# Config map & Secrets - External configuration to the Pod ( Application )
+- our application wants to connect with mongo-db service.
 - external configuration of our application.
 - database URL is kept in this config map.
 - if name of the service or endpoint changes, just need to update the config map.
-- username & password is kept inside secrets(base 64 encoded), another type config map.
-- both config map & secrets are configured with the application POD.
+- **username & password** is kept inside **secrets(base 64 encoded)**, this is another type of config map.
+- both config map & secrets are **configured with the POD**.
+- can be used as **environment variables** or even as **properties file**.
 # data storage
 - if the POD restarted, then data will be lost.
 - attaching volumes (physical storage) to the POD. It can be local or remote(outside K8s cluster) w.r.t the node.
