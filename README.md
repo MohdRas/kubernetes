@@ -15,7 +15,7 @@
 - **multiple PODs** per Node.
 # Service & Ingress
 - one service per POD.
-- each service will have one permanet IP.
+- each service will have **one permanet IP and act as load balancer**.
 - **life cycle of service & POD are not connected.**
 - services are also inside the node.
 - we need external service to access our application for example - in the browser.
