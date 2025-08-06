@@ -32,6 +32,9 @@
 - **kubernetes does not manage this data storage.** We need to explicity manage it.
 - if the POD restarted, then data will be lost.
 - **attaching volumes to the POD**. It can be **local to the node** or **remote(outside K8s cluster) to the node**
+# replicate everything
+- replicaset
+- deployments
 
 # kubeconfig - "C:\Users\mohdr\.kube\config"
 - **kubectl config view** - to view kubeconfig file
