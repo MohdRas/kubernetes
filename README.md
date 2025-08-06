@@ -34,6 +34,8 @@
 - **attaching volumes to the POD**. It can be **local to the node** or **remote(outside K8s cluster) to the node**
 # replicate everything
 - replicaset
+    - databases cannnot be replicated using deployments. Reason - databases has state ( storage outside the node )
+    - Need to manage, which pod is writing to the storage and reading.
 - deployments - **blue print for pods of my application**
 - **Pod is abstraction on the container. Deployment is another layer of abstraction over the pod.**
 
