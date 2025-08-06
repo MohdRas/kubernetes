@@ -79,7 +79,9 @@
     - client-certificate-data: DATA+OMITTED - **public key**
     - client-key-data: DATA+OMITTED - **private key**
     - 
-# virtualbox vs minicube vs kubectl
+# minicube and kubectl
+- minukube is a one node cluster ( acts as master as well as worker node too).
+- As it as a master node and worker node the **all the components of master & worker node already be installed.**
 
 # install with kubeadm ( enable it in docker desktop )
  - settings -> kubernetes -> enable kubernetes
@@ -98,9 +100,9 @@
 - a cluster will have master & worker nodes together.
 - master node
   - api server - acts as front end for k8s.
-  - etcd - disributed key-value store.
-  - controller-manager - brain for the orchestration of the nodes.
-  - kube-scheduler - distributing across multiple nodes.
+  - etcd - disributed key-value store. All the state of a pod is stored here.
+  - controller-manager - detects state changes in cluster ( Pods destroyed )
+  - kube-scheduler - distributing pods to be created across multiple nodes.
 - master node
   - kublet
   - container runtime ( **containerd or CRI-O**)
