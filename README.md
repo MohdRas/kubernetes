@@ -51,6 +51,7 @@
     - Need to manage, which pod is writing to the storage and reading.
 
 # kubeconfig - "C:\Users\mohdr\.kube\config"
+- ....
 - **kubectl config view** - to view kubeconfig file
 - **kubectl get --raw /api/v1/namespaces/default/PODs/nginx** - value in etdc database
 - https://aistudio.google.com/app/prompts/1UdrMUn0yGZZqa46FN3rq75MaZEP-070X
@@ -96,15 +97,24 @@
 - controlplane( master node) help to manages these working nodes.
 - a cluster will have master & worker nodes together.
 - master node
-  - api server
-     - acts as front end for k8s.
-  - etcd
-      - disributed key-value store.
-  - controller-manager
-      - brain for the orchestration of the nodes.
-  - kube-scheduler
-      - distributing across multiple nodes.
-- worker node
+  - api server - acts as front end for k8s.
+  - etcd - disributed key-value store.
+  - controller-manager - brain for the orchestration of the nodes.
+  - kube-scheduler - distributing across multiple nodes.
+- master node
+  - kublet
+  - container runtime ( **containerd or CRI-O**)
+  - kubeproxy
+ 
+# Control Plane - Master Node
+- api-server
+- etdc
+- control manager
+- scheduler
+- api-server
+  - gatway to the cluster for users & other components.
+
+# worker node
   - kublet
   - kubeproxy
   - container runtime ( **containerd or CRI-O**)
@@ -117,16 +127,6 @@
     - **CRI-O:**
        - Container Runtime Interface
        - lightweight container runtime built specifically for Kubernetes. It implements the CRI and nothing more.
-
-# Control Plane - Master Node
-- api-server
-- etdc
-- control manager
-- scheduler
-- api-server
-  - gatway to the cluster for users & other components.
-
-# worker node
  - kubelet, container runtime ( containerd or CRI-O ) and network proxy.
  - **api-server**---> PODSpecs---> **kubelet**---> interact---> **container runtime**---> manages ---> Container lifecycle
  - **kubelet** ---> reports status back to ---> **api-server**
