@@ -57,6 +57,7 @@
 - **Minikube create virtual box on my machine.**
 - **Basically minikube is a one node cluster inside a virtual box**.
 - kubectl interacts with k8s cluster.
+- follow https://aistudio.google.com/prompts/1sBCsV5KUDyObaOtrX7EWHL7mMlYqF7OI
 - download and run minikube exe - https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download
 - install & run docker desktop.
 - minikube start --driver=docker
