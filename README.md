@@ -61,6 +61,7 @@
 - install & run docker desktop - https://www.docker.com/products/docker-desktop/
 - download and run minikube exe - https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download
 - minikube start --driver=docker or minikube start
+- minikube delete --all -> in case of conflict with given driver with th existing driver.
 - minikube status
 - After success, we get message  = Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 # Development Tools - kubeadm
