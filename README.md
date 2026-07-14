@@ -27,13 +27,11 @@
 - Ingress is an external SERVICE. Request go though **(ingress SERVICE)** to **(internal SERVICE)** to **(POD)** to **(Container)** to **(application inside container)**
 - 
 # Config map & Secrets - External configuration to the POD ( Application )
-- our application wants to connect with mongo-db SERVICE.
-- external configuration of our application.
-- database URL is kept in this config map.
-- if name of the SERVICE or endpoint changes, just need to update the config map.
+- if our application wants to connect with mongo-db SERVICE.
+- external configuration of our application. like database URL is kept in this config map. such config cannnot be part of the image built else every timme we need to rebuild image & deploy again.
+- if name of the DB SERVICE or endpoint changes, just need to update the config map.
 - **username & password** is kept inside **secrets(base 64 encoded)**, this is another type of config map.
-- both config map & secrets are **configured with the POD**.
-- can be used as **environment variables** or even as **properties file**.
+- both config map & secrets are **configured with the POD**. and can be used as **environment variables** or even as **properties file**.
 - 
 # data storage - volumes
 - **kubernetes does not manage this data storage.** We need to explicity manage it.
