@@ -40,16 +40,20 @@
 - 
 # Replication of nodes
 - In both we mention **how many replicas** we wanna create. **No of replicas is equal to no of PODs**
-- DEPLOYMENT
+- REPLICASET
     - for **stateless applications.**
     - **blue print for PODs of my application**
     - POD is abstraction on the container. **DEPLOYMENT is another layer of abstraction over the POD.**
-- REPLICASET
-    - for **statefull applications** ( mysql, postgress etc )
+- DEPLOYMENT ( Default )
+    - for **stateless applications.**
+    - **blue print for PODs of my application**
+    - POD is abstraction on the container. **DEPLOYMENT is another layer of abstraction over the POD.**
+- SATEFULSET
+    - for **statefull applications** ( databases -mysql , postgresql and distributed system - kafka & Elasticsearch)
     - ideally we don't do this because we keep **databases outside of the K8s cluster.**
-    - databases cannnot be replicated using DEPLOYMENTs. Reason - databases has state ( storage outside the node )
-    - Need to manage, which POD is writing to the storage and reading.
-
+    - PODs are created sequencially liek mysql-0, mysql-1 and so on...
+    - **If mysql-1 dies then a new POD with same name mysql-1 will be created & existing PersistentVolume will be attached to this new POD.**
+    
 # Development Tools - minicube
 - minukube is a one node cluster ( acts as master as well as worker node too).
 - As it as a master & worker node so **all the components of master & worker node already be installed.**
