@@ -39,13 +39,14 @@
 - **So we are attaching volumes to the POD**. It can be **local ( inside the node)** or **remote(outside the node)**
 - 
 # Replication of nodes
-- DEPLOYMENTs
-    - for stateless applications.
+- In both we mention **how many replicas** we wanna create. **No of replicas is equal to no of PODs**
+- DEPLOYMENT
+    - for **stateless applications.**
     - **blue print for PODs of my application**
     - POD is abstraction on the container. **DEPLOYMENT is another layer of abstraction over the POD.**
-- statefulset
+- REPLICASET
+    - for **statefull applications** ( mysql, postgress etc )
     - ideally we don't do this because we keep **databases outside of the K8s cluster.**
-    - for statefull applications ( mysql, postgress etc )
     - databases cannnot be replicated using DEPLOYMENTs. Reason - databases has state ( storage outside the node )
     - Need to manage, which POD is writing to the storage and reading.
 
@@ -235,46 +236,53 @@
     - to get more details.
 - kubectl run my-POD --image=nginx
     - creating POD from nginx image
-- POD-definition.yaml
-    - apiVersion:v1---------------------------------------version
+    - 
+- **POD-definition.yaml**
+
+    - apiVersion:v1
     - kind:**POD**--------------------------------------------type
-    - metadata:-------------------------------------------Meta Data - POD
-        - name: myapp-POD---------------------------------name of the POD
+    - **metadata:**
+        - name: myapp-pod---------------------------------name of the POD
         - labels:
-            - app: myapp----------------------------------group name like front-end, back-end, sales order SERVICE
-            - type: front-end
-   - spec:
+            - app: myapp
+            - type: front-end ----------------------------------group name like front-end, back-end or sales-order.
+   - **spec:**
       - **containers**:---------------------------------------List of containers
-        - -name: nginx-container--------------------------first container
+        - -name: nginx-container
         - image: nginx
-        - -name: nginx-container--------------------------second container
+        - -name: nginx-container
         - image: buxybox
-- kubectl create -f POD-definition.yaml
-- kubectl describe PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs NAME_OF_OBJECT
+        
+- kubectl **create** -f POD-definition.yaml
+- kubectl **describe** PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs <NAME_OF_OBJECT>
     - details about object.
-- kubectl delete PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs NAME_OF_OBJECT
+- kubectl **delete** PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs <NAME_OF_OBJECT>
     - delete an object
+    
 # REPLICASET
 - group of 1 or more PODs
 - spans across the cluster ( 1 or more worker nodes)
 - Even if REPLICASET has 1 POD and it fails. REPLICASET automatically create another POD in place of the failed one.
-- REPLICASET will always make sure that "desired" number of PODs are always up.
-- REPLICASET-definition.yaml
-    - apiVersion: **apps/v1**---------------------------------------version
+- **REPLICASET will always make sure that "desired" number of PODs are always up.**
+- **Level of POD is matched with label of selectors.**
+
+- **REPLICASET-definition.yaml**
+
+    - apiVersion: **apps/v1**
     - kind: **REPLICASET**--------------------------------------------type
-    - metadata:-------------------------------------------Meta Data - REPLICASET
-        - name: myapp-REPLICASET---------------------------------name of the REPLICASET
+    - **metadata:**
+        - name: myapp-replicaset---------------------------------name of the REPLICASET
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end
             - type: front-end------------------------------label of REPLICASET
-   - spec:
-      - **template**: --------------------------------------- **Template of a POD (metadata + spec) of a POD**
-          - **metadata**:----------------------------------------Meta Data - POD
+   - **spec:**
+      - **template**: --------------------------------------- Template of a POD (metadata + spec)
+          - metadata:----------------------------------------Meta Data - POD
             - name: myapp-POD--------------------------------name of the POD
             - labels:
               - app: myapp-----------------------------------group name like front-end, back-end
-              - type: front-end-------------------------------**label of POD**
-          - **spec**:
+              - type: **front-end**-------------------------------**label of POD**
+          - spec:
             - containers:---------------------------------------List of containers
               - -name: nginx-container--------------------------first container
               - image: nginx
@@ -283,8 +291,10 @@
       - **replicas**: 3 ---------------------------------------**3 PODS always ACTIVE all the time.**
       - **selectors**:
           - matchLabels:
-              - type: front-end-----------------------------------**label of Selector**
-- **Level of POD is matched with label of selectors.**
+              - type: **front-end**-----------------------------------**label of POD**
+
+                
+
 
 # DEPLOYMENTs
 - POD(one instance) -> REPLICASET (Multiple instances) -> DEPLOYMENTs
@@ -293,6 +303,8 @@
 - **DEPLOYMENT-definition.yaml file is same as REPLICASET-definition.yaml except "kind:DEPLOYMENT"**
 - commands are same as REPLICASETs.
 - change the DEPLOYMENT file and run "kubectl apply -f DEPLOYMENT-definition.yaml"
+
+
 # SERVICEs
 - IP of PODs is lost if it is started again.
 - kluster IP SERVICE
