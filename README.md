@@ -16,13 +16,14 @@
 - small unit in K8s.
 - abstraction over a container.
 - one **container/application/IP** per POD.
-- new IP , every time a POD created.
+- **Each POD get its own IP address whenever it is created or re-created.** so it is **not a permanent IP**
+- 2 PODs can communicate using IP addresses within a node.
 - **multiple PODs** per Node.
 - 
 # Service & Ingress
-- one service per POD.
-- each service will have **one permanet IP and act as load balancer**.
-- **life cycle of service & POD are not connected.**
+- A service is associated to a POD => one service per POD.
+- **Permanent IP** is assigned to each service.
+- **life cycle of SERVICE and POD are not connected.**. Whenever POD die & re-created then a new IP assigned to POD. But IP of SERVICE will not change.
 - services are also inside the node.
 - we need external service to access our application for example - in the browser.
 - ingress is an external service. Request go though **(ingress service)** to **(internal service)** to **(Pod)** to **(Container)** to **(application inside container)**
