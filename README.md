@@ -3,12 +3,13 @@
 # Tech with Nana - https://www.youtube.com/watch?v=X48VuDVv0do
 
 # Kubernetes
-- Open source container orchestration tool, developed by Google.
-- Manages containerized applications in all env - **Physical, Virtual or Cloud and even Hybrid**
-- Changes from **Monolith to Microservices** caused rise of **managing containerized application**.
+- Open source container orchestration tool, developed by Google, manages containers.
+- Manages containerized applications in different envs - **Physical, Virtual, Cloud or even Hybrid**
+- Changes from **Monolith to Microservices** ===implied====> **increased use of containers** =======demands====> **proper way of managing 100s of containers.**
+
 - what is advantage
-    - High Availability or no downtime.
-    - Scalability or High performance.
+    - High Availability or no downtime, always available to serve requests.
+    - Scalability or High performance -  highr response rate from the application.
     - Disater recovery - backup and restore.
     - 
 # POD
