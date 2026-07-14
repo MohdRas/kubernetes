@@ -5,7 +5,7 @@
 # Kubernetes
 - Open source container orchestration tool, developed by Google, manages containers.
 - Manages containerized applications in different envs - **Physical, Virtual, Cloud or even Hybrid**
-- Changes from **Monolith to Microservices** ===implied====> **increased use of containers** =======demands====> **proper way of managing 100s of containers.**
+- Changes from **Monolith to MicroSERVICEs** ===implied====> **increased use of containers** =======demands====> **proper way of managing 100s of containers.**
 
 - what is advantage
     - High Availability or no downtime, always available to serve requests.
@@ -20,19 +20,19 @@
 - 2 PODs can communicate using IP addresses within a node.
 - **multiple PODs** per Node.
 - 
-# Service & Ingress
-- A service is associated to a POD => one service per POD.
-- **Permanent IP** is assigned to each service.
+# SERVICE & Ingress
+- A SERVICE is associated to a POD => one SERVICE per POD. SERVICE are also inside the node.
+
+- **Permanent IP** is assigned to each SERVICE.
 - **life cycle of SERVICE and POD are not connected.**. Whenever POD die & re-created then a new IP assigned to POD. But IP of SERVICE will not change.
-- services are also inside the node.
-- we need external service to access our application for example - in the browser.
-- ingress is an external service. Request go though **(ingress service)** to **(internal service)** to **(Pod)** to **(Container)** to **(application inside container)**
+- we need external SERVICE to access our application for example - in the browser.
+- ingress is an external SERVICE. Request go though **(ingress SERVICE)** to **(internal SERVICE)** to **(POD)** to **(Container)** to **(application inside container)**
 - 
-# Config map & Secrets - External configuration to the Pod ( Application )
-- our application wants to connect with mongo-db service.
+# Config map & Secrets - External configuration to the POD ( Application )
+- our application wants to connect with mongo-db SERVICE.
 - external configuration of our application.
 - database URL is kept in this config map.
-- if name of the service or endpoint changes, just need to update the config map.
+- if name of the SERVICE or endpoint changes, just need to update the config map.
 - **username & password** is kept inside **secrets(base 64 encoded)**, this is another type of config map.
 - both config map & secrets are **configured with the POD**.
 - can be used as **environment variables** or even as **properties file**.
@@ -43,15 +43,15 @@
 - **attaching volumes to the POD**. It can be **local to the node** or **remote(outside K8s cluster) to the node**
 - 
 # Replication of nodes
-- deployments
+- DEPLOYMENTs
     - for stateless applications.
-    - **blue print for pods of my application**
-    - Pod is abstraction on the container. **Deployment is another layer of abstraction over the pod.**
+    - **blue print for PODs of my application**
+    - POD is abstraction on the container. **DEPLOYMENT is another layer of abstraction over the POD.**
 - statefulset
     - ideally we don't do this because we keep **databases outside of the K8s cluster.**
     - for statefull applications ( mysql, postgress etc )
-    - databases cannnot be replicated using deployments. Reason - databases has state ( storage outside the node )
-    - Need to manage, which pod is writing to the storage and reading.
+    - databases cannnot be replicated using DEPLOYMENTs. Reason - databases has state ( storage outside the node )
+    - Need to manage, which POD is writing to the storage and reading.
 
 # Development Tools - minicube
 - minukube is a one node cluster ( acts as master as well as worker node too).
@@ -70,8 +70,8 @@
 # Development Tools - kubeadm
  - settings -> kubernetes -> enable kubernetes
  - select **kubeadm (Single Node Cluster)**. Apply & Restart.
- - **One service & one node will be already installed**.
- - kubectl get nodes/services
+ - **One SERVICE & one node will be already installed**.
+ - kubectl get nodes/SERVICEs
    - docker-desktop, control-plane (master node)
    - kubernetes ,  ClusterIP
  - **kubelet** runs on **each node**
@@ -85,9 +85,9 @@
 - a cluster will have master & worker nodes together.
 - master node
   - api server - acts as front end for k8s.
-  - etcd - disributed key-value store. All the state of a pod is stored here.
-  - controller-manager - detects state changes in cluster ( Pods destroyed )
-  - kube-scheduler - distributing pods to be created across multiple nodes.
+  - etcd - disributed key-value store. All the state of a POD is stored here.
+  - controller-manager - detects state changes in cluster ( PODs destroyed )
+  - kube-scheduler - distributing PODs to be created across multiple nodes.
 - master node
   - kublet
   - container runtime ( **containerd or CRI-O**)
@@ -165,21 +165,21 @@
  - **NETWORK PROXY**
     - runs on each node.
     - defined network rules on the node.
-    - handles service discovery, load balancing of the nodes.
+    - handles SERVICE discovery, load balancing of the nodes.
     - **Kube-Proxy:**
-       - Service Discovery and Internal Load Balancing
-          - This proxy resolves **service name to IP** of one of the healthy PODs.
-          - This proxy load balances the traffic across all available PODs for that Service.
+       - SERVICE Discovery and Internal Load Balancing
+          - This proxy resolves **SERVICE name to IP** of one of the healthy PODs.
+          - This proxy load balances the traffic across all available PODs for that SERVICE.
     - **Ingress Controller:**
        - A specialized proxy (like NGINX, HAProxy, or Traefik) that manages external access to the cluster.
        - This role acts as the **"front door" to the cluster**, managing how external users and systems access your applications.
-       - Manages external HTTP/S traffic, **routing it to internal Services.**
-    - **Service Mesh Sidecar:**
-       - A proxy (like Envoy or Linkerd-proxy) that runs alongside each POD to manage inter-service communication.
-       - to secure the traffic between services inside the cluster.
+       - Manages external HTTP/S traffic, **routing it to internal SERVICEs.**
+    - **SERVICE Mesh Sidecar:**
+       - A proxy (like Envoy or Linkerd-proxy) that runs alongside each POD to manage inter-SERVICE communication.
+       - to secure the traffic between SERVICEs inside the cluster.
        - This proxy intercepts all incoming and outgoing network traffic for that POD.
        - **Secure:**
-          - Automatically encrypt all traffic between services using mutual TLS (mTLS), establishing a **"zero-trust" network** where identity is verified for every request.
+          - Automatically encrypt all traffic between SERVICEs using mutual TLS (mTLS), establishing a **"zero-trust" network** where identity is verified for every request.
        - **Observe:** '
           - Generate detailed metrics (request rates, error rates, latencies), distributed traces, and access logs for all traffic without any changes to the application code.
 
@@ -223,9 +223,9 @@
   - "kubectl rolling-update my-web-server --rollback"
 - with K8s, we are able to define expected state of our application. This state is maintained even after any faliure to these instances.
   - webserver 2 instances.
-  - payment service 2 instances.
-  - redis service 3 instances.
-  - database service 1 instance.
+  - payment SERVICE 2 instances.
+  - redis SERVICE 3 instances.
+  - database SERVICE 1 instance.
 # kubectl
 - **kubectl get all**
     - all objects
@@ -233,8 +233,8 @@
 - kubectl version
     - show version of "client" and "server" of kubectl
 - kubectl --help
-- kubectl get PODs/nodes/replicatsets/deployments/services
-- kubectl get PODs/nodes/replicatsets/deployments/services -o wide
+- kubectl get PODs/nodes/replicatsets/DEPLOYMENTs/SERVICEs
+- kubectl get PODs/nodes/replicatsets/DEPLOYMENTs/SERVICEs -o wide
   - -o wide
     - to get more details.
 - kubectl run my-POD --image=nginx
@@ -245,7 +245,7 @@
     - metadata:-------------------------------------------Meta Data - POD
         - name: myapp-POD---------------------------------name of the POD
         - labels:
-            - app: myapp----------------------------------group name like front-end, back-end, sales order service
+            - app: myapp----------------------------------group name like front-end, back-end, sales order SERVICE
             - type: front-end
    - spec:
       - **containers**:---------------------------------------List of containers
@@ -254,23 +254,23 @@
         - -name: nginx-container--------------------------second container
         - image: buxybox
 - kubectl create -f POD-definition.yaml
-- kubectl describe PODs/nodes/replicasets/deployments/services NAME_OF_OBJECT
+- kubectl describe PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs NAME_OF_OBJECT
     - details about object.
-- kubectl delete PODs/nodes/replicasets/deployments/services NAME_OF_OBJECT
+- kubectl delete PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs NAME_OF_OBJECT
     - delete an object
-# Replicaset
+# REPLICASET
 - group of 1 or more PODs
 - spans across the cluster ( 1 or more worker nodes)
-- Even if replicaset has 1 POD and it fails. Replicaset automatically create another POD in place of the failed one.
-- Replicaset will always make sure that "desired" number of PODs are always up.
-- replicaset-definition.yaml
+- Even if REPLICASET has 1 POD and it fails. REPLICASET automatically create another POD in place of the failed one.
+- REPLICASET will always make sure that "desired" number of PODs are always up.
+- REPLICASET-definition.yaml
     - apiVersion: **apps/v1**---------------------------------------version
-    - kind: **ReplicaSet**--------------------------------------------type
-    - metadata:-------------------------------------------Meta Data - replicaset
-        - name: myapp-replicaset---------------------------------name of the replicaset
+    - kind: **REPLICASET**--------------------------------------------type
+    - metadata:-------------------------------------------Meta Data - REPLICASET
+        - name: myapp-REPLICASET---------------------------------name of the REPLICASET
         - labels:
             - app: myapp----------------------------------group name like front-end, back-end
-            - type: front-end------------------------------label of Replicaset
+            - type: front-end------------------------------label of REPLICASET
    - spec:
       - **template**: --------------------------------------- **Template of a POD (metadata + spec) of a POD**
           - **metadata**:----------------------------------------Meta Data - POD
@@ -290,58 +290,58 @@
               - type: front-end-----------------------------------**label of Selector**
 - **Level of POD is matched with label of selectors.**
 
-# deployments
-- POD(one instance) -> Replicaset (Multiple instances) -> deployments
+# DEPLOYMENTs
+- POD(one instance) -> REPLICASET (Multiple instances) -> DEPLOYMENTs
 - rolling(old version <-> new version) update of a production application.
-- rolling updates, undo changes, pause & resume changes can be done by deployments.
-- **deployment-definition.yaml file is same as replicaset-definition.yaml except "kind:Deployment"**
-- commands are same as replicasets.
-- change the deployment file and run "kubectl apply -f deployment-definition.yaml"
-# services
+- rolling updates, undo changes, pause & resume changes can be done by DEPLOYMENTs.
+- **DEPLOYMENT-definition.yaml file is same as REPLICASET-definition.yaml except "kind:DEPLOYMENT"**
+- commands are same as REPLICASETs.
+- change the DEPLOYMENT file and run "kubectl apply -f DEPLOYMENT-definition.yaml"
+# SERVICEs
 - IP of PODs is lost if it is started again.
-- kluster IP service
+- kluster IP SERVICE
     - communication wetween PODs within cluster.
     - webserver tries to connect with redis server.
-    - label's of service is matched with POD's label. Only those PODs are exposed to a service.
-    - cluster-ip-service.yaml
+    - label's of SERVICE is matched with POD's label. Only those PODs are exposed to a SERVICE.
+    - cluster-ip-SERVICE.yaml
         - apiVersion:**v1**---------------------------------------version
-        - kind: **Service**--------------------------------------------type
-        - metadata:-------------------------------------------Meta Data - Service
-            - name: redis-service---------------------------------name of the Service
+        - kind: **SERVICE**--------------------------------------------type
+        - metadata:-------------------------------------------Meta Data - SERVICE
+            - name: redis-SERVICE---------------------------------name of the SERVICE
        - spec:
-            - type: **ClusterIP**-----------------------------------------Service Type
+            - type: **ClusterIP**-----------------------------------------SERVICE Type
             - ports:
                 - -targetPort: 6379--------------------------**POD port**
-                - port: 6379---------------------------------**Service port** - mandatory
+                - port: 6379---------------------------------**SERVICE port** - mandatory
             - selectors
                 - app: myapp-------------------------------------selection of PODs
                 - mame: redis-POD---------------------------------selection of PODs
-- NodePort service
+- NodePort SERVICE
     - exposed ternally on node IP and its port.
     - Layer 4 (TCP/UDP)
     - Based on NodeIP:Port'
-    - It opens a specific static port (e.g., 30080) on the IP address of every node in the cluster. Any traffic hitting [Any-Node-IP]:30080 is forwarded to your service.
-    - nodeport-ip-service.yaml
+    - It opens a specific static port (e.g., 30080) on the IP address of every node in the cluster. Any traffic hitting [Any-Node-IP]:30080 is forwarded to your SERVICE.
+    - nodeport-ip-SERVICE.yaml
         - apiVersion:v1---------------------------------------version
-        - kind: Service--------------------------------------------type
-        - metadata:-------------------------------------------Meta Data - Service
-            - name: redis-service---------------------------------name of the Service
+        - kind: SERVICE--------------------------------------------type
+        - metadata:-------------------------------------------Meta Data - SERVICE
+            - name: redis-SERVICE---------------------------------name of the SERVICE
        - spec:
-            - type: **NodePort**-----------------------------------------Service Type
+            - type: **NodePort**-----------------------------------------SERVICE Type
             - ports:
                 - -targetPort: 6379--------------------------**POD port**
-                - port: 6379---------------------------------**Service port** - mandatory
+                - port: 6379---------------------------------**SERVICE port** - mandatory
                 - **nodePort**: **30008**-------------------------------------**Node port** (30000-32767)
             - selectors
                 - app: myapp-------------------------------------selection of PODs
                 - mame: redis-POD---------------------------------selection of PODs
 - load balancer
-    - cloud provider's load balancer to our service.
-- kubectl create -f cluster-ip-service.yaml
-- kubectl get services
+    - cloud provider's load balancer to our SERVICE.
+- kubectl create -f cluster-ip-SERVICE.yaml
+- kubectl get SERVICEs
 - **curl http://192.168.1.2:30008**
 - it uses **Random algorithm , sessioninfinity=yes** for the purpose of **selection of PODs to forward request to**.
 - **istio & LinkerD** is also used for load balancing.
-- **one POD per node, multiple PODs per node, multiple PODs across multiple nodes, same service definition will work, no additional setup needed**.
+- **one POD per node, multiple PODs per node, multiple PODs across multiple nodes, same SERVICE definition will work, no additional setup needed**.
 
  
