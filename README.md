@@ -35,8 +35,8 @@
 - 
 # data storage - volumes
 - **kubernetes does not manage this data storage.** We need to explicity manage it.
-- if the POD restarted, then data will be lost.
-- **attaching volumes to the POD**. It can be **local to the node** or **remote(outside K8s cluster) to the node**
+- If the POD restarted, then data will be lost.
+- **So we are attaching volumes to the POD**. It can be **local ( inside the node)** or **remote(outside the node)**
 - 
 # Replication of nodes
 - DEPLOYMENTs
