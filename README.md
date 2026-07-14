@@ -5,28 +5,26 @@
 # Kubernetes
 - Open source container orchestration tool, developed by Google, manages containers.
 - Manages containerized applications in different envs - **Physical, Virtual, Cloud or even Hybrid**
-- Changes from **Monolith to MicroSERVICEs** ===implied====> **increased use of containers** =======demands====> **proper way of managing 100s of containers.**
+- Changes from **Monolith to Microservies** ===implied====> **increased use of containers** =======demands====> **proper way of managing 100s of containers.**
 
 - what is advantage
     - High Availability or no downtime, always available to serve requests.
-    - Scalability or High performance -  highr response rate from the application.
+    - Scalability or High performance -  high response rate from the application.
     - Disater recovery - backup and restore.
     - 
 # POD
-- small unit in K8s.
-- abstraction over a container.
-- one **container/application/IP** per POD.
+- abstraction over a container. It is smallest unit in K8s.
+- one **container** per POD. 
 - **Each POD get its own IP address whenever it is created or re-created.** so it is **not a permanent IP**
 - 2 PODs can communicate using IP addresses within a node.
 - **multiple PODs** per Node.
 - 
 # SERVICE & Ingress
 - A SERVICE is associated to a POD => one SERVICE per POD. SERVICE are also inside the node.
-
 - **Permanent IP** is assigned to each SERVICE.
-- **life cycle of SERVICE and POD are not connected.**. Whenever POD die & re-created then a new IP assigned to POD. But IP of SERVICE will not change.
-- we need external SERVICE to access our application for example - in the browser.
-- ingress is an external SERVICE. Request go though **(ingress SERVICE)** to **(internal SERVICE)** to **(POD)** to **(Container)** to **(application inside container)**
+- **life cycle of SERVICE and POD are not connected.**. Whenever POD die and re-created then a new IP assigned to POD. But IP of SERVICE will not change.
+- We need external SERVICE to access our application via browser.
+- Ingress is an external SERVICE. Request go though **(ingress SERVICE)** to **(internal SERVICE)** to **(POD)** to **(Container)** to **(application inside container)**
 - 
 # Config map & Secrets - External configuration to the POD ( Application )
 - our application wants to connect with mongo-db SERVICE.
