@@ -262,8 +262,10 @@
 # REPLICASET
 - group of 1 or more PODs
 - spans across the cluster ( 1 or more worker nodes)
-- Even if REPLICASET has 1 POD and it fails. REPLICASET automatically create another POD in place of the failed one.
-- **REPLICASET will always make sure that "desired" number of PODs are always up.**
+- Even if REPLICASET has 1 POD and it fails. REPLICASET automatically create another POD in place of the failed one. If any new POD created manually and no of PODs becomes more than desirable count then it will reduce automatically.
+
+- **REPLICASET will always make sure that "desired" number of PODs are always up, in case of increase or decrease PODs**
+
 - **Level of POD is matched with label of selectors.**
 
 - **REPLICASET-definition.yaml**
@@ -296,7 +298,7 @@
                 
 
 
-# DEPLOYMENTs
+# DEPLOYMENT -  Stateless Applications
 - POD(one instance) -> REPLICASET (Multiple instances) -> DEPLOYMENTs
 - rolling(old version <-> new version) update of a production application.
 - rolling updates, undo changes, pause & resume changes can be done by DEPLOYMENTs.
