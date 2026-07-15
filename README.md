@@ -272,7 +272,32 @@
 - kubectl run my-nginx-pod **--image nginx**
     - creating POD from nginx image
 - kubectl **get pods** my-nginx-pod
-- kubectl **get pods**
+- kubectl **get pods**     
+- kubectl **create** -f POD-definition.yaml
+- kubectl **describe** PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs <NAME_OF_OBJECT>
+    - details about object.
+- kubectl **delete** PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs <NAME_OF_OBJECT>
+    - delete an object
+
+
+
+
+- **POD-definition.yaml**
+
+    - apiVersion:v1
+    - kind:**POD**--------------------------------------------type
+    - **metadata:**
+        - name: myapp-pod---------------------------------name of the POD
+        - labels:
+            - app: myapp
+            - type: front-end ----------------------------------group name like front-end, back-end or sales-order.
+   - **spec:**
+      - **containers**:---------------------------------------List of containers
+        - -name: nginx-container
+        - image: nginx
+        - -name: nginx-container
+        - image: buxybox
+
 
 
                 VERSION:    v1
@@ -303,27 +328,6 @@
                     Populated by the system. Read-only. 
 
 
-- **POD-definition.yaml**
-
-    - apiVersion:v1
-    - kind:**POD**--------------------------------------------type
-    - **metadata:**
-        - name: myapp-pod---------------------------------name of the POD
-        - labels:
-            - app: myapp
-            - type: front-end ----------------------------------group name like front-end, back-end or sales-order.
-   - **spec:**
-      - **containers**:---------------------------------------List of containers
-        - -name: nginx-container
-        - image: nginx
-        - -name: nginx-container
-        - image: buxybox
-        
-- kubectl **create** -f POD-definition.yaml
-- kubectl **describe** PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs <NAME_OF_OBJECT>
-    - details about object.
-- kubectl **delete** PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs <NAME_OF_OBJECT>
-    - delete an object
     
 # REPLICASET
 - group of 1 or more PODs
