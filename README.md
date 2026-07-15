@@ -299,7 +299,7 @@
         - image: buxybox
 
 
-
+                KIND: Pod
                 VERSION:    v1
 
                 DESCRIPTION:
@@ -325,7 +325,39 @@
                 
                   status        <PodStatus>
                     Most recently observed status of the pod. This data may not be up to date.
-                    Populated by the system. Read-only. 
+                    Populated by the system. Read-only.
+
+# SERVICE
+
+
+            KIND:       Service
+            VERSION:    v1
+            
+            DESCRIPTION:
+                Service is a named abstraction of software service (for example, mysql)
+                consisting of local port (for example 3306) that the proxy listens on, and
+                the selector that determines which pods will answer requests sent through
+                the proxy.
+            
+            FIELDS:
+              apiVersion    <string>
+                APIVersion defines the versioned schema of this representation of an object.
+              
+            
+              kind  <string>
+                Kind is a string value representing the REST resource this object
+                represents. Cannot be updated. In CamelCase. More info:
+               
+            
+              metadata      <ObjectMeta>
+                Standard object's metadata. 
+            
+              spec  <ServiceSpec>
+                Spec defines the behavior of a service.
+            
+              status        <ServiceStatus>
+                Most recently observed status of the service. Populated by the system.
+                Read-only. 
 
 
     
