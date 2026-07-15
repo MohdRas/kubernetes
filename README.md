@@ -43,9 +43,9 @@
 - REPLICASET
     - it is just a manager for running PODs.
     - It does not allow us to change the code without downtime.
-    - APP UPDATE scenario
-          - Image version V1 to V2 but if all 3 required PODs are running then it does not care about V1 TO V2.
-          - If we want updated version V2 then we need to manually delete old PODs and then REPLICASET will use new PODs.
+    - APP UPDATE scenario below - 
+  - Image version V1 to V2 but if all 3 required PODs are running then it does not care about V1 TO V2.
+  - If we want updated version V2 then we need to manually delete old PODs and then REPLICASET will use new PODs.
     - for **stateless applications.**
     - **blue print for PODs of my application**
     - POD is abstraction on the container. **DEPLOYMENT is another layer of abstraction over the POD.**
