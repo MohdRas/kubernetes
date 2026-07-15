@@ -261,6 +261,191 @@
 # kubectl
 - **kubectl get all**
     - all objects
+
+# K8s OBJECTS
+
+kubectl explain pods
+
+                    
+                    KIND:       Pod
+                    VERSION:    v1
+                    
+                    DESCRIPTION:
+                        Pod is a collection of containers that can run on a host. This resource is
+                        created by clients and scheduled onto hosts.
+                    
+                    FIELDS:
+                      apiVersion    <string>
+                        APIVersion defines the versioned schema of this representation of an object.
+                        Servers should convert recognized schemas to the latest internal value, and
+                        may reject unrecognized values. 
+                       
+                    
+                      kind  <string>
+                        Kind is a string value representing the REST resource this object
+                        represents.  Cannot be updated. In CamelCase. 
+                       
+                    
+                      metadata      <ObjectMeta>
+                        Standard object's metadata. 
+                       
+                    
+                      spec  <PodSpec>
+                        Specification of the desired behavior of the pod. 
+                        
+                    
+                      status        <PodStatus>
+                        Most recently observed status of the pod. This data may not be up to date.
+                        Populated by the system. Read-only. 
+                        
+
+
+
+kubectl explain services
+
+                    KIND:       Service
+                    VERSION:    v1
+                    
+                    DESCRIPTION:
+                        Service is a named abstraction of software service (for example, mysql)
+                        consisting of local port (for example 3306) that the proxy listens on, and
+                        the selector that determines which pods will answer requests sent through
+                        the proxy.
+                    
+                    FIELDS:
+                      apiVersion    <string>
+                        APIVersion defines the versioned schema of this representation of an object.
+                        Servers should convert recognized schemas to the latest internal value, and
+                        may reject unrecognized values. 
+                       
+                    
+                      kind  <string>
+                        Kind is a string value representing the REST resource this object
+                        represents.  Cannot be updated. In CamelCase. 
+                       
+                    
+                      metadata      <ObjectMeta>
+                        Standard object's metadata. 
+                       
+                    
+                      spec  <ServiceSpec>
+                        Spec defines the behavior of a service.
+                        
+                    
+                      status        <ServiceStatus>
+                        Most recently observed status of the service. Populated by the system.
+                        Read-only. 
+                        
+
+kubectl explain statefulsets
+
+                        GROUP:      apps
+                        KIND:       Deployment
+                        VERSION:    v1
+                        
+                        DESCRIPTION:
+                            Deployment enables declarative updates for Pods and ReplicaSets.
+                        
+                        FIELDS:
+                          apiVersion    <string>
+                            APIVersion defines the versioned schema of this representation of an object.
+                            Servers should convert recognized schemas to the latest internal value, and
+                            may reject unrecognized values. 
+                        
+                          kind  <string>
+                            Kind is a string value representing the REST resource this object
+                            represents. Cannot be updated. In CamelCase. 
+                        
+                          metadata      <ObjectMeta>
+                            Standard object's metadata. 
+                            
+                        
+                          spec  <DeploymentSpec>
+                            Specification of the desired behavior of the Deployment.
+                        
+                          status        <DeploymentStatus>
+                            Most recently observed status of the Deployment.
+	
+	
+
+kubectl explain statefulsets
+
+                        GROUP:      apps
+                        KIND:       ReplicaSet
+                        VERSION:    v1
+                        
+                        DESCRIPTION:
+                            ReplicaSet ensures that a specified number of pod replicas are running at
+                            any given time.
+                        
+                        FIELDS:
+                          apiVersion    <string>
+                            APIVersion defines the versioned schema of this representation of an object.
+                            Servers should convert recognized schemas to the latest internal value, and
+                            may reject unrecognized values. 
+                            
+                        
+                          kind  <string>
+                            Kind is a string value representing the REST resource this object
+                            represents. Cannot be updated. In CamelCase. 
+                           
+                        
+                          metadata      <ObjectMeta>
+                            If the Labels of a ReplicaSet are empty, they are defaulted to be the same
+                            as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More
+                            info:
+                            
+                        
+                          spec  <ReplicaSetSpec>
+                            Spec defines the specification of the desired behavior of the ReplicaSet.
+                            
+                           
+                        
+                          status        <ReplicaSetStatus>
+                            Status is the most recently observed status of the ReplicaSet. This data may
+                            be out of date by some window of time. Populated by the system. Read-only.
+                            
+
+
+kubectl explain statefulsets
+
+GROUP:      apps
+KIND:       StatefulSet
+VERSION:    v1
+
+DESCRIPTION:
+    StatefulSet represents a set of pods with consistent identities. Identities
+    are defined as:
+      - Network: A single stable DNS and hostname.
+      - Storage: As many VolumeClaims as requested.
+
+    The StatefulSet guarantees that a given network identity will always map to
+    the same storage identity.
+
+FIELDS:
+  apiVersion    <string>
+    APIVersion defines the versioned schema of this representation of an object.
+    Servers should convert recognized schemas to the latest internal value, and
+    may reject unrecognized values. 
+    
+
+  kind  <string>
+    Kind is a string value representing the REST resource this object
+    represents. Cannot be updated. In CamelCase. 
+   
+
+  metadata      <ObjectMeta>
+    Standard object's metadata. 
+    
+
+  spec  <StatefulSetSpec>
+    Spec defines the desired identities of pods in this set.
+
+  status        <StatefulSetStatus>
+    Status is the current status of Pods in this StatefulSet. This data may be
+    out of date by some window of time.
+
+    
 # POD
 - **kubectl version**
     - show version of "client" and "server" of kubectl
@@ -333,37 +518,7 @@
 
 
 
-# SERVICE
 
-
-            KIND:       Service
-            VERSION:    v1
-            
-            DESCRIPTION:
-                Service is a named abstraction of software service (for example, mysql)
-                consisting of local port (for example 3306) that the proxy listens on, and
-                the selector that determines which pods will answer requests sent through
-                the proxy.
-            
-            FIELDS:
-              apiVersion    <string>
-                APIVersion defines the versioned schema of this representation of an object.
-              
-            
-              kind  <string>
-                Kind is a string value representing the REST resource this object
-                represents. Cannot be updated. In CamelCase. More info:
-               
-            
-              metadata      <ObjectMeta>
-                Standard object's metadata. 
-            
-              spec  <ServiceSpec>
-                Spec defines the behavior of a service.
-            
-              status        <ServiceStatus>
-                Most recently observed status of the service. Populated by the system.
-                Read-only. 
 
 
     
@@ -421,7 +576,8 @@
     - communication wetween PODs within cluster.
     - webserver tries to connect with redis server.
     - label's of SERVICE is matched with POD's label. Only those PODs are exposed to a SERVICE.
-    - cluster-ip-SERVICE.yaml
+    - 
+    - **cluster-ip-SERVICE.yaml**
         - apiVersion:**v1**---------------------------------------version
         - kind: **SERVICE**--------------------------------------------type
         - metadata:-------------------------------------------Meta Data - SERVICE
@@ -434,6 +590,39 @@
             - selectors
                 - app: myapp-------------------------------------selection of PODs
                 - mame: redis-POD---------------------------------selection of PODs
+
+
+
+            KIND:       Service
+            VERSION:    v1
+            
+            DESCRIPTION:
+                Service is a named abstraction of software service (for example, mysql)
+                consisting of local port (for example 3306) that the proxy listens on, and
+                the selector that determines which pods will answer requests sent through
+                the proxy.
+            
+            FIELDS:
+              apiVersion    <string>
+                APIVersion defines the versioned schema of this representation of an object.
+              
+            
+              kind  <string>
+                Kind is a string value representing the REST resource this object
+                represents. Cannot be updated. In CamelCase. More info:
+               
+            
+              metadata      <ObjectMeta>
+                Standard object's metadata. 
+            
+              spec  <ServiceSpec>
+                Spec defines the behavior of a service.
+            
+              status        <ServiceStatus>
+                Most recently observed status of the service. Populated by the system.
+                Read-only. 
+
+                
 - NodePort SERVICE
     - exposed ternally on node IP and its port.
     - Layer 4 (TCP/UDP)
