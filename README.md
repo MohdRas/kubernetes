@@ -61,11 +61,11 @@
           - Switching between these REPLICASETs happen when image version changes to V2.
           - BY DEFAULT, K8S uses **RollingUpdate** strategy to unsure zero downtime.
           - ROLLING UPDATE 
+              
               - depends on **maxSurge (how many extra PODs K8s can spin up)** during the update. Default to 25%.
               - depends on **maxUnavailable (how many PODs can be completely offline)** during the update. Default to 25%.
               - Lets say DEPLOYMENT was configured for 4 Replicas. Image version changes from V1 to V2. So as per default settings, then maxSurge = 1 POD and maxUnavailable = 1 POD
               - kubectl apply with image version V2.
-                  
                 - create another REPLICASET B, initially desired replica count = 0.
                 - DEPLOYMENT look for **maxSurge** and tells it to create a new POD ( V2 )
                 - So total 5 PODS ( 4 running + 1 starting)
