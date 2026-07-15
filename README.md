@@ -256,11 +256,11 @@
 # Kubernetes Kodekloud https://www.youtube.com/watch?v=XuSQU5Grv1g 
 - With docker, we run one instance of an application.
 - But with k8s, we can run thousands of instances in a single command.
-  - "kubectl run --replicas=1000 my-web-server" =========> starting 1000 instances.
-  - "kubectl scale --replicas=2000 my-web-server"========> scalling up to 2000 instances.
+  - "kubectl **run** --replicas=1000 my-web-server" =========> starting 1000 instances.
+  - "kubectl **scale** --replicas=2000 my-web-server"========> scalling up to 2000 instances.
   - Scaling UP/DOWN the infrastrucrure/instances,can be done by configuring the k8s itself.
-  - "kubectl rolling-update my-web-server --image=web-serer:2"
-  - "kubectl rolling-update my-web-server --rollback"
+  - "kubectl **rolling-update** my-web-server --image=web-serer:2"
+  - "kubectl **rolling-update** my-web-server --rollback"
 - with K8s, we are able to define expected state of our application. This state is maintained even after any faliure to these instances.
   - webserver 2 instances.
   - payment SERVICE 2 instances.
@@ -272,7 +272,7 @@
 
 # K8s OBJECTS
 
-kubectl explain pods
+kubectl **explain** pods
 
                     
                     KIND:       Pod
@@ -309,37 +309,40 @@ kubectl explain pods
 
 
 
-kubectl explain services
-kubectl explain deployments
-kubectl explain replicasets
-kubectl explain statefulsets
+kubectl **explain** services
+kubectl **explain** deployments
+kubectl **explain** replicasets
+kubectl **explain** statefulsets
 
 
 
 
     
 # POD
-- **kubectl version**
-    - show version of "client" and "server" of kubectl
-- kubectl --help
-- kubectl get pods/nodes/replicatsets/deployments/services
-- **kubectl get pods/nodes/replicatsets/deployments/services -o wide**
-  - -o wide =======>        to get more details.
-- kubectl **run** my-pod **--image=nginx**
-- kubectl run my-nginx-pod **--image nginx**
-    - creating POD from nginx image
-- kubectl **get pods** my-nginx-pod
-- kubectl **get pods**     
+- **kubectl version** - show version of "client" and "server" of kubectl
+- kubectl --help        
+- kubectl **run** my-nginx-pod **--image nginx**
+   - Create and run a particular image in a pod.
+
+# GET OBEJECTS
+- kubectl **get pods**/nodes/services/deployments/replicasets/statefulsets  ==============> get ALL
+- kubectl **get pods**/nodes/services/deployments/replicasets/statefulsets **<OBJECT_NAME>** ==============> get ONLY ONE
+- kubectl **get pods**/nodes/replicatsets/deployments/services **-o wide**   =======>        ADDITIONAL DETAILS
+
+
+
+# DESCRIBE OBEJECTS
+- kubectl **describe pods**/nodes/services/deployments/replicasets/statefulsets  ==============> describe ALL
+- kubectl **describe pods**/nodes/services/deployments/replicasets/statefulsets **<OBJECT_NAME>** ==============> describe ONLY ONE
+
+# DELETE OBEJECTS
+- kubectl **delete pods** =====> we cannot delete all pods at once. Same applies to other type of objects.
+- kubectl **delete pods**/nodes/services/deployments/replicasets/statefulsets **<OBJECT_NAME>** ==============> delete ONLY ONE
+
+# CREATE DEPLOYMENTS
+- kubectl **create deployment** mydeploy --image nginx
 - kubectl **create** -f POD-definition.yaml
-- kubectl **describe** PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs <NAME_OF_OBJECT>
-    - details about object.
-- kubectl **delete** PODs/nodes/REPLICASETs/DEPLOYMENTs/SERVICEs <NAME_OF_OBJECT>
-    - delete an object
-
-
-
-
-
+- 
 - **POD-definition.yaml**
  - spec:containers:---------------------------------------**List of containers with name & image**
 
