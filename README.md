@@ -53,7 +53,7 @@
     - it is just a manager for REPLICASETs.
     - It allow us to change the code without downtime.
     - If you create a DEPLOYMENT then it automatically create a REPLICASET behind the scene.
-        - Your DEPLOYMENT -> REPLICASET A -> ( POD1, POD2 POD3)
+    - Your DEPLOYMENT -> REPLICASET A -> ( POD1, POD2 POD3)
     - APP UPDATE scenario
           - Image version V1 to V2 then it create a brand new REPLICASET B with image V2.
           - Once new POD (V2) started then it tells REPLICASET A to kill old POD(V1)..it does same thing for all other PODs.
@@ -61,20 +61,20 @@
           - Switching between these REPLICASETs happen when image version changes to V2.
           - BY DEFAULT, K8S uses **RollingUpdate** strategy to unsure zero downtime.
           - ROLLING UPDATE 
-                  - depends on **maxSurge (how many extra PODs K8s can spin up)** during the update. Default to 25%.
-                  - depends on **maxUnavailable (how many PODs can be completely offline)** during the update. Default to 25%.
-                  - Lets say DEPLOYMENT was configured for 4 Replicas. Image version changes from V1 to V2. So as per default settings, then maxSurge = 1 POD and maxUnavailable = 1 POD
-                  - kubectl apply with image version V2.
-                      - create another REPLICASET B, initially desired replica count = 0.
-                      - DEPLOYMENT look for **maxSurge** and tells it to create a new POD ( V2 )
-                      - So total 5 PODS ( 4 running + 1 starting)
-                      - verifying health of new POD ( v2) and shifting traffic to it. **Once new POD(V2) is marked HEALTHY**
-                      - DEPLOYMENT tells REPLICASET A to kill old POD (V1).
-                      - Now total = 4 ( 3 running + 1 new POD )
-                      - REPLICASET A (Old) -> 4 -> 3 -> 2 -> 1 ->0  ( Inactive) 
-                      - REPLICASET B (New) -> 1 -> 2 -> 3 -> 4 ->4  ( Fully Aactive) 
-                      - Once REPLICASET B becomes full healthy and REPLICASET A has zero replicas then **switch is completed but REPLICASET A is not deleted**
-                      - It is kept alive with zero replicas. so we can instantly roll backed.
+              - depends on **maxSurge (how many extra PODs K8s can spin up)** during the update. Default to 25%.
+              - depends on **maxUnavailable (how many PODs can be completely offline)** during the update. Default to 25%.
+              - Lets say DEPLOYMENT was configured for 4 Replicas. Image version changes from V1 to V2. So as per default settings, then maxSurge = 1 POD and maxUnavailable = 1 POD
+              - kubectl apply with image version V2.
+                  - create another REPLICASET B, initially desired replica count = 0.
+                  - DEPLOYMENT look for **maxSurge** and tells it to create a new POD ( V2 )
+                  - So total 5 PODS ( 4 running + 1 starting)
+                  - verifying health of new POD ( v2) and shifting traffic to it. **Once new POD(V2) is marked HEALTHY**
+                  - DEPLOYMENT tells REPLICASET A to kill old POD (V1).
+                  - Now total = 4 ( 3 running + 1 new POD )
+                  - REPLICASET A (Old) -> 4 -> 3 -> 2 -> 1 ->0  ( Inactive) 
+                  - REPLICASET B (New) -> 1 -> 2 -> 3 -> 4 ->4  ( Fully Aactive) 
+                  - Once REPLICASET B becomes full healthy and REPLICASET A has zero replicas then **switch is completed but REPLICASET A is not deleted**
+                  - It is kept alive with zero replicas. so we can instantly roll backed.
 
 
     - for **stateless applications.**
