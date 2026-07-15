@@ -468,39 +468,7 @@ kubectl explain statefulsets
 
 
 - **POD-definition.yaml**
-
-
-
-                KIND: Pod
-                VERSION:    v1
-
-                DESCRIPTION:
-                    Pod is a collection of containers that can run on a host. This resource is
-                    created by clients and scheduled onto hosts.
-                
-                FIELDS:
-                  apiVersion    <string>
-                    APIVersion defines the versioned schema of this representation of an object.
-                    
-                
-                  kind  <string>
-                    Kind is a string value representing the REST resource this object
-                    represents. Cannot be updated. In CamelCase.
-                
-                  metadata      <ObjectMeta>
-                    Standard object's metadata.
-                    
-                
-                  spec  <PodSpec>
-                    Specification of the desired behavior of the pod.
-                   
-                
-                  status        <PodStatus>
-                    Most recently observed status of the pod. This data may not be up to date.
-                    Populated by the system. Read-only.
-
   
-
     - apiVersion:v1
     - kind:**POD**--------------------------------------------type
     - **metadata:**
@@ -569,10 +537,38 @@ kubectl explain statefulsets
 - commands are same as REPLICASETs.
 - change the DEPLOYMENT file and run "kubectl apply -f DEPLOYMENT-definition.yaml"
 
+- **DEPLOYMENT-definition.yaml**
+
+    - apiVersion: **apps/v1**
+    - kind: **DEPLOYMENT**--------------------------------------------type
+    - **metadata:**
+        - name: myapp-replicaset---------------------------------name of the DEPLOYMENT
+        - labels:
+            - app: myapp----------------------------------group name like front-end, back-end
+            - type: front-end------------------------------label of DEPLOYMENT
+   - **spec:**
+      - **template**: --------------------------------------- Template of a POD (metadata + spec)
+          - metadata:----------------------------------------Meta Data - POD
+            - name: myapp-POD--------------------------------name of the POD
+            - labels:
+              - app: myapp-----------------------------------group name like front-end, back-end
+              - type: **front-end**-------------------------------**label of POD**
+          - spec:
+            - containers:---------------------------------------List of containers
+              - -name: nginx-container--------------------------first container
+              - image: nginx
+              - -name: nginx-container--------------------------second container
+              - image: buxybox
+      - **replicas**: 3 ---------------------------------------**3 PODS always ACTIVE all the time.**
+      - **selectors**:
+          - matchLabels:
+              - type: **front-end**-----------------------------------**label of POD**
+
 
 # SERVICEs
 - IP of PODs is lost if it is started again.
-- kluster IP SERVICE
+- 
+- **Cluster IP SERVICE**
     - communication wetween PODs within cluster.
     - webserver tries to connect with redis server.
     - label's of SERVICE is matched with POD's label. Only those PODs are exposed to a SERVICE.
@@ -588,42 +584,12 @@ kubectl explain statefulsets
                 - -targetPort: 6379--------------------------**POD port**
                 - port: 6379---------------------------------**SERVICE port** - mandatory
             - selectors
-                - app: myapp-------------------------------------selection of PODs
-                - mame: redis-POD---------------------------------selection of PODs
+                - app: myapp-------------------------------------**selection of PODs**
+                - mame: redis-pod---------------------------------**selection of PODs**
 
-
-
-				            KIND:       Service
-				            VERSION:    v1
-				            
-				            DESCRIPTION:
-				                Service is a named abstraction of software service (for example, mysql)
-				                consisting of local port (for example 3306) that the proxy listens on, and
-				                the selector that determines which pods will answer requests sent through
-				                the proxy.
-				            
-				            FIELDS:
-				              apiVersion    <string>
-				                APIVersion defines the versioned schema of this representation of an object.
-				              
-				            
-				              kind  <string>
-				                Kind is a string value representing the REST resource this object
-				                represents. Cannot be updated. In CamelCase. More info:
-				               
-				            
-				              metadata      <ObjectMeta>
-				                Standard object's metadata. 
-				            
-				              spec  <ServiceSpec>
-				                Spec defines the behavior of a service.
-				            
-				              status        <ServiceStatus>
-				                Most recently observed status of the service. Populated by the system.
-				                Read-only. 
 
                 
-- NodePort SERVICE
+- **NodePort SERVICE**
     - exposed ternally on node IP and its port.
     - Layer 4 (TCP/UDP)
     - Based on NodeIP:Port'
