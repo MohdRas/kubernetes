@@ -216,7 +216,7 @@
           - Generate detailed metrics (request rates, error rates, latencies), distributed traces, and access logs for all traffic without any changes to the application code.
 
 # kubeconfig - "C:\Users\mohdr\.kube\config"
-- ....
+
 - **kubectl config view** - to view kubeconfig file
 - **kubectl get --raw /api/v1/namespaces/default/PODs/nginx** - value in etdc database
 - https://aistudio.google.com/app/prompts/1UdrMUn0yGZZqa46FN3rq75MaZEP-070X
@@ -262,16 +262,47 @@
 - **kubectl get all**
     - all objects
 # POD
-- kubectl version
+- **kubectl version**
     - show version of "client" and "server" of kubectl
 - kubectl --help
-- kubectl get PODs/nodes/replicatsets/DEPLOYMENTs/SERVICEs
-- kubectl get PODs/nodes/replicatsets/DEPLOYMENTs/SERVICEs -o wide
-  - -o wide
-    - to get more details.
-- kubectl run my-POD --image=nginx
+- kubectl get pods/nodes/replicatsets/deployments/services
+- **kubectl get pods/nodes/replicatsets/deployments/services -o wide**
+  - -o wide =======>        to get more details.
+- kubectl **run** my-pod **--image=nginx**
+- kubectl run my-nginx-pod **--image nginx**
     - creating POD from nginx image
-    - 
+- kubectl **get pods** my-nginx-pod
+- kubectl **get pods**
+
+
+                VERSION:    v1
+
+                DESCRIPTION:
+                    Pod is a collection of containers that can run on a host. This resource is
+                    created by clients and scheduled onto hosts.
+                
+                FIELDS:
+                  apiVersion    <string>
+                    APIVersion defines the versioned schema of this representation of an object.
+                    
+                
+                  kind  <string>
+                    Kind is a string value representing the REST resource this object
+                    represents. Cannot be updated. In CamelCase.
+                
+                  metadata      <ObjectMeta>
+                    Standard object's metadata.
+                    
+                
+                  spec  <PodSpec>
+                    Specification of the desired behavior of the pod.
+                   
+                
+                  status        <PodStatus>
+                    Most recently observed status of the pod. This data may not be up to date.
+                    Populated by the system. Read-only. 
+
+
 - **POD-definition.yaml**
 
     - apiVersion:v1
