@@ -149,32 +149,36 @@
        - Container Runtime Interface
        - lightweight container runtime built specifically for Kubernetes. It implements the CRI and nothing more.
        - 
- - **KUBELET**
+ - **KUBELET** ( Lister Doer Monitor Reporter Provider ) LDMRP
     - is the main agent on worker node of a k8s cluster.
         - listens for instructions from the control plane - **The Lister**.
         - does the work of running and managing containers - **The Doer**.
         - monitors their health - **The Docker - The Monitor**.
         - reports the node's status back - **The Reporter**
         - provides required persistent volumes to the POD. - **The Provider or The Supplier**
-    - **PODs life cycle management - The "Doer"**
+    
+    - **PODs life cycle management** - The "Doer"
        - manages entire life cycle of the PODs of the node.
-       - recieves PODSpecs ( specifications for PODs ) from api-server and instruct container runtime to work on it.
+       - **recieves PODSpecs ( specifications for PODs ) from api-server and instruct container runtime to work on it.**
        - instruct container runtime (containerd or CRI-O)
            - to pull image
            - to create container from the image.
            - to stop & remove container only if the corresponding POD is deleted or terminated.
-    - **Executing health probes & monitoring of the containers of the POD - The "Doctor"**
-       - continuously running **health checks defined within POD's specification**
+    
+    - **Executing health probes & monitoring of the containers of the POD** - The "Doctor"
+       - continuously running **health checks** defined within POD's specification
        - Liveniness probe - check if container still running.
        - Readiness probe - check if container ready to accept traffic.
        - Startup probe - check if containerized application is started or not.
-       - helps to achieve **Kubernetes' self-healing and high-availability features.**
-    - **Node & POD Status reporting - The "Reporter"**
+       - helps to achieve Kubernetes' **self-healing and high-availability** features.
+    
+    - **Node & POD Status reporting** - The "Reporter"
        - constantly communicates with api-server.
        - share node status ( available memory, disk space, cpu capacity ) to api-server.
        - share POD status ( pending, running, succeeded & failed PODs) to api server.
-       - **it helps scheduler to function effectively. Without accurate node status, the scheduler might place PODs on unhealthy or overloaded nodes**.
-    - **Managing Volumes and Secrets (The "Supplier")**
+       - it helps scheduler to function effectively. **Without accurate node status, the scheduler might place PODs on unhealthy or overloaded nodes**.
+    
+    - **Managing Volumes and Secrets** (The "Supplier")
        - Mounting Volumes:
           - For volumes like ConfigMaps, Secrets, or emptyDir, it mounts them into the container.
        - Persistent Storage:
@@ -190,13 +194,14 @@
              - The kubelet instructs the container runtime (*containerd or CRI-O*).
              - It says: "Start this container, and when you do, take the directory **/var/lib/kubelet/.../mount** from the host node and make it appear inside the container at the path **/data.**
              - 
-- **CONATINER RUNTIME ( docker or containerd)**
+- **CONATINER RUNTIME ( dockerd or containerd)**
     - kubelet decides what to do, the container runtime is the one that does it.
     - Running and Managing Containers
     - Managing Images
     - Managing Container Storage and Networking
     - POD Sandbox Management
        - A POD is a group of one or more containers that share a network and storage environment. The runtime is responsible for creating this shared environment         - 
+ 
  - **NETWORK PROXY**
     - runs on each node.
     - defined network rules on the node.
