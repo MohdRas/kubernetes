@@ -50,6 +50,8 @@
     - If we want POD with updated version V2 then we need to delete old PODs and then REPLICASET will use new PODs.
 
 - DEPLOYMENT ( Default )
+    - for **stateless applications.**
+    - **blue print for PODs of my application**
     - POD is abstraction on the container. **DEPLOYMENT is another layer of abstraction over the POD.**
     - it is just a manager for REPLICASETs.
     - It allow us to change the code without downtime.
@@ -77,10 +79,6 @@
         - Once REPLICASET B becomes full healthy and REPLICASET A has zero replicas then **switch is completed but REPLICASET A is not deleted**
         - It is kept alive with zero replicas. so we can instantly roll backed.
 
-
-    - for **stateless applications.**
-    - **blue print for PODs of my application**
-    - POD is abstraction on the container. **DEPLOYMENT is another layer of abstraction over the POD.**
 - SATEFULSET
     - for **statefull applications** ( databases -mysql , postgresql and distributed system - kafka & Elasticsearch)
     - ideally we don't do this because we keep **databases outside of the K8s cluster.**
