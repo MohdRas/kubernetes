@@ -337,7 +337,7 @@ kubectl explain services
                         Read-only. 
                         
 
-kubectl explain statefulsets
+kubectl explain deployments
 
                         GROUP:      apps
                         KIND:       Deployment
@@ -368,7 +368,7 @@ kubectl explain statefulsets
 	
 	
 
-kubectl explain statefulsets
+kubectl explain replicasets
 
                         GROUP:      apps
                         KIND:       ReplicaSet
