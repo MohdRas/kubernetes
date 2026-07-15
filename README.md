@@ -501,6 +501,8 @@ kubectl explain statefulsets
 - **REPLICASET will always make sure that "desired" number of PODs are always up, in case of increase or decrease PODs**
 
 - **Level of POD is matched with label of selectors.**
+- **spec.selectors.matchLabels** of replicaset must match with **spec.template.labels**
+
 
 - **REPLICASET-definition.yaml**
 
