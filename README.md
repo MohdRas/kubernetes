@@ -409,41 +409,41 @@ kubectl explain statefulsets
 
 kubectl explain statefulsets
 
-GROUP:      apps
-KIND:       StatefulSet
-VERSION:    v1
-
-DESCRIPTION:
-    StatefulSet represents a set of pods with consistent identities. Identities
-    are defined as:
-      - Network: A single stable DNS and hostname.
-      - Storage: As many VolumeClaims as requested.
-
-    The StatefulSet guarantees that a given network identity will always map to
-    the same storage identity.
-
-FIELDS:
-  apiVersion    <string>
-    APIVersion defines the versioned schema of this representation of an object.
-    Servers should convert recognized schemas to the latest internal value, and
-    may reject unrecognized values. 
-    
-
-  kind  <string>
-    Kind is a string value representing the REST resource this object
-    represents. Cannot be updated. In CamelCase. 
-   
-
-  metadata      <ObjectMeta>
-    Standard object's metadata. 
-    
-
-  spec  <StatefulSetSpec>
-    Spec defines the desired identities of pods in this set.
-
-  status        <StatefulSetStatus>
-    Status is the current status of Pods in this StatefulSet. This data may be
-    out of date by some window of time.
+							GROUP:      apps
+							KIND:       StatefulSet
+							VERSION:    v1
+							
+							DESCRIPTION:
+							    StatefulSet represents a set of pods with consistent identities. Identities
+							    are defined as:
+							      - Network: A single stable DNS and hostname.
+							      - Storage: As many VolumeClaims as requested.
+							
+							    The StatefulSet guarantees that a given network identity will always map to
+							    the same storage identity.
+							
+							FIELDS:
+							  apiVersion    <string>
+							    APIVersion defines the versioned schema of this representation of an object.
+							    Servers should convert recognized schemas to the latest internal value, and
+							    may reject unrecognized values. 
+							    
+							
+							  kind  <string>
+							    Kind is a string value representing the REST resource this object
+							    represents. Cannot be updated. In CamelCase. 
+							   
+							
+							  metadata      <ObjectMeta>
+							    Standard object's metadata. 
+							    
+							
+							  spec  <StatefulSetSpec>
+							    Spec defines the desired identities of pods in this set.
+							
+							  status        <StatefulSetStatus>
+							    Status is the current status of Pods in this StatefulSet. This data may be
+							    out of date by some window of time.
 
     
 # POD
