@@ -284,19 +284,6 @@
 
 - **POD-definition.yaml**
 
-    - apiVersion:v1
-    - kind:**POD**--------------------------------------------type
-    - **metadata:**
-        - name: myapp-pod---------------------------------name of the POD
-        - labels:
-            - app: myapp
-            - type: front-end ----------------------------------group name like front-end, back-end or sales-order.
-   - **spec:**
-      - **containers**:---------------------------------------List of containers
-        - -name: nginx-container
-        - image: nginx
-        - -name: nginx-container
-        - image: buxybox
 
 
                 KIND: Pod
@@ -326,6 +313,25 @@
                   status        <PodStatus>
                     Most recently observed status of the pod. This data may not be up to date.
                     Populated by the system. Read-only.
+
+  
+
+    - apiVersion:v1
+    - kind:**POD**--------------------------------------------type
+    - **metadata:**
+        - name: myapp-pod---------------------------------name of the POD
+        - labels:
+            - app: myapp
+            - type: front-end ----------------------------------group name like front-end, back-end or sales-order.
+   - **spec:**
+      - **containers**:---------------------------------------List of containers
+        - -name: nginx-container
+        - image: nginx
+        - -name: nginx-container
+        - image: buxybox
+
+
+
 
 # SERVICE
 
