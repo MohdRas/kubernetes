@@ -467,8 +467,11 @@ kubectl explain statefulsets
 
 
 
+
 - **POD-definition.yaml**
-  
+ - spec:containers:---------------------------------------**List of containers with name & image**
+
+ - 
     - apiVersion:v1
     - kind:**POD**--------------------------------------------type
     - **metadata:**
@@ -477,7 +480,7 @@ kubectl explain statefulsets
             - app: myapp
             - type: front-end ----------------------------------group name like front-end, back-end or sales-order.
    - **spec:**
-      - **containers**:---------------------------------------List of containers
+      - **containers**:---------------------------------------**List of containers with name & image**
         - -name: nginx-container
         - image: nginx
         - -name: nginx-container
@@ -567,11 +570,13 @@ kubectl explain statefulsets
 
 # SERVICEs
 - IP of PODs is lost if it is started again.
+- **Pods are temporary & their IP change constantly. A service act as a router that sends traffic to your pod by matching labels**
 - 
 - **Cluster IP SERVICE**
     - communication wetween PODs within cluster.
     - webserver tries to connect with redis server.
-    - label's of SERVICE is matched with POD's label. Only those PODs are exposed to a SERVICE.
+ 	- **spec.selectors** of service is matched with **metadata.lables** of pod.
+ 	- It must match all **key-value pairs**.
     - 
     - **cluster-ip-SERVICE.yaml**
         - apiVersion:**v1**---------------------------------------version
@@ -583,7 +588,7 @@ kubectl explain statefulsets
             - ports:
                 - -targetPort: 6379--------------------------**POD port**
                 - port: 6379---------------------------------**SERVICE port** - mandatory
-            - selectors
+            - **selectors**
                 - app: myapp-------------------------------------**selection of PODs**
                 - mame: redis-pod---------------------------------**selection of PODs**
 
@@ -605,7 +610,7 @@ kubectl explain statefulsets
                 - -targetPort: 6379--------------------------**POD port**
                 - port: 6379---------------------------------**SERVICE port** - mandatory
                 - **nodePort**: **30008**-------------------------------------**Node port** (30000-32767)
-            - selectors
+            - selector:
                 - app: myapp-------------------------------------selection of PODs
                 - mame: redis-POD---------------------------------selection of PODs
 - load balancer
