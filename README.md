@@ -86,6 +86,7 @@
     - **If mysql-1 dies then a new POD with same name mysql-1 will be created & existing PersistentVolume will be attached to this new POD.**
     
 # Development Tools - minicube
+
 - minukube is a one node cluster ( acts as master as well as worker node too).
 - As it as a master & worker node so **all the components of master & worker node already be installed.**
 - **Minikube create virtual box on my machine.**
@@ -99,6 +100,7 @@
 - Check the cluster information using: kubectl cluster-info
 - Verify the Minikube status with: minikube status
 - After success, we get message  = Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+  
 # Development Tools - kubeadm
  - settings -> kubernetes -> enable kubernetes
  - select **kubeadm (Single Node Cluster)**. Apply & Restart.
@@ -115,15 +117,16 @@
 - k8s cluster is a set of nodes grouped together.
 - controlplane( master node) help to manages these working nodes.
 - a cluster will have master & worker nodes together.
+- 
 - master node
-  - api server - acts as front end for k8s.
-  - etcd - disributed key-value store. All the state of a POD is stored here.
-  - controller-manager - detects state changes in cluster ( PODs destroyed )
-  - kube-scheduler - distributing PODs to be created across multiple nodes.
+  - **api server** - acts as front end for k8s.
+  - **etcd** - disributed key-value store. All the state of a POD is stored here.
+  - **controller-manager** - detects state changes in cluster ( PODs destroyed )
+  - **kube-scheduler** - distributing PODs to be created across multiple nodes.
 - master node
-  - kublet
+  - **kublet**
   - container runtime ( **containerd or CRI-O**)
-  - kubeproxy
+  - **kubeproxy**
  
 # Master Node - Control Plane
 - api-server
@@ -302,148 +305,12 @@ kubectl explain pods
 
 
 kubectl explain services
-
-                    KIND:       Service
-                    VERSION:    v1
-                    
-                    DESCRIPTION:
-                        Service is a named abstraction of software service (for example, mysql)
-                        consisting of local port (for example 3306) that the proxy listens on, and
-                        the selector that determines which pods will answer requests sent through
-                        the proxy.
-                    
-                    FIELDS:
-                      apiVersion    <string>
-                        APIVersion defines the versioned schema of this representation of an object.
-                        Servers should convert recognized schemas to the latest internal value, and
-                        may reject unrecognized values. 
-                       
-                    
-                      kind  <string>
-                        Kind is a string value representing the REST resource this object
-                        represents.  Cannot be updated. In CamelCase. 
-                       
-                    
-                      metadata      <ObjectMeta>
-                        Standard object's metadata. 
-                       
-                    
-                      spec  <ServiceSpec>
-                        Spec defines the behavior of a service.
-                        
-                    
-                      status        <ServiceStatus>
-                        Most recently observed status of the service. Populated by the system.
-                        Read-only. 
-                        
-
 kubectl explain deployments
-
-                        GROUP:      apps
-                        KIND:       Deployment
-                        VERSION:    v1
-                        
-                        DESCRIPTION:
-                            Deployment enables declarative updates for Pods and ReplicaSets.
-                        
-                        FIELDS:
-                          apiVersion    <string>
-                            APIVersion defines the versioned schema of this representation of an object.
-                            Servers should convert recognized schemas to the latest internal value, and
-                            may reject unrecognized values. 
-                        
-                          kind  <string>
-                            Kind is a string value representing the REST resource this object
-                            represents. Cannot be updated. In CamelCase. 
-                        
-                          metadata      <ObjectMeta>
-                            Standard object's metadata. 
-                            
-                        
-                          spec  <DeploymentSpec>
-                            Specification of the desired behavior of the Deployment.
-                        
-                          status        <DeploymentStatus>
-                            Most recently observed status of the Deployment.
-	
-	
-
 kubectl explain replicasets
-
-                        GROUP:      apps
-                        KIND:       ReplicaSet
-                        VERSION:    v1
-                        
-                        DESCRIPTION:
-                            ReplicaSet ensures that a specified number of pod replicas are running at
-                            any given time.
-                        
-                        FIELDS:
-                          apiVersion    <string>
-                            APIVersion defines the versioned schema of this representation of an object.
-                            Servers should convert recognized schemas to the latest internal value, and
-                            may reject unrecognized values. 
-                            
-                        
-                          kind  <string>
-                            Kind is a string value representing the REST resource this object
-                            represents. Cannot be updated. In CamelCase. 
-                           
-                        
-                          metadata      <ObjectMeta>
-                            If the Labels of a ReplicaSet are empty, they are defaulted to be the same
-                            as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More
-                            info:
-                            
-                        
-                          spec  <ReplicaSetSpec>
-                            Spec defines the specification of the desired behavior of the ReplicaSet.
-                            
-                           
-                        
-                          status        <ReplicaSetStatus>
-                            Status is the most recently observed status of the ReplicaSet. This data may
-                            be out of date by some window of time. Populated by the system. Read-only.
-                            
-
-
 kubectl explain statefulsets
 
-							GROUP:      apps
-							KIND:       StatefulSet
-							VERSION:    v1
-							
-							DESCRIPTION:
-							    StatefulSet represents a set of pods with consistent identities. Identities
-							    are defined as:
-							      - Network: A single stable DNS and hostname.
-							      - Storage: As many VolumeClaims as requested.
-							
-							    The StatefulSet guarantees that a given network identity will always map to
-							    the same storage identity.
-							
-							FIELDS:
-							  apiVersion    <string>
-							    APIVersion defines the versioned schema of this representation of an object.
-							    Servers should convert recognized schemas to the latest internal value, and
-							    may reject unrecognized values. 
-							    
-							
-							  kind  <string>
-							    Kind is a string value representing the REST resource this object
-							    represents. Cannot be updated. In CamelCase. 
-							   
-							
-							  metadata      <ObjectMeta>
-							    Standard object's metadata. 
-							    
-							
-							  spec  <StatefulSetSpec>
-							    Spec defines the desired identities of pods in this set.
-							
-							  status        <StatefulSetStatus>
-							    Status is the current status of Pods in this StatefulSet. This data may be
-							    out of date by some window of time.
+
+
 
     
 # POD
@@ -500,7 +367,6 @@ kubectl explain statefulsets
 
 - **REPLICASET will always make sure that "desired" number of PODs are always up, in case of increase or decrease PODs**
 
-- **Level of POD is matched with label of selectors.**
 - **spec.selectors.matchLabels** of replicaset must match with **spec.template.labels**
 
 
