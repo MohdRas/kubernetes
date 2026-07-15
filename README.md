@@ -336,7 +336,7 @@ kubectl **explain** statefulsets
 - kubectl **describe pods**/nodes/services/deployments/replicasets/statefulsets **<OBJECT_NAME>** ==============> describe ONLY ONE
 
 # DELETE OBEJECTS
-- kubectl **delete pods** =====> we cannot delete all pods at once. Same applies to other type of objects.
+- **we cannot delete all pods at once. Same applies to other type of objects.**
 - kubectl **delete pods**/nodes/services/deployments/replicasets/statefulsets **<OBJECT_NAME>** ==============> delete ONLY ONE
 
 # CREATE DEPLOYMENTS
