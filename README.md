@@ -266,9 +266,134 @@
   - payment SERVICE 2 instances.
   - redis SERVICE 3 instances.
   - database SERVICE 1 instance.
-# kubectl
-- **kubectl get all**
-    - all objects
+# kubectl commands
+kubectl [VERB] [NOUN] [NAME] [FLAGS]
+
+
+
+                                
+
+                                [VERB] What do you want to do? (Action) get, describe, create, apply, delete, logs, exec
+
+                                [NOUN] What resource type are you targeting? (Object) pod (po), service (svc), deployment (deploy), replicaset (rs)
+
+                                [NAME] Which specific one are you targeting? (Identifier) web-pod, db-service, api-deploy
+
+                                [FLAGS] What extra rules are you applying? (Modifiers) -n kube-system, -o yaml, --watch
+
+
+
+Built in shortcodes for almost every [NOUN]
+
+
+
+                                
+
+                                
+
+                                pod ➡️ po
+
+
+
+                                service ➡️ svc
+
+
+
+                                deployment ➡️ deploy
+
+
+
+                                replicaset ➡️ rs
+
+
+
+                                statefulset ➡️ sts
+
+
+
+                                namespace ➡️ ns
+
+
+
+
+
+Bucket A: "The Observers" (Checking State) 👀
+
+
+
+                                
+
+                                
+
+                                List all of a resource:
+
+                                kubectl get po (Get all pods)
+
+
+
+                                See deep, detailed specifications & events (troubleshooting):
+
+                                kubectl describe po web-pod (Describe the web-pod)
+
+
+
+                                Show live streaming logs of a container:
+
+                                kubectl logs -f web-pod (Follow logs of web-pod)
+
+
+
+
+
+Bucket B: "The Creators & Destroyers" (Managing Life) 🛠️
+
+
+
+                                
+
+                                
+
+                                
+
+                                Create or update from a local file:
+
+                                kubectl apply -f deployment.yaml (Apply a file)
+
+
+
+                                Quickly create an interactive resource without a file (Imperative):
+
+                                kubectl run temp-redis --image=redis (Run a quick redis pod)
+
+
+
+                                Safely delete a resource:
+
+                                kubectl delete deploy web-deploy (Delete a deployment)
+
+
+
+
+
+Bucket C: "The Interveners" (Debugging & Fixing) 🔧
+
+Used when you need to jump inside a running system.
+
+
+
+                                
+
+                                
+
+                                SSH / Jump inside a running container (Interactive Terminal):
+
+                                kubectl exec -it web-pod -- /bin/sh
+
+
+
+                                Forward a port from the cluster to your local machine:
+
+                                kubectl port-forward svc/web-service 8080:80 (Access cluster service on local port 8080)
 
 # K8s OBJECTS
 
