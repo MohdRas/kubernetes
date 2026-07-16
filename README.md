@@ -38,7 +38,7 @@
 - If the POD restarted, then data will be lost.
 - **So we are attaching volumes to the POD**. It can be **local ( inside the node)** or **remote(outside the node)**
 - 
-# Replication of nodes
+# Replication of node
 - In both REPLICASET and DEPLOYMENT , we mention **how many replicas** we wanna create. **No of replicas is equal to no of PODs**. This given number of PODs will always be guaranteed alive.
 - REPLICASET
     - for **stateless applications.**
@@ -105,7 +105,7 @@
  - settings -> kubernetes -> enable kubernetes
  - select **kubeadm (Single Node Cluster)**. Apply & Restart.
  - **One SERVICE & one node will be already installed**.
- - kubectl get nodes/SERVICEs
+ - kubectl get node/SERVICEs
    - docker-desktop, control-plane (master node)
    - kubernetes ,  ClusterIP
  - **kubelet** runs on **each node**
@@ -114,15 +114,15 @@
 # Node
 - a server ( Physical or VM) on which k8s is installed.
 - if this node failes, application will be down. so k8s cluster comes in picture.
-- k8s cluster is a set of nodes grouped together.
-- controlplane( master node) help to manages these working nodes.
-- a cluster will have master & worker nodes together.
+- k8s cluster is a set of node grouped together.
+- controlplane( master node) help to manages these working node.
+- a cluster will have master & worker node together.
 - 
 - master node
   - **api server** - acts as front end for k8s.
   - **etcd** - disributed key-value store. All the state of a POD is stored here.
   - **controller-manager** - detects state changes in cluster ( PODs destroyed )
-  - **kube-scheduler** - distributing PODs to be created across multiple nodes.
+  - **kube-scheduler** - distributing PODs to be created across multiple node.
 - master node
   - **kublet**
   - container runtime ( **containerd or CRI-O**)
@@ -176,7 +176,7 @@
        - constantly communicates with api-server.
        - share node status ( available memory, disk space, cpu capacity ) to api-server.
        - share POD status ( pending, running, succeeded & failed PODs) to api server.
-       - it helps scheduler to function effectively. **Without accurate node status, the scheduler might place PODs on unhealthy or overloaded nodes**.
+       - it helps scheduler to function effectively. **Without accurate node status, the scheduler might place PODs on unhealthy or overloaded node**.
     
     - **Managing Volumes and Secrets** (The "Supplier")
        - Mounting Volumes:
@@ -205,7 +205,7 @@
  - **NETWORK PROXY**
     - runs on each node.
     - defined network rules on the node.
-    - handles SERVICE discovery, load balancing of the nodes.
+    - handles SERVICE discovery, load balancing of the node.
     - **Kube-Proxy:**
        - SERVICE Discovery and Internal Load Balancing
           - This proxy resolves **SERVICE name to IP** of one of the healthy PODs.
@@ -366,8 +366,6 @@ Bucket B: "The Creators & Destroyers" (Managing Life) 🛠️
 
 Bucket C: "The Interveners" (Debugging & Fixing) 🔧
 
-Used when you need to jump inside a running system.
-
 
      
 
@@ -381,9 +379,35 @@ Used when you need to jump inside a running system.
 
               kubectl port-forward svc/web-service 8080:80 (Access cluster service on local port 8080)
 
+
+Bucket C: "The Exceptions"
+
+
+     
+
+              create a k8s object with a file :
+
+              kubectl apply -f deployment.yaml
+
+			
+			
+			  Create POD from an image :
+
+			  kubectl run my-pod --image=nginx
+
+
+
+              Find logs :
+
+			  kubectl logs -f <object_name>
+
 # K8s OBJECTS
 
 kubectl **explain** pod
+kubectl **explain** service
+kubectl **explain** deployment
+kubectl **explain** replicaset
+kubectl **explain** statefulset
 
                     
                     KIND:       Pod
@@ -420,10 +444,7 @@ kubectl **explain** pod
 
 
 
-kubectl **explain** service
-kubectl **explain** deployment
-kubectl **explain** replicaset
-kubectl **explain** statefulset
+
 
 
 
@@ -436,19 +457,19 @@ kubectl **explain** statefulset
    - Create and run a particular image in a pod.
 
 # GET OBEJECTS
-- kubectl **get pod**/nodes/service/deployment/replicaset/statefulset  ==============> get ALL
-- kubectl **get pod**/nodes/service/deployment/replicaset/statefulset **<OBJECT_NAME>** ==============> get ONLY ONE
-- kubectl **get pod**/nodes/replicatsets/deployment/service **-o wide**   =======>        ADDITIONAL DETAILS
+- kubectl **get pod**/node/service/deployment/replicaset/statefulset  ==============> get ALL
+- kubectl **get pod**/node/service/deployment/replicaset/statefulset **<OBJECT_NAME>** ==============> get ONLY ONE
+- kubectl **get pod**/node/replicatsets/deployment/service **-o wide**   =======>        ADDITIONAL DETAILS
 
 
 
 # DESCRIBE OBEJECTS
-- kubectl **describe pod**/nodes/service/deployment/replicaset/statefulset  ==============> describe ALL
-- kubectl **describe pod**/nodes/service/deployment/replicaset/statefulset **<OBJECT_NAME>** ==============> describe ONLY ONE
+- kubectl **describe pod**/node/service/deployment/replicaset/statefulset  ==============> describe ALL
+- kubectl **describe pod**/node/service/deployment/replicaset/statefulset **<OBJECT_NAME>** ==============> describe ONLY ONE
 
 # DELETE OBEJECTS
 - **we cannot delete all pod at once. Same applies to other type of objects.**
-- kubectl **delete pod**/nodes/service/deployment/replicaset/statefulset **<OBJECT_NAME>** ==============> delete ONLY ONE
+- kubectl **delete pod**/node/service/deployment/replicaset/statefulset **<OBJECT_NAME>** ==============> delete ONLY ONE
 
 # CREATE DEPLOYMENTS
 - kubectl **create deployment** mydeploy --image nginx
@@ -481,7 +502,7 @@ kubectl **explain** statefulset
     
 # REPLICASET
 - group of 1 or more PODs
-- spans across the cluster ( 1 or more worker nodes)
+- spans across the cluster ( 1 or more worker node)
 - Even if REPLICASET has 1 POD and it fails. REPLICASET automatically create another POD in place of the failed one. If any new POD created manually and no of PODs becomes more than desirable count then it will reduce automatically.
 
 - **REPLICASET will always make sure that "desired" number of PODs are always up, in case of increase or decrease PODs**
@@ -607,6 +628,6 @@ kubectl **explain** statefulset
 - **curl http://192.168.1.2:30008**
 - it uses **Random algorithm , sessioninfinity=yes** for the purpose of **selection of PODs to forward request to**.
 - **istio & LinkerD** is also used for load balancing.
-- **one POD per node, multiple PODs per node, multiple PODs across multiple nodes, same SERVICE definition will work, no additional setup needed**.
+- **one POD per node, multiple PODs per node, multiple PODs across multiple node, same SERVICE definition will work, no additional setup needed**.
 
  
