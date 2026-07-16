@@ -267,7 +267,8 @@
   - redis SERVICE 3 instances.
   - database SERVICE 1 instance.
 # kubectl commands
-kubectl [VERB] [NOUN] [NAME] [FLAGS]
+
+**kubectl [VERB] [NOUN] [NAME] [FLAGS]**
 
            
 		   
@@ -282,7 +283,7 @@ kubectl [VERB] [NOUN] [NAME] [FLAGS]
 
 
 
-Built in shortcodes for almost every [NOUN]
+**Built in shortcodes for almost every [NOUN]**
 
 
               
@@ -310,10 +311,35 @@ Built in shortcodes for almost every [NOUN]
               namespace ➡️ ns
 
 
+[NOUN] mandatory
+- can be used with many kinds of k8s objects [ node, pod, service, deployment, replicaset, statefulset ]
+
+
+					- get => kubectl get pod <object_name>                            =========> pod is mandatory
+					- describe => kubectl describe deployment <object_name>           =========> deployment is mandatory
+					- edit => kubectl edit service <object_name>                      =========> service is mandatory
+					- scale => kubectl scale replicaset <object_name>                 =========> replicaset is mandatory
+					- create => kubectl create deployment <object_name>               =========> deployment is mandatory
+					- delete => kubectl delete deployment <object_name>               =========> deployment is mandatory
+
+
+[NOUN] optional
+- can be used with ONLY ONE kinds of k8s objects [ pod]
+- derived from YAML file.
+
+
+					- logs ========> kubectl logs <POD_NAME>                           ========> kubectl logs my-pod                                   ===========> logs of a POD
+					- run  ========> kubectl run <POD_NAME> --image=nginx              ========> kubectl run my-pod --image=nginx                       ===============> run a POD.
+					- exec ========> kubectl exec -it <POD_NAME> -- sh                 ========>  kubectl exec -it my-pod -- sh                         ===============> inside a POD.
+					- port-forward ========> kubectl port-forward <POD_NAME> 8080:80   ========>        kubectl port-forward <POD_NAME> 8080:80          ======> port-forward of a POD.
+					- apply ========> kubectl apply -f resource.yaml                   ========>                       object is mentioned in YAML file.
 
 
 
-Bucket A: "The Observers" (Checking State) 👀
+
+
+
+**Bucket A: "The Observers" (Checking State) 👀**
 
 
     
@@ -338,7 +364,7 @@ Bucket A: "The Observers" (Checking State) 👀
 
 
 
-Bucket B: "The Creators & Destroyers" (Managing Life) 🛠️
+**Bucket B: "The Creators & Destroyers" (Managing Life) 🛠️**
 
 
 
@@ -364,7 +390,7 @@ Bucket B: "The Creators & Destroyers" (Managing Life) 🛠️
 
 
 
-Bucket C: "The Interveners" (Debugging & Fixing) 🔧
+**Bucket C: "The Interveners" (Debugging & Fixing) 🔧**
 
 
      
@@ -380,7 +406,7 @@ Bucket C: "The Interveners" (Debugging & Fixing) 🔧
               kubectl port-forward svc/web-service 8080:80 (Access cluster service on local port 8080)
 
 
-Bucket C: "The Exceptions"
+**Bucket C: "The Exceptions"**
 
 
      
@@ -400,6 +426,7 @@ Bucket C: "The Exceptions"
               Find logs :
 
 			  kubectl logs -f <object_name>
+
 
 # K8s OBJECTS
 
