@@ -281,6 +281,10 @@
 
               [FLAGS] What extra rules are you applying? (Modifiers) -n kube-system, -o yaml, --watch
 
+			  -n kube-system => look inside kube-system namespace.
+			  -o yaml        => YAML blueprint of the object.
+			  -- watch       => keep the terminal open & live stream any changes to the resource.
+
 
 
 **Built in shortcodes for almost every [NOUN]**
