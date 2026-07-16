@@ -320,7 +320,7 @@ Bucket A: "The Observers" (Checking State) 👀
 
               List all of a resource:
 
-              kubectl get po (Get all pods)
+              kubectl get po (Get all pod)
 
 
 
@@ -383,7 +383,7 @@ Used when you need to jump inside a running system.
 
 # K8s OBJECTS
 
-kubectl **explain** pods
+kubectl **explain** pod
 
                     
                     KIND:       Pod
@@ -420,10 +420,10 @@ kubectl **explain** pods
 
 
 
-kubectl **explain** services
-kubectl **explain** deployments
-kubectl **explain** replicasets
-kubectl **explain** statefulsets
+kubectl **explain** service
+kubectl **explain** deployment
+kubectl **explain** replicaset
+kubectl **explain** statefulset
 
 
 
@@ -436,19 +436,19 @@ kubectl **explain** statefulsets
    - Create and run a particular image in a pod.
 
 # GET OBEJECTS
-- kubectl **get pods**/nodes/services/deployments/replicasets/statefulsets  ==============> get ALL
-- kubectl **get pods**/nodes/services/deployments/replicasets/statefulsets **<OBJECT_NAME>** ==============> get ONLY ONE
-- kubectl **get pods**/nodes/replicatsets/deployments/services **-o wide**   =======>        ADDITIONAL DETAILS
+- kubectl **get pod**/nodes/service/deployment/replicaset/statefulset  ==============> get ALL
+- kubectl **get pod**/nodes/service/deployment/replicaset/statefulset **<OBJECT_NAME>** ==============> get ONLY ONE
+- kubectl **get pod**/nodes/replicatsets/deployment/service **-o wide**   =======>        ADDITIONAL DETAILS
 
 
 
 # DESCRIBE OBEJECTS
-- kubectl **describe pods**/nodes/services/deployments/replicasets/statefulsets  ==============> describe ALL
-- kubectl **describe pods**/nodes/services/deployments/replicasets/statefulsets **<OBJECT_NAME>** ==============> describe ONLY ONE
+- kubectl **describe pod**/nodes/service/deployment/replicaset/statefulset  ==============> describe ALL
+- kubectl **describe pod**/nodes/service/deployment/replicaset/statefulset **<OBJECT_NAME>** ==============> describe ONLY ONE
 
 # DELETE OBEJECTS
-- **we cannot delete all pods at once. Same applies to other type of objects.**
-- kubectl **delete pods**/nodes/services/deployments/replicasets/statefulsets **<OBJECT_NAME>** ==============> delete ONLY ONE
+- **we cannot delete all pod at once. Same applies to other type of objects.**
+- kubectl **delete pod**/nodes/service/deployment/replicaset/statefulset **<OBJECT_NAME>** ==============> delete ONLY ONE
 
 # CREATE DEPLOYMENTS
 - kubectl **create deployment** mydeploy --image nginx
