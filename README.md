@@ -311,8 +311,8 @@
               namespace ➡️ ns
 
 
-[NOUN] mandatory
-- can be used with many kinds of k8s objects [ node, pod, service, deployment, replicaset, statefulset ]
+				[NOUN] mandatory
+				- can be used with many kinds of k8s objects [ node, pod, service, deployment, replicaset, statefulset ]
 
 
 					- get => kubectl get pod <object_name>                            =========> pod is mandatory
@@ -323,9 +323,9 @@
 					- delete => kubectl delete deployment <object_name>               =========> deployment is mandatory
 
 
-[NOUN] optional
-- can be used with ONLY ONE kinds of k8s objects [ pod]
-- derived from YAML file.
+				[NOUN] optional
+				- can be used with ONLY ONE kinds of k8s objects [ pod]
+				- derived from YAML file.
 
 
 					- logs ========> kubectl logs <POD_NAME>                           ========> kubectl logs my-pod                                   ===========> logs of a POD
