@@ -269,49 +269,45 @@
 # kubectl commands
 kubectl [VERB] [NOUN] [NAME] [FLAGS]
 
+           
+		   
 
+              [VERB] What do you want to do? (Action) get, describe, create, apply, delete, logs, exec
 
-                                
+              [NOUN] What resource type are you targeting? (Object) pod (po), service (svc), deployment (deploy), replicaset (rs)
 
-                                [VERB] What do you want to do? (Action) get, describe, create, apply, delete, logs, exec
+              [NAME] Which specific one are you targeting? (Identifier) web-pod, db-service, api-deploy
 
-                                [NOUN] What resource type are you targeting? (Object) pod (po), service (svc), deployment (deploy), replicaset (rs)
-
-                                [NAME] Which specific one are you targeting? (Identifier) web-pod, db-service, api-deploy
-
-                                [FLAGS] What extra rules are you applying? (Modifiers) -n kube-system, -o yaml, --watch
+              [FLAGS] What extra rules are you applying? (Modifiers) -n kube-system, -o yaml, --watch
 
 
 
 Built in shortcodes for almost every [NOUN]
 
 
+              
 
-                                
-
-                                
-
-                                pod ➡️ po
+              pod ➡️ po
 
 
 
-                                service ➡️ svc
+              service ➡️ svc
 
 
 
-                                deployment ➡️ deploy
+              deployment ➡️ deploy
 
 
 
-                                replicaset ➡️ rs
+              replicaset ➡️ rs
 
 
 
-                                statefulset ➡️ sts
+              statefulset ➡️ sts
 
 
 
-                                namespace ➡️ ns
+              namespace ➡️ ns
 
 
 
@@ -320,26 +316,23 @@ Built in shortcodes for almost every [NOUN]
 Bucket A: "The Observers" (Checking State) 👀
 
 
+    
 
-                                
+              List all of a resource:
 
-                                
-
-                                List all of a resource:
-
-                                kubectl get po (Get all pods)
+              kubectl get po (Get all pods)
 
 
 
-                                See deep, detailed specifications & events (troubleshooting):
+              See deep, detailed specifications & events (troubleshooting):
 
-                                kubectl describe po web-pod (Describe the web-pod)
+              kubectl describe po web-pod (Describe the web-pod)
 
 
 
-                                Show live streaming logs of a container:
+              Show live streaming logs of a container:
 
-                                kubectl logs -f web-pod (Follow logs of web-pod)
+              kubectl logs -f web-pod (Follow logs of web-pod)
 
 
 
@@ -349,27 +342,23 @@ Bucket B: "The Creators & Destroyers" (Managing Life) 🛠️
 
 
 
-                                
+             
 
-                                
+              Create or update from a local file:
 
-                                
-
-                                Create or update from a local file:
-
-                                kubectl apply -f deployment.yaml (Apply a file)
+              kubectl apply -f deployment.yaml (Apply a file)
 
 
 
-                                Quickly create an interactive resource without a file (Imperative):
+              Quickly create an interactive resource without a file (Imperative):
 
-                                kubectl run temp-redis --image=redis (Run a quick redis pod)
+              kubectl run temp-redis --image=redis (Run a quick redis pod)
 
 
 
-                                Safely delete a resource:
+              Safely delete a resource:
 
-                                kubectl delete deploy web-deploy (Delete a deployment)
+              kubectl delete deploy web-deploy (Delete a deployment)
 
 
 
@@ -380,20 +369,17 @@ Bucket C: "The Interveners" (Debugging & Fixing) 🔧
 Used when you need to jump inside a running system.
 
 
+     
 
-                                
+              SSH / Jump inside a running container (Interactive Terminal):
 
-                                
-
-                                SSH / Jump inside a running container (Interactive Terminal):
-
-                                kubectl exec -it web-pod -- /bin/sh
+              kubectl exec -it web-pod -- /bin/sh
 
 
 
-                                Forward a port from the cluster to your local machine:
+              Forward a port from the cluster to your local machine:
 
-                                kubectl port-forward svc/web-service 8080:80 (Access cluster service on local port 8080)
+              kubectl port-forward svc/web-service 8080:80 (Access cluster service on local port 8080)
 
 # K8s OBJECTS
 
