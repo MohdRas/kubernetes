@@ -311,28 +311,28 @@
               namespace ➡️ ns
 
 
-				[NOUN] mandatory
-				- can be used with many kinds of k8s objects [ node, pod, service, deployment, replicaset, statefulset ]
+	[NOUN] mandatory
+	- can be used with many kinds of k8s objects [ node, pod, service, deployment, replicaset, statefulset ]
 
 
-					- get => kubectl get pod <object_name>                            =========> pod is mandatory
-					- describe => kubectl describe deployment <object_name>           =========> deployment is mandatory
-					- edit => kubectl edit service <object_name>                      =========> service is mandatory
-					- scale => kubectl scale replicaset <object_name>                 =========> replicaset is mandatory
-					- create => kubectl create deployment <object_name>               =========> deployment is mandatory
-					- delete => kubectl delete deployment <object_name>               =========> deployment is mandatory
+		- get => kubectl get pod <object_name>                            =========> pod is mandatory
+		- describe => kubectl describe deployment <object_name>           =========> deployment is mandatory
+		- edit => kubectl edit service <object_name>                      =========> service is mandatory
+		- scale => kubectl scale replicaset <object_name>                 =========> replicaset is mandatory
+		- create => kubectl create deployment <object_name>               =========> deployment is mandatory
+		- delete => kubectl delete deployment <object_name>               =========> deployment is mandatory
 
 
-				[NOUN] optional
-				- can be used with ONLY ONE kinds of k8s objects [ pod]
-				- derived from YAML file.
+	[NOUN] optional
+	- can be used with ONLY ONE kinds of k8s objects [ pod]
+	- derived from YAML file.
 
 
-					- logs ========> kubectl logs <POD_NAME>                           ========> kubectl logs my-pod                                   ===========> logs of a POD
-					- run  ========> kubectl run <POD_NAME> --image=nginx              ========> kubectl run my-pod --image=nginx                       ===============> run a POD.
-					- exec ========> kubectl exec -it <POD_NAME> -- sh                 ========>  kubectl exec -it my-pod -- sh                         ===============> inside a POD.
-					- port-forward ========> kubectl port-forward <POD_NAME> 8080:80   ========>        kubectl port-forward <POD_NAME> 8080:80          ======> port-forward of a POD.
-					- apply ========> kubectl apply -f resource.yaml                   ========>                       object is mentioned in YAML file.
+		- logs ========> kubectl logs <POD_NAME>                           ========> kubectl logs my-pod                                   ===========> logs of a POD
+		- run  ========> kubectl run <POD_NAME> --image=nginx              ========> kubectl run my-pod --image=nginx                       ===============> run a POD.
+		- exec ========> kubectl exec -it <POD_NAME> -- sh                 ========>  kubectl exec -it my-pod -- sh                         ===============> inside a POD.
+		- port-forward ========> kubectl port-forward <POD_NAME> 8080:80   ========>        kubectl port-forward <POD_NAME> 8080:80          ======> port-forward of a POD.
+		- apply ========> kubectl apply -f resource.yaml                   ========>                       object is mentioned in YAML file.
 
 
 
