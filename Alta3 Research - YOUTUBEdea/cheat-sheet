@@ -5,15 +5,16 @@
      - solve common issue - "work on my machine but not working on server"
     - scallable - create as many copies as you want.
 - problems with containers
-  - host machine runs out of resources.
-  - containers die and get ignored ( no one get notified), k8s handles this using kube-controller of control plane.
+  - host machine runs out of resources as number of containers increases on a host.
+  - containers die and no one get notified, k8s handles this using kube-controller of control plane.
   - single point of failure (Host machine goes down, taking everything with it)
 
-- k8s containers are placed inside kubernetes object called POD.
-- PODs are the wrappers placed around the containers.
-- k8s manages POD, not containers.
+- k8s container is placed inside k8s object called POD.
+- POD => wrapper around the container.
+- k8s manages PODs, not containers.
 - POD need to live on top of some environment so that underlying container get the required resources, such host can be physical/virtual machine, called NODE.
 - k8s can be multiple NODEs, significantly increased the resources required by the lots of PODs. When we conbine all of such nodes together, we get k8s CLUSTER.
+- A cluster => aggregate of resources.
 
 
 2. Terminal & Code Commands Executed in the Video
