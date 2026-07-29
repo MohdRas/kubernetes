@@ -1,1 +1,379 @@
+2. Terminal & Code Commands Executed in the Video
+Imperative Commands & Operations
+Bash
+# Basic Pod Inspection
+kubectl get pods
+kubectl get pods -n kube-system
+kubectl describe pod nginx
+kubectl delete pod nginx
 
+# Namespace Operations
+kubectl create namespace demo
+kubectl get namespaces
+
+# Metrics & Resource Top Monitoring
+kubectl top nodes
+kubectl top pods -A
+
+# Imperative Pod Creation & Port Forwarding
+kubectl run demo-pod --image=nginx
+kubectl port-forward pod/demo-pod 2224:80
+curl localhost:2224
+
+# Interactive Shell & Copying Files
+kubectl exec -it demo-pod -- sh
+kubectl cp nginx.conf demo-pod:/etc/nginx/nginx.conf
+
+# Imperative ConfigMap Creation
+kubectl create configmap dem-heroes --from-file=heroes.txt
+kubectl describe cm dem-heroes
+
+# Secrets Operations
+kubectl get secrets
+kubectl describe secret mysql-secret
+
+# Container Logging Commands
+kubectl logs counter
+kubectl logs counter -c count-by-three
+kubectl logs counter --all-containers
+kubectl logs counter -f
+kubectl logs counter --since=10s
+
+# Label Management & Selection
+kubectl get pods --show-labels
+kubectl label pod demo-pod awesome=sauce
+kubectl label pod demo-pod awesome=training --overwrite
+kubectl label pod demo-pod awesome-
+kubectl get pods -L alta3
+kubectl get pods -l alta3=awesome
+
+# Deployment Scaling & Rollouts
+kubectl scale deployment/demo-deploy --replicas=3
+kubectl rollout history deployment/demo-deploy
+kubectl rollout undo deployment/demo-deploy
+
+# Service Exposure & Networking Tests
+kubectl expose deployment demo-deploy --port=80
+kubectl exec -it client -- wget demo-deploy
+kubectl expose pod nginx-configured --type=NodePort
+curl 10.14.24.245:30337/static/nginx.txt
+YAML Manifests Shown in Video
+1. Basic Pod Manifest (pod-manifest.yaml)
+YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: demo
+  labels:
+    app: engine-x
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+2. Resource Quota Manifest (resource-quota.yaml)
+YAML
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: mem-cpu-demo
+  namespace: demo
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi
+3. Pod with Resource Requests & Limits
+YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-demo
+spec:
+  containers:
+  - name: qos-demo-ctr
+    image: nginx
+    resources:
+      requests:
+        memory: "65Mi"
+        cpu: "250m"
+      limits:
+        memory: "130Mi"
+        cpu: "500m"
+4. Pod with Liveness/Readiness Probe
+YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-exec
+spec:
+  containers:
+  - name: liveness
+    image: registry.k8s.io/e2e-test-images/agnhost:2.40
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
+      initialDelaySeconds: 2
+      periodSeconds: 5
+      timeoutSeconds: 1
+      failureThreshold: 3
+5. ConfigMap Volume Mount with Subpath
+YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: dc-heroes
+      mountPath: /etc/nginx/heroes.txt
+      subPath: heroes.txt
+  volumes:
+  - name: dc-heroes
+    configMap:
+      name: dem-heroes
+6. Secret Injection into Environment Variables
+YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-pod
+spec:
+  containers:
+  - name: mysql
+    image: mysql
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: mysql-secret
+          key: password
+7. Multi-Container Logging Pod
+YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: counter
+spec:
+  containers:
+  - name: count
+    image: busybox
+    args: [/bin/sh, -c, 'i=0; while true; do echo "$i: $(date)"; i=$((i+1)); sleep 1; done']
+  - name: count-by-three
+    image: busybox
+    args: [/bin/sh, -c, 'i=0; while true; do echo "$i: $(date)"; i=$((i+1)); sleep 3; done']
+8. Deployment Manifest
+YAML
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: engine-x
+  template:
+    metadata:
+      labels:
+        app: engine-x
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+9. Storage Suite (PV, PVC, and Pod)
+YAML
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-pv
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  hostPath:
+    path: "/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-pvc
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: storage-pod
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node1
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: storage-vol
+      mountPath: /data
+  volumes:
+  - name: storage-vol
+    persistentVolumeClaim:
+      claimName: nginx-pvc
+10. Network Policy (Default Deny & Ingress Rule)
+YAML
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: demo-deploy
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          run: client
+11. Service Manifest (NodePort)
+YAML
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: NodePort
+  selector:
+    app: engine-x
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30337
+3. Diagrams & Architectural Flowcharts Reconstructed
+Diagram 1: Kubernetes Cluster Architecture
++-------------------------------------------------------------------+
+|                         KUBERNETES CLUSTER                        |
+|                                                                   |
+|   +-----------------------------------------------------------+   |
+|   |                  CONTROLLER NODE (Control Plane)          |   |
+|   |  +------------+  +-------------+  +-------------------+   |   |
+|   |  | API Server |  |    etcd     |  |   Kube-Scheduler  |   |   |
+|   |  +------------+  +-------------+  +-------------------+   |   |
+|   |  +------------------------------------------------+   |   |
+|   |  |              Controller Manager                |   |   |
+|   |  +------------------------------------------------+   |   |
+|   +-----------------------------------------------------------+   |
+|                                 |                                 |
+|         +-----------------------+-----------------------+         |
+|         |                                               |         |
+|         v                                               v         |
+|   +---------------------------+   +---------------------------+   |
+|   |       WORKER NODE 1       |   |       WORKER NODE 2       |   |
+|   |  +---------------------+  |   |  +---------------------+  |   |
+|   |  |       Kubelet       |  |   |  |       Kubelet       |  |   |
+|   |  +---------------------+  |   |  +---------------------+  |   |
+|   |  +---------------------+  |   |  +---------------------+  |   |
+|   |  |  Container Runtime  |  |   |  |  Container Runtime  |  |   |
+|   |  +---------------------+  |   |  +---------------------+  |   |
+|   |  +-------+  +-------+     |   |  +-------+                |   |
+|   |  | Pod 1 |  | Pod 2 |     |   |  | Pod 3 |                |   |
+|   |  +-------+  +-------+     |   |  +-------+                |   |
+|   +---------------------------+   +---------------------------+   |
++-------------------------------------------------------------------+
+Diagram 2: Control Plane Communication Sequence (Pod Creation Flow)
+[ Developer / Workstation ]
+          |
+          |  1. kubectl apply -f pod.yaml
+          v
+  +------------------+
+  |    API Server    | <==== 2. Validate & Persist State ====> +----------+
+  +------------------+                                         |   etcd   |
+    |              ^                                           +----------+
+    | 3. Query     | 4. Assign Node
+    v              |
+  +------------------+
+  |  Kube-Scheduler  |
+  +------------------+
+    |
+    | 5. Direct Pod Creation Instructions
+    v
+  +------------------+
+  |     Kubelet      | (On Target Worker Node)
+  +------------------+
+    |
+    | 6. Issue Container Commands (e.g., docker run / containerd)
+    v
+  +------------------+
+  | Container Engine | ----> Spawns Pod & Containers
+  +------------------+
+Diagram 3: Storage Abstraction Layer (PV, PVC & Pod)
++---------------------------------------------------------------+
+|                           POD                                 |
+|  +---------------------+            +----------------------+  |
+|  | Container           |            | Volume               |  |
+|  |  Mount: /data  <====|============| EngineXPV-Storage    |  |
+|  +---------------------+            +----------------------+  |
++------------------------------------------------|--------------+
+                                                 |
+                                                 v
+                              +--------------------------------------+
+                              | PersistentVolumeClaim (PVC)          |
+                              |  Name: nginx-pvc                     |
+                              +--------------------------------------+
+                                                 |
+                                         (Bound 1-to-1)
+                                                 v
+                              +--------------------------------------+
+                              | PersistentVolume (PV)                |
+                              |  Capacity: 2Gi | Class: manual       |
+                              +--------------------------------------+
+                                                 |
+                                                 v
+                              +--------------------------------------+
+                              | StorageClass / Host Path Storage     |
+                              |  Node Path: /data                    |
+                              +--------------------------------------+
+Diagram 4: Kubernetes Service Types Hierarchy & Routing
+ [ External Client Request ]
+             |
+             | (Port: 80 / 443)
+             v
++---------------------------------+
+|     LoadBalancer Service        |  <-- Integrates with Cloud Provider LB
++---------------------------------+
+             |
+             | (Port: 30000-32767)
+             v
++---------------------------------+
+|       NodePort Service          |  <-- Maps Node External IP + Port
++---------------------------------+
+             |
+             | (Cluster-Internal IP)
+             v
++---------------------------------+
+|       ClusterIP Service         |  <-- Internal Virtual IP
++---------------------------------+
+             |
+     (kube-proxy Round-Robin)
+             |
+     +-------+-------+
+     |               |
+     v               v
++---------+     +---------+
+|  Pod A  |     |  Pod B  |
++---------+     +---------+
