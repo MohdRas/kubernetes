@@ -3,23 +3,23 @@ https://docs.google.com/document/d/1BzvkNjqIeWgapg17uT3Oj7DGRFsILFJz-8HibecYp7g/
 1. The Goal (Cleaned Verbatim) [00:00:34 - 00:01:06]
      - Go through all of the fundamentals of Kubernetes, everything that you need as a foundation to pass your CCAD or your CKA exam, or if you're just looking to get proficient with Kubernetes in general.
 
-2. Concept & Implementation Walkthrough
-Why Use Kubernetes? [00:01:36 - 00:04:49] The Concept:
+2. Why Use Kubernetes? [00:01:36 - 00:04:49] The Concept:
 	- Kubernetes is all about enabling a certain sort of lifestyle in application deployment.
 	- 
 	- We have some code along with dependencies that are needed in order for that code and its application to run in a style of application deployment known as microservices.
 	- 
-	- Let's put all of that code and its dependencies inside of an isolated environment called a container.
+	- **Let's put all of that code and its dependencies inside of an isolated environment called a container.**
+	-
+	- **easy to spin up container, easy to replace container, works everywhere ( my computer & all other computer)**
+	-
+	- **Containers are scalable**, and you can create as many different copies of them as you want.
 	- 
-	- Containers are scalable, and you can create as many different copies of them as you want.
+	- **Containers are not meant to hang around forever**, whether they die because you tear them down or because something happens to them.
 	- 
-	- Containers are not meant to hang around forever, whether they die because you tear them down or because something happens to them.
-	- 
-	- Scenario number one, your host machine runs out of resources, and containers may not be able to expand.
-	- 
-	- Issue number two, containers die and they get ignored.
-	- 
-	- Scenario number three, all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.
+	- **problems with container management without orchestration tool**
+	 	- **your host machine runs out of resources**, and containers may not be able to expand.
+		- **containers die and they get ignored.**
+		- **all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.**
  
 3. Pods, Nodes & The Cluster [00:04:49 - 00:07:37] The Concept:
 	- Containers and Kubernetes work exactly the same way they always did, whether they're being created by Docker or something else.
