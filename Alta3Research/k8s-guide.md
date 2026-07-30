@@ -17,6 +17,7 @@ https://docs.google.com/document/d/1BzvkNjqIeWgapg17uT3Oj7DGRFsILFJz-8HibecYp7g/
 	- **Containers are not meant to hang around forever**, whether they die because you tear them down or because something happens to them.
 	- 
 	- **PROBLEMS WITH CONTAINER MANAGEMENT WITHOUT AN ORCHESTRATION TOOL**
+		-
 	 	- **your host machine runs out of resources**, and containers may not be able to expand.
 		-
 		- **containers die and they get ignored.**
