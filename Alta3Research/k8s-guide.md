@@ -24,6 +24,7 @@ The Concept:
 
 Pods, Nodes & The Cluster [00:04:49 - 00:07:37]
 The Concept:	
+	
 	- Containers and Kubernetes work exactly the same way they always did, whether they're being created by Docker or something else.
 	- 
 	- Kubernetes containers are placed inside of Kubernetes objects called pods.
@@ -44,6 +45,7 @@ The Concept:
 
 Control Plane Architecture & CLI [00:07:37 - 00:19:59]
 The Concept:	
+	
 	- Cube control is the CLI tool that is going to be installed inside of your personal workstation, your laptop, enabling you to access the cluster.
 	- 
 	- All cube control requests are received by the API server, because all communication inside of Kubernetes is done through an API.
