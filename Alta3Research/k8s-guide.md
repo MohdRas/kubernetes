@@ -27,19 +27,21 @@ https://docs.google.com/document/d/1BzvkNjqIeWgapg17uT3Oj7DGRFsILFJz-8HibecYp7g/
 3. Pods, Nodes & The Cluster [00:04:49 - 00:07:37] The Concept:
 	- Containers and Kubernetes work exactly the same way they always did, whether they're being created by Docker or something else.
 	- 
-	- Kubernetes containers are placed inside of Kubernetes objects called pods.
+	- **Kubernetes containers are placed inside of Kubernetes objects called pods.**
 	- 
-	- Pods are really just wrappers that are being placed around containers, and Kubernetes manages pods, not containers.
+	- Pods are really just wrappers that are being placed around containers, and **Kubernetes manages pods, not containers.**
 	- 
-	- In a Kubernetes environment, when you add virtual machines to it, those are called nodes.
+	- **POD/Container need to live on some sort of host, to draw its resources from host, can be a physical/virtual machine, called node.**
+	-
+	- **In a Kubernetes environment, when you add virtual machines to it, those are called nodes.**
 	- 
 	- You can add multiple nodes to the same environment to exponentially increase the total amount of resources.
 	- 
-	- When you combine all of those nodes together, you get what are called a cluster.
+	- **When you combine all of those nodes together, you get what are called a cluster.**
 	- 
 	- Worker nodes are where you would expect to see the vast majority of pods created.
 	- 
-	- The controller node is the hub of all of the tools that are required in order to keep your cluster running.
+	- **The controller node is the hub of all of the tools that are required in order to keep your cluster running.**
 	- 
 	- You don't want to be willy-nilly putting pods on top of the controller node because it needs its resources to manage the cluster.
 
