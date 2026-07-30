@@ -16,9 +16,11 @@ https://docs.google.com/document/d/1BzvkNjqIeWgapg17uT3Oj7DGRFsILFJz-8HibecYp7g/
 	- 
 	- **Containers are not meant to hang around forever**, whether they die because you tear them down or because something happens to them.
 	- 
-	- **problems with container management without orchestration tool**
+	- **PROBLEMS WITH CONTAINER MANAGEMENT WITHOUT AN ORCHESTRATION TOOL**
 	 	- **your host machine runs out of resources**, and containers may not be able to expand.
+		-
 		- **containers die and they get ignored.**
+		-
 		- **all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.**
  
 3. Pods, Nodes & The Cluster [00:04:49 - 00:07:37] The Concept:
