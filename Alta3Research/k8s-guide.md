@@ -23,7 +23,8 @@ The Concept:
 	- Scenario number three, all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.
 
 Pods, Nodes & The Cluster [00:04:49 - 00:07:37]
-The Concept:	- Containers and Kubernetes work exactly the same way they always did, whether they're being created by Docker or something else.
+The Concept:	
+	- Containers and Kubernetes work exactly the same way they always did, whether they're being created by Docker or something else.
 	- 
 	- Kubernetes containers are placed inside of Kubernetes objects called pods.
 	- 
@@ -42,7 +43,8 @@ The Concept:	- Containers and Kubernetes work exactly the same way they always d
 	- You don't want to be willy-nilly putting pods on top of the controller node because it needs its resources to manage the cluster.
 
 Control Plane Architecture & CLI [00:07:37 - 00:19:59]
-The Concept:	- Cube control is the CLI tool that is going to be installed inside of your personal workstation, your laptop, enabling you to access the cluster.
+The Concept:	
+	- Cube control is the CLI tool that is going to be installed inside of your personal workstation, your laptop, enabling you to access the cluster.
 	- 
 	- All cube control requests are received by the API server, because all communication inside of Kubernetes is done through an API.
 	- 
@@ -66,6 +68,7 @@ The Concept:	- Cube control is the CLI tool that is going to be installed inside
 
 YAML Fundamentals [00:19:59 - 00:24:50]
 The Concept:
+	
 	- A manifest provides a list of descriptions of the things that you want.
 	- 
 	- Manifests are written in YAML, which makes data readable to human eyeballs.
@@ -78,6 +81,7 @@ The Concept:
 
 Basic Pod Management [00:24:50 - 00:34:05]
 The Concept:
+	
 	- Pod manifests include three primary values at the top: apiVersion, kind, and metadata.
 	- 
 	- Kind tells us what kind of object we are working with and is case-sensitive.
@@ -139,6 +143,7 @@ The Concept:
 
 Namespaces & Resource Quotas [00:34:05 - 00:39:10]
 The Concept:
+	
 	- Namespaces allow you to isolate and organize objects so they do not get mixed up with system resources or other projects.
 	- 
 	- System integral pods run inside separate system namespaces like kube-system.
