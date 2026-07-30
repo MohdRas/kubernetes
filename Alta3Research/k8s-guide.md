@@ -39,9 +39,9 @@ https://docs.google.com/document/d/1BzvkNjqIeWgapg17uT3Oj7DGRFsILFJz-8HibecYp7g/
 	- 
 	- **When you combine all of those nodes together, you get what are called a cluster.**
 	- 
-	- Worker nodes are where you would expect to see the vast majority of pods created.
+	- **Worker nodes** are where you would expect to see the **vast majority of pods created.**
 	- 
-	- **The controller node is the hub of all of the tools that are required in order to keep your cluster running.**
+	- **The controller node** is the hub of all of the tools that are required in order to **keep your cluster running.**
 	- 
 	- You don't want to be willy-nilly putting pods on top of the controller node because it needs its resources to manage the cluster.
 
