@@ -6,7 +6,6 @@ https://docs.google.com/document/d/1BzvkNjqIeWgapg17uT3Oj7DGRFsILFJz-8HibecYp7g/
 2. Concept & Implementation Walkthrough
 Why Use Kubernetes? [00:01:36 - 00:04:49]
 The Concept:
-
 	- Kubernetes is all about enabling a certain sort of lifestyle in application deployment.
 	- 
 	- We have some code along with dependencies that are needed in order for that code and its application to run in a style of application deployment known as microservices.
@@ -24,9 +23,7 @@ The Concept:
 	- Scenario number three, all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.
 
 Pods, Nodes & The Cluster [00:04:49 - 00:07:37]
-The Concept:
-
-	- Containers and Kubernetes work exactly the same way they always did, whether they're being created by Docker or something else.
+The Concept:	- Containers and Kubernetes work exactly the same way they always did, whether they're being created by Docker or something else.
 	- 
 	- Kubernetes containers are placed inside of Kubernetes objects called pods.
 	- 
@@ -45,9 +42,7 @@ The Concept:
 	- You don't want to be willy-nilly putting pods on top of the controller node because it needs its resources to manage the cluster.
 
 Control Plane Architecture & CLI [00:07:37 - 00:19:59]
-The Concept:
-
-	- Cube control is the CLI tool that is going to be installed inside of your personal workstation, your laptop, enabling you to access the cluster.
+The Concept:	- Cube control is the CLI tool that is going to be installed inside of your personal workstation, your laptop, enabling you to access the cluster.
 	- 
 	- All cube control requests are received by the API server, because all communication inside of Kubernetes is done through an API.
 	- 
@@ -71,7 +66,6 @@ The Concept:
 
 YAML Fundamentals [00:19:59 - 00:24:50]
 The Concept:
-
 	- A manifest provides a list of descriptions of the things that you want.
 	- 
 	- Manifests are written in YAML, which makes data readable to human eyeballs.
@@ -84,7 +78,6 @@ The Concept:
 
 Basic Pod Management [00:24:50 - 00:34:05]
 The Concept:
-
 	- Pod manifests include three primary values at the top: apiVersion, kind, and metadata.
 	- 
 	- Kind tells us what kind of object we are working with and is case-sensitive.
@@ -146,7 +139,6 @@ The Concept:
 
 Namespaces & Resource Quotas [00:34:05 - 00:39:10]
 The Concept:
-
 	- Namespaces allow you to isolate and organize objects so they do not get mixed up with system resources or other projects.
 	- 
 	- System integral pods run inside separate system namespaces like kube-system.
@@ -176,15 +168,13 @@ The Concept:
 	- 💡 AI Description: Enforces strict CPU and memory resource consumption caps across a specific namespace.
 	- 
 - API Versioning & Cluster Upgrades [00:39:10 - 00:41:47]
-- The Concept:
-	- 
+- The Concept:	- 
 	- When upgrading Kubernetes, you are upgrading its APIs and its ability to recognize, configure, and manage different kinds of resources.
 	- 
 	- Moving between versions requires updating API versions because fields can change, be added, or be removed.
 	- 
 - Resource Management (Top, Requests & Limits) [00:41:47 - 00:51:02]
-- The Concept:
-	- 
+- The Concept:	- 
 	- kubectl top monitors active resource consumption across nodes and pods.
 	- 
 	- Requests guarantee a minimum amount of resource allocation so containers do not starve.
@@ -228,8 +218,7 @@ The Concept:
 	- 💡 AI Description: Container specification snippet enforcing resource request guarantees and hard resource consumption ceilings.
 	- 
 - Health Probes (Liveness & Readiness) [00:51:02 - 00:58:27]
-- The Concept:
-	- 
+- The Concept:	- 
 	- Probes act as watchdogs that continuously monitor container health and enforce specific behaviors.
 	- 
 	- A liveness probe checks container responsiveness, and after a predetermined number of consecutive failures, it kills the container so it can restart.
@@ -254,8 +243,7 @@ The Concept:
 	- 💡 AI Description: Configures an HTTP health check probe to automatically restart unresponsive containers.
 	- 
 - Imperative Debugging & Container Ephemerality [00:58:27 - 01:05:36]
-- The Concept:
-	- 
+- The Concept:	- 
 	- kubectl run is a quick, imperative way to create pods without writing a full manifest.
 	- 
 	- Port forwarding allows local workstation ports to route directly to container ports inside a pod.
@@ -293,8 +281,7 @@ The Concept:
 	- 💡 AI Description: Copies a file directly from the local workstation into a running container's filesystem.
 	- 
 - ConfigMaps & Subpaths [01:05:36 - 01:18:16]
-- The Concept:
-	- 
+- The Concept:	- 
 	- ConfigMaps store configuration files and environment variables outside of containers so they can be disengaged and shared across multiple identical pods.
 	- 
 	- A ConfigMap is mounted as a volume to the pod, and then that volume is mounted to a specific mount point inside the container.
@@ -335,8 +322,7 @@ The Concept:
 	- 💡 AI Description: Pod spec mounting a ConfigMap file as a volume via subpath into an existing container directory.
 	- 
 - Secrets & Environment Variables [01:18:16 - 01:25:21]
-- The Concept:
-	- 
+- The Concept:	- 
 	- Secrets are similar to ConfigMaps but store sensitive data like passwords, tokens, and keys.
 	- 
 	- Secrets are stored as opaque plaintext base64 values in etcd by default and are not encrypted out-of-the-box unless custom cluster encryption is configured.
@@ -373,8 +359,7 @@ The Concept:
 	- 💡 AI Description: Injects a secret value directly into a container environment variable at runtime.
 	- 
 - Container Logging [01:25:21 - 01:32:19]
-- The Concept:
-	- 
+- The Concept:	- 
 	- Every container inside a pod generates its own standard output and standard error logs.
 	- 
 	- kubectl logs retrieves standard logs for pod containers, supporting container name filtering, multi-container aggregation, and streaming updates in real time.
@@ -414,8 +399,7 @@ The Concept:
 	- 💡 AI Description: Filters and displays container log entries generated within a specific time window.
 	- 
 - Labels & Label Selectors [01:32:19 - 01:40:03]
-- The Concept:
-	- 
+- The Concept:	- 
 	- Labels are key-value metadata tags attached to Kubernetes objects to group, view, and operate on multiple objects simultaneously.
 	- 
 	- Labels can be modified on running objects by editing manifests, applying overwrite flags, or using removal suffixes.
@@ -455,8 +439,7 @@ The Concept:
 	- 💡 AI Description: Filters resource lists to return only objects matching a specified label selector expression.
 	- 
 - Deployments & ReplicaSets [01:40:03 - 01:56:39]
-- The Concept:
-	- 
+- The Concept:	- 
 	- Deployments ensure that a specified number of identical pod replicas are running constantly, automatically replacing pods if they die or fail.
 	- 
 	- Deployments manage ReplicaSets, which in turn directly create and manage pods.
@@ -510,8 +493,7 @@ The Concept:
 	- 💡 AI Description: Standard deployment manifest template ensuring high availability through replica management.
 	- 
 - Storage Architecture (StorageClass, PV, PVC) [01:56:39 - 02:2:08]
-- The Concept:
-	- 
+- The Concept:	- 
 	- Storage classes teach the cluster how to handle specific types of external storage backend providers.
 	- 
 	- Persistent Volumes (PV) represent actual chunks of physical storage allocated from a cluster node or cloud provider.
@@ -569,9 +551,8 @@ The Concept:
 	- 	claimName: enginex-pvc
 	- 💡 AI Description: Complete multi-document manifest binding a local node hostPath volume to a pod via a PVC.
 	- 
-	- Networking & Services (ClusterIP, NodePort, LoadBalancer) [02:2:08 - 02:49:29]
-	- The Concept:
-	- 
+- Networking & Services (ClusterIP, NodePort, LoadBalancer) [02:2:08 - 02:49:29]
+- The Concept:	- 
 	- Services provide stable network endpoints and load balancing for groups of pods whose underlying IP addresses change dynamically.
 	- 
 	- ClusterIP is the default internal service type providing a stable IP accessible only within the cluster.
