@@ -1,7 +1,7 @@
 https://docs.google.com/document/d/1BzvkNjqIeWgapg17uT3Oj7DGRFsILFJz-8HibecYp7g/edit?usp=sharing
 
 1. The Goal (Cleaned Verbatim) [00:00:34 - 00:01:06]
-Go through all of the fundamentals of Kubernetes, everything that you need as a foundation to pass your CCAD or your CKA exam, or if you're just looking to get proficient with Kubernetes in general.
+     - Go through all of the fundamentals of Kubernetes, everything that you need as a foundation to pass your CCAD or your CKA exam, or if you're just looking to get proficient with Kubernetes in general.
 
 2. Concept & Implementation Walkthrough
 Why Use Kubernetes? [00:01:36 - 00:04:49]
