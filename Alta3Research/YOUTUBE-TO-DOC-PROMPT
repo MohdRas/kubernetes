@@ -1,0 +1,43 @@
+Act as a Strict Transcription-to-Documentation Engine.
+
+I am providing you with a YouTube video URL and its raw, word-by-word transcript (which includes timestamps). This is a 2.5-hour long video. Your goal is to create a complete, point-wise, step-by-step implementation guide that pairs every theoretical concept directly with its practical execution so a new user can understand the "what, why, and how" and implement it on the go.
+
+CRITICAL CONSTRAINTS:
+
+Chronological Sequence Rule: You MUST progress strictly in the order of the video's timestamps. Do not reorganize the instructor's curriculum.
+
+Crisp Verbatim Rule (95% Instructor Text): You MUST build this document using the instructor's exact technical phrasing, nouns, and verbs. However, you must clean the quotes by stripping out conversational filler ("um," "so," "what we're gonna do is," false starts) to create highly readable, crisp bullet points.
+
+Technical Exhaustiveness & Relevancy: Capture 100% of the Kubernetes concepts, architectures, and commands. You must strictly exclude non-K8s topics, WITH ONE EXCEPTION: You may include outside references (e.g., Docker, YAML, microservices) ONLY if the instructor uses them as foundational knowledge essential to understanding the Kubernetes concept. Aggressively skip all personal anecdotes, marketing, or unrelated banter.
+
+GitHub-Ready Markdown Formatting: Ensure all formatting uses strict GitHub-Flavored Markdown. Keep headers, bullet points, and spacing consistent so I can copy and paste all output chunks sequentially into a single .md file on GitHub. Use appropriate language tags (e.g., bash, yaml) for code blocks.
+
+Length Limits & Continuation: If you hit your maximum output token limit, do not rush the ending. Stop cleanly at the end of the current section, print "[PAUSED FOR LENGTH - TYPE 'CONTINUE']", and wait for me to prompt you. Once you have reached the absolute end of the 2.5-hour transcript, print "[END OF DOCUMENT]".
+
+Please output the document using the following strict structure:
+
+1. The Goal (Cleaned Verbatim): (Only include this in the very first output) Extract the exact sentences where the instructor introduces the ultimate goal, problem, or project built in this video. Format as crisp bullet points.
+
+2. Concept & Implementation Walkthrough: Progress chronologically through the transcript. For every phase or module, provide:
+
+Module Header: Create a clear title for the module and include the exact [Timestamp Range] (e.g., ### Pods vs. Containers [00:04:47 - 00:07:25]).
+
+The Concept: Cleaned exact quotes explaining the theory, architecture, or the "Why" behind the step, formatted as point-wise sentences.
+
+The Practical Execution: Use the following strict format for every command or configuration snippet:
+
+Instructor's Quote: "[Cleaned exact quote explaining the 'How']"
+
+Execution: [Format EXACT terminal commands or code snippets in proper Markdown blocks]
+
+💡 AI Description: [Write a concise, easy-to-remember 1-sentence description of what this command actually does]
+
+3. Visuals & Architecture (Reconstructed): When the instructor uses an on-screen image to explain an architecture or component, use your visual tools on the URL to meticulously map out the exact boxes, arrows, and labels shown on screen. Translate this into Mermaid.js syntax wrapped in a mermaid block so GitHub renders it automatically. Immediately below the diagram, provide the instructor's exact transcript quotes used to describe it along with its [Timestamp].
+
+4. Warnings & Gotchas: Extract every specific error, edge case, or troubleshooting warning mentioned, using the instructor's exact phrasing (cleaned of filler). Format as bullet points with their corresponding [Timestamps].
+
+Here is the YouTube URL:
+[TOYTUBE VIDEO URL]
+
+Here is the raw transcript:
+[TRANSCRIPT GENERATED FROM NOTEGPT]
