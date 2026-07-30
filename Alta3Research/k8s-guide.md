@@ -4,8 +4,7 @@ https://docs.google.com/document/d/1BzvkNjqIeWgapg17uT3Oj7DGRFsILFJz-8HibecYp7g/
      - Go through all of the fundamentals of Kubernetes, everything that you need as a foundation to pass your CCAD or your CKA exam, or if you're just looking to get proficient with Kubernetes in general.
 
 2. Concept & Implementation Walkthrough
-Why Use Kubernetes? [00:01:36 - 00:04:49]
-The Concept:
+Why Use Kubernetes? [00:01:36 - 00:04:49] The Concept:
 	- Kubernetes is all about enabling a certain sort of lifestyle in application deployment.
 	- 
 	- We have some code along with dependencies that are needed in order for that code and its application to run in a style of application deployment known as microservices.
@@ -22,8 +21,7 @@ The Concept:
 	- 
 	- Scenario number three, all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.
 
-Pods, Nodes & The Cluster [00:04:49 - 00:07:37]
-The Concept:	
+Pods, Nodes & The Cluster [00:04:49 - 00:07:37] The Concept:	
 	
 	- Containers and Kubernetes work exactly the same way they always did, whether they're being created by Docker or something else.
 	- 
@@ -43,8 +41,7 @@ The Concept:
 	- 
 	- You don't want to be willy-nilly putting pods on top of the controller node because it needs its resources to manage the cluster.
 
-Control Plane Architecture & CLI [00:07:37 - 00:19:59]
-The Concept:	
+Control Plane Architecture & CLI [00:07:37 - 00:19:59] The Concept:	
 	
 	- Cube control is the CLI tool that is going to be installed inside of your personal workstation, your laptop, enabling you to access the cluster.
 	- 
@@ -68,8 +65,7 @@ The Concept:
 	- 
 	- Container life cycles still apply, requiring an image template and a container registry for storage.
 
-YAML Fundamentals [00:19:59 - 00:24:50]
-The Concept:
+YAML Fundamentals [00:19:59 - 00:24:50] The Concept:
 	
 	- A manifest provides a list of descriptions of the things that you want.
 	- 
@@ -81,8 +77,7 @@ The Concept:
 	- 
 	- Indentation is critically important in YAML because it implies ownership and nested values.
 
-Basic Pod Management [00:24:50 - 00:34:05]
-The Concept:
+Basic Pod Management [00:24:50 - 00:34:05] The Concept:
 	
 	- Pod manifests include three primary values at the top: apiVersion, kind, and metadata.
 	- 
@@ -143,8 +138,7 @@ The Concept:
 	- kubectl delete pod engine-x
 	- 💡 AI Description: Deletes a Kubernetes object either by referencing its source manifest file or its resource identifier.
 
-Namespaces & Resource Quotas [00:34:05 - 00:39:10]
-The Concept:
+Namespaces & Resource Quotas [00:34:05 - 00:39:10] The Concept:
 	
 	- Namespaces allow you to isolate and organize objects so they do not get mixed up with system resources or other projects.
 	- 
