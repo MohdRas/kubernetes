@@ -174,7 +174,7 @@ The Concept:
 	- kubectl create quota mem-cpu-demo --hard=requests.cpu=1,requests.memory=1Gi,limits.cpu=2,limits.memory=2Gi -n demo
 	- 💡 AI Description: Enforces strict CPU and memory resource consumption caps across a specific namespace.
 	
-
+	
 - API Versioning & Cluster Upgrades [00:39:10 - 00:41:47]
 - The Concept:
 
