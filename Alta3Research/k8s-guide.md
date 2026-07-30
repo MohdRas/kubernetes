@@ -173,17 +173,19 @@ The Concept:
 	- Bash
 	- kubectl create quota mem-cpu-demo --hard=requests.cpu=1,requests.memory=1Gi,limits.cpu=2,limits.memory=2Gi -n demo
 	- 💡 AI Description: Enforces strict CPU and memory resource consumption caps across a specific namespace.
-	- 
+	
+
 - API Versioning & Cluster Upgrades [00:39:10 - 00:41:47]
 - The Concept:
-	
+
 	- When upgrading Kubernetes, you are upgrading its APIs and its ability to recognize, configure, and manage different kinds of resources.
 	- 
 	- Moving between versions requires updating API versions because fields can change, be added, or be removed.
-	- 
+
+
 - Resource Management (Top, Requests & Limits) [00:41:47 - 00:51:02]
 - The Concept:
-	
+
 	- kubectl top monitors active resource consumption across nodes and pods.
 	- 
 	- Requests guarantee a minimum amount of resource allocation so containers do not starve.
