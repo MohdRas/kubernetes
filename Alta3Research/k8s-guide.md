@@ -21,7 +21,7 @@ Why Use Kubernetes? [00:01:36 - 00:04:49] The Concept:
 	- 
 	- Scenario number three, all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.
  
-Pods, Nodes & The Cluster [00:04:49 - 00:07:37] The Concept:	
+Pods, Nodes & The Cluster [00:04:49 - 00:07:37] The Concept:
 	- Containers and Kubernetes work exactly the same way they always did, whether they're being created by Docker or something else.
 	- 
 	- Kubernetes containers are placed inside of Kubernetes objects called pods.
