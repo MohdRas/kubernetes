@@ -1,28 +1,9 @@
-1. The Goal (Cleaned Verbatim)
+#1.The Goal (Cleaned Verbatim)
+
 Go through all of the fundamentals of Kubernetes, everything that you need as a foundation to pass your CCAD or your CKA exam, or if you're just looking to get proficient with Kubernetes in general.
 
-2. Concept & Implementation Walkthrough
-# Why Use Kubernetes? [00:01:36 - 00:04:49]
+#Why Use Kubernetes [00:01:36-00:04:49]
+
 Kubernetes is all about enabling a certain sort of lifestyle in application deployment.
 
 We have some code along with dependencies that are needed in order for that code and its application to run in a style of application deployment known as microservices.
-
-Let's put all of that code and its dependencies inside of an isolated environment called a container.
-
-Containers come with a whole bunch of advantages:
-
-It's really easy to spin up containers.
-
-It's really easy to replace containers, meaning updating or making changes to these applications can be done in a snap.
-
-Containers are scalable, allowing you to create as many different copies of them as you want.
-
-Containers are not meant to hang around forever, whether they die because you tear them down or because something happens to them.
-
-Traditional container management without Kubernetes leads to disaster scenarios:
-
-Scenario number one: your host machine runs out of resources, and containers may not be able to expand.
-
-Issue number two: containers die and they get ignored.
-
-Scenario number three: all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.
