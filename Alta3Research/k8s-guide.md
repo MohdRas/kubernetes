@@ -12,17 +12,17 @@
 
 
 * Containers come with a whole bunch of advantages:
-* It's really easy to spin up containers.
-* It's really easy to replace containers, meaning updating or making changes to these applications can be done in a snap.
-* Containers are scalable, allowing you to create as many different copies of them as you want.
+	* It's really easy to spin up containers.
+	* It's really easy to replace containers, meaning updating or making changes to these applications can be done in a snap.
+	* Containers are scalable, allowing you to create as many different copies of them as you want.
 
 
 * Containers are not meant to hang around forever, whether they die because you tear them down or because something happens to them.
 * Traditional container management without Kubernetes leads to disaster scenarios:
-* Scenario number one: your host machine runs out of resources, and containers may not be able to expand.
-* Issue number two: containers die and they get ignored.
-* Scenario number three: all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.
-
+	* Scenario number one: your host machine runs out of resources, and containers may not be able to expand.
+	* Issue number two: containers die and they get ignored.
+	* Scenario number three: all these containers are running on the same virtual machine, so if your virtual machine dies, all those containers just went down with it and there's nothing set up to bring those back.
+	
 
 
 ---
@@ -31,13 +31,13 @@
 
 * Containers in Kubernetes work exactly the same way they always did, whether created by Docker or something else.
 * Kubernetes containers are placed inside of Kubernetes objects called pods.
-* Pods are really just wrappers that are being placed around containers.
-* Kubernetes manages pods, not containers.
-
+	* Pods are really just wrappers that are being placed around containers.
+	* Kubernetes manages pods, not containers.
+	
 
 * In a Kubernetes environment, virtual machines are called nodes.
-* You can add multiple nodes to the same environment to exponentially increase the total amount of resources.
-* When you combine all of those nodes together, you get what are called a cluster.
+	* You can add multiple nodes to the same environment to exponentially increase the total amount of resources.
+	* When you combine all of those nodes together, you get what are called a cluster.
 
 
 * Worker nodes are where you would expect to see the vast majority of pods created.
@@ -73,10 +73,10 @@
 #Basic Pod Management
 
 * Pod manifests include three primary values at the top: `apiVersion`, `kind`, and `metadata`.
-* `kind` tells us what kind of object we are working with and is case-sensitive.
-* `metadata` contains items like labels indented underneath it.
-* `apiVersion` indicates the API responsible for recognizing and configuring specific resource types.
-* `spec` (specification) is where you define how you want your object to be built.
+	* `kind` tells us what kind of object we are working with and is case-sensitive.
+	* `metadata` contains items like labels indented underneath it.
+	* `apiVersion` indicates the API responsible for recognizing and configuring specific resource types.
+	* `spec` (specification) is where you define how you want your object to be built.
 
 
 * Instructor's Quote: "We are going to create a manifest here. Pod manifest.yaml and we're going to paste in that manifest that we were looking at earlier."
