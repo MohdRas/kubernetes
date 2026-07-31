@@ -7,8 +7,8 @@
 #Why Use Kubernetes
 
 * Kubernetes is all about enabling a certain sort of lifestyle in application deployment.
-* We have some code along with dependencies that are needed in order for that code and its application to run in a style of application deployment known as microservices.
-* Let's put all of that code and its dependencies inside of an isolated environment called a container.
+	* We have some code along with dependencies that are needed in order for that code and its application to run in a style of application deployment known as microservices.
+	* Let's put all of that code and its dependencies inside of an isolated environment called a container.
 
 
 * Containers come with a whole bunch of advantages:
