@@ -51,7 +51,7 @@
 * `kubectl` / `kube-control` is the CLI tool installed on your personal workstation or laptop, enabling you to access the cluster.
 * All `kubectl` requests are received by the API server because all communication inside of Kubernetes is done through an API.
 * A `kubeconfig` file includes the location of the cluster along with the certificate and key files required to authenticate and talk to that cluster.
-* The API server takes action or returns information and is the only component that talks to `etcd`.
+* The API server take request, authenticate, authorize & vaidate request & return response back to `kubectl`. It is the only component that talks to `etcd`.
 * `etcd` is a strongly consistent distributed key-value store that provides a reliable way to store data accessed by a distributed system or a cluster of machines.
 * The scheduler makes the decision about which node a pod should be put on, aiming for equal distribution while obeying system rules.
 * The controller manager manages a lot of different daemons that control the behavior of how your cluster runs, such as tracking namespaces, role-based access control, and replicas.
