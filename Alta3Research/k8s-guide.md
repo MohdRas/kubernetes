@@ -169,67 +169,67 @@ sequenceDiagram
 	* `apiVersion` indicates the API responsible for recognizing and configuring specific resource types.
 	* `spec` (specification) is where you define how you want your object to be built.
 
-* **kubectl create <resource_type> <resource_name> [OPTIONS] --dry-run=client -o yaml > <file_name>.yaml**
-* Note: For resources that use kubectl **run instead of kubectl create**, such as **Pods**, the flags remain identical.
-  	* **kubectl run my-pod --image=nginx --dry-run=client -o yaml > pod.yaml**
+* `kubectl create <resource_type> <resource_name> [OPTIONS] --dry-run=client -o yaml > <file_name>.yaml`
+* Note: For resources that use kubectl `run instead of kubectl create`, such as `Pods`, the flags remain identical.
+  	* `kubectl run my-pod --image=nginx --dry-run=client -o yaml > pod.yaml`
 	*
 * Core Formula Rules
-	* **--dry-run=client**: Tells kubectl to generate the manifest locally without making an API request to the cluster.
-	* **-o yaml**: Outputs the generated resource structure in YAML format.
-	* **> <filename>.yaml**: Redirects the YAML output into a local definition file.
+	* `--dry-run=client`: Tells kubectl to generate the manifest locally without making an API request to the cluster.
+	* `-o yaml`: Outputs the generated resource structure in YAML format.
+	* `> <filename>.yaml`: Redirects the YAML output into a local definition file.
     *
 * 1. **Pod**
 	*
-	* **kubectl run my-pod --image=nginx --dry-run=client -o yaml > pod.yaml**
+	* `kubectl run my-pod --image=nginx --dry-run=client -o yaml > pod.yaml`
 	*
 * 2. **Service**
 	*
 	* ClusterIP (Default):
-	* **kubectl create service clusterip my-svc --tcp=80:80 --dry-run=client -o yaml > svc-clusterip.yaml**
+	* `kubectl create service clusterip my-svc --tcp=80:80 --dry-run=client -o yaml > svc-clusterip.yaml`
 	*
 	* NodePort:
-	* **kubectl create service nodeport my-svc --tcp=80:80 --dry-run=client -o yaml > svc-nodeport.yaml**
+	* `kubectl create service nodeport my-svc --tcp=80:80 --dry-run=client -o yaml > svc-nodeport.yaml`
 	*
 	* Expose directly from a Pod/Deployment:
-	* **kubectl expose deployment my-deploy --name=my-svc --port=80 --target-port=8080 --type=ClusterIP --dry-run=client -o yaml > svc.yaml**
+	* `kubectl expose deployment my-deploy --name=my-svc --port=80 --target-port=8080 --type=ClusterIP --dry-run=client -o yaml > svc.yaml`
 	*
 * 3. **Namespace**
     * 
-	* **kubectl create namespace my-namespace --dry-run=client -o yaml > ns.yaml**
+	* `kubectl create namespace my-namespace --dry-run=client -o yaml > ns.yaml`
 	*
 * 4. **ConfigMap & Secret (Config)**
 	*
 	* ConfigMap:
-	* **kubectl create configmap my-config --from-literal=KEY=VALUE --dry-run=client -o yaml > cm.yaml**
+	* `kubectl create configmap my-config --from-literal=KEY=VALUE --dry-run=client -o yaml > cm.yaml`
 	* Secret:
-	* **kubectl create secret generic my-secret --from-literal=password=secret123 --dry-run=client -o yaml > secret.yaml**
+	* `kubectl create secret generic my-secret --from-literal=password=secret123 --dry-run=client -o yaml > secret.yaml`
 	*
 * 5. **Deployment**
 	* 
-	* **kubectl create deployment my-deploy --image=nginx:1.26 --replicas=3 --dry-run=client -o yaml > deployment.yaml**
+	* `kubectl create deployment my-deploy --image=nginx:1.26 --replicas=3 --dry-run=client -o yaml > deployment.yaml`
 	*
 * 6. **Job & CronJob**
 	*
 	* Job:
-	* **kubectl create job my-job --image=busybox -- /bin/sh -c "echo Hello" --dry-run=client -o yaml > job.yaml**
+	* `kubectl create job my-job --image=busybox -- /bin/sh -c "echo Hello" --dry-run=client -o yaml > job.yaml`
 	*
 	* CronJob:
-	* **kubectl create cronjob my-cronjob --image=busybox --schedule="*/5 * * * *" -- /bin/sh -c "date" --dry-run=client -o yaml > cronjob.yaml**
+	* `kubectl create cronjob my-cronjob --image=busybox --schedule="*/5 * * * *" -- /bin/sh -c "date" --dry-run=client -o yaml > cronjob.yaml`
 	*
 * 7. **ServiceAccount & Role / RoleBinding (RBAC)**
 	*
 	* ServiceAccount:
-	* **kubectl create serviceaccount my-sa --dry-run=client -o yaml > sa.yaml**
+	* `kubectl create serviceaccount my-sa --dry-run=client -o yaml > sa.yaml`
 	*
 	* Role:
-	* **kubectl create role pod-reader --verb=get,list,watch --resource=pods --dry-run=client -o yaml > role.yaml**
+	* `kubectl create role pod-reader --verb=get,list,watch --resource=pods --dry-run=client -o yaml > role.yaml`
 	*
 	* RoleBinding:
-	* **kubectl create rolebinding read-pods --role=pod-reader --serviceaccount=default:my-sa --dry-run=client -o yaml > rolebinding.yaml**
+	* `kubectl create rolebinding read-pods --role=pod-reader --serviceaccount=default:my-sa --dry-run=client -o yaml > rolebinding.yaml`
 	*
 * 8. **Resources Without Direct kubectl create Subcommands**
 	*
-	* Some complex resources (**Node, ReplicaSet, StatefulSet, DaemonSet, PersistentVolume, Ingress** do **not have dedicated kubectl create** <kind> imperative commands.
+	* Some complex resources (`Node, ReplicaSet, StatefulSet, DaemonSet, PersistentVolume, Ingress` do `not have dedicated kubectl create` <kind> imperative commands.
 	* For these resources, use one of the two standard practices:
 	* 
 	* Method A: Extract from an Existing Cluster Resource
