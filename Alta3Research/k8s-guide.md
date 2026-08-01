@@ -48,21 +48,21 @@
 
 **Control Plane Architecture And CLI**
 
-* `kubectl` / `kube-control` is the CLI tool installed on your personal workstation or laptop, **enabling you to access the cluster.**
-* All `kubectl` requests are received by the API Server because **all communication inside of Kubernetes is done through an API.**
-* A `kubeconfig` file sitting on your laptop, includes the **location of the cluster** along with the **certificate and key files** required to **authenticate and talk to that cluster.**
-* `API Server` talk to **external systems** via 'kubectl'. The `API Server` **take request, authenticate, authorize & vaidate request & return response back to `kubectl`.**
-* `API Server` talk to **every single worker node** via 'kubelet'.
-* `API Server` talk to **persistent state of object** via 'etcd'. **`API Server` is the only component that talks to `etcd`.**
-* `etcd` (third party) is a **strongly consistent distributed key-value store** that provides a reliable way **to store data accessed by a distributed system or a cluster of machines.**
-* **`etcd` is the only one datastore of the k8s cluster. It stores & replicates all k8s cluster states.**
+* `kubectl` / `kube-control` is the CLI tool installed on your personal workstation or laptop, `enabling you to access the cluster.`
+* All `kubectl` requests are received by the API Server because `all communication inside of Kubernetes is done through an API.`
+* A `kubeconfig` file sitting on your laptop, includes the `location of the cluster` along with the `certificate and key files` required to `authenticate and talk to that cluster.`
+* `API Server` talk to `external systems` via 'kubectl'. The `API Server` `take request, authenticate, authorize & vaidate request & return response back to `kubectl`.`
+* `API Server` talk to `every single worker node` via 'kubelet'.
+* `API Server` talk to `persistent state of object` via 'etcd'. ``API Server` is the only component that talks to `etcd`.`
+* `etcd` (third party) is a `strongly consistent distributed key-value store` that provides a reliable way `to store data accessed by a distributed system or a cluster of machines.`
+* ``etcd` is the only one datastore of the k8s cluster. It stores & replicates all k8s cluster states.`
 * The `scheduler` makes the decision `put this pod on this node`, aiming for equal distribution across the nodes. Once pod is placed on a node, scheduler is done. kubelet takes on to deploy & observe pod.
 * The `Controller Manager` is a daemon that manages controllers inside the master node.
 	* replication controller.
  	* endpoints controller.
 	* namespace controller.
 	* aervice-accounts controller.
-* **The controller manager manages a lot of different daemons that control the behavior of how your cluster runs, such as tracking namespaces, role-based access control, and replicas.**
+* `The controller manager manages a lot of different daemons that control the behavior of how your cluster runs, such as tracking namespaces, role-based access control, and replicas.`
 * `kubelet` is present on every single node and acts like the eyes and ears of the node, making sure that containers are started, stopped, or restarted appropriately.
 * Every single node has some container runtime engine like Docker, and `kubelet` handles running container runtime commands.
 * Container life cycles still apply, requiring an image template and a container registry for storage. 
