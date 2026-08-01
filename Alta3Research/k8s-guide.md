@@ -152,9 +152,11 @@ sequenceDiagram
 	* - butter
 	* - chicken
 * Dictionaries or mappings are `key-value` pairs separated by colons.
-	* flavour: yummy
-	* brand: nestle
-	* expiration: JUNE 30
+	* - flavour: yummy
+	* - brand: nestle
+	* - expiration: 26 july 2026
+	* - tasty: true
+	* - calories:1000
 * Indentation is critically important in YAML because it implies ownership and nested values.
 
 ---
