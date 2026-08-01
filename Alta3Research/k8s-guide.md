@@ -48,13 +48,21 @@
 
 **Control Plane Architecture And CLI**
 
-* `kubectl` / `kube-control` is the CLI tool installed on your personal workstation or laptop, enabling you to access the cluster.
-* All `kubectl` requests are received by the API server because all communication inside of Kubernetes is done through an API.
-* A `kubeconfig` file includes the location of the cluster along with the certificate and key files required to authenticate and talk to that cluster.
-* The API server take request, authenticate, authorize & vaidate request & return response back to `kubectl`. It is the only component that talks to `etcd`.
-* `etcd` is a strongly consistent distributed key-value store that provides a reliable way to store data accessed by a distributed system or a cluster of machines.
-* The scheduler makes the decision about which node a pod should be put on, aiming for equal distribution while obeying system rules.
-* The controller manager manages a lot of different daemons that control the behavior of how your cluster runs, such as tracking namespaces, role-based access control, and replicas.
+* `kubectl` / `kube-control` is the CLI tool installed on your personal workstation or laptop, **enabling you to access the cluster.**
+* All `kubectl` requests are received by the API Server because **all communication inside of Kubernetes is done through an API.**
+* A `kubeconfig` file sitting on your laptop, includes the **location of the cluster** along with the **certificate and key files** required to **authenticate and talk to that cluster.**
+* `API Server` talk to **external systems** via 'kubectl'. The `API Server` **take request, authenticate, authorize & vaidate request & return response back to `kubectl`.**
+* `API Server` talk to **every single worker node** via 'kubelet'.
+* `API Server` talk to **persistent state of object** via 'etcd'. **`API Server` is the only component that talks to `etcd`.**
+* `etcd` (third party) is a **strongly consistent distributed key-value store** that provides a reliable way **to store data accessed by a distributed system or a cluster of machines.**
+* **`etcd` is the only one datastore of the k8s cluster. It stores & replicates all k8s cluster states.**
+* The `scheduler` makes the decision `put this pod on this node`, aiming for equal distribution across the nodes. Once pod is placed on a node, scheduler is done. kubelet takes on to deploy & observe pod.
+* The `Controller Manager` is a daemon that manages controllers inside the master node.
+	* replication controller.
+ 	* endpoints controller.
+	* namespace controller.
+	* aervice-accounts controller.
+* **The controller manager manages a lot of different daemons that control the behavior of how your cluster runs, such as tracking namespaces, role-based access control, and replicas.**
 * `kubelet` is present on every single node and acts like the eyes and ears of the node, making sure that containers are started, stopped, or restarted appropriately.
 * Every single node has some container runtime engine like Docker, and `kubelet` handles running container runtime commands.
 * Container life cycles still apply, requiring an image template and a container registry for storage.
@@ -186,7 +194,7 @@
 ```
 
 
-* 💡 AI Description: `Deploys the metrics-server components required to collect resource utilization data.`
+* 💡 AI Description: `Deploys the metrics-Server components required to collect resource utilization data.`
 * Instructor's Quote: "Now I can start using cube control top... telling me what percentage of available CPU and memory has been used on the nodes."
 ```bash
 	kubectl top nodes
@@ -615,7 +623,7 @@ graph TD
 
 ```
 
-* Instructor's Quote: "All cube control requests are going to be received by the API server... The API server is also the only thing that talks to ETSD... The scheduler is what's going to try to make sure that you've got like an equal distribution across your nodes... Cublet is kind of like the eyes and the ears of every node... installed on every single node inside of your cluster is going to be some container runtime engine... pod is made first, container is made inside of it second." [00:08:19 - 00:19:21]
+* Instructor's Quote: "All cube control requests are going to be received by the API Server... The API Server is also the only thing that talks to ETSD... The scheduler is what's going to try to make sure that you've got like an equal distribution across your nodes... Cublet is kind of like the eyes and the ears of every node... installed on every single node inside of your cluster is going to be some container runtime engine... pod is made first, container is made inside of it second." [00:08:19 - 00:19:21]
 
 ---
 
@@ -660,7 +668,7 @@ graph TD
 * "Containers are stateless. All those changes were made to the old container. The old container is dead. It's gone. And the changes that were made with it are dead and gone, too."
 * "Camel casing is definitely a thing in Kubernetes and it will bite you if you are not careful."
 * "Mount paths will overwrite existing directories... It's in circumstances like this that you have to use what's called a sub path."
-* "Secrets on their own are not encrypted. They're stored in the API server inside of EDC... just so you know, secrets do not encrypt right out of the box."
+* "Secrets on their own are not encrypted. They're stored in the API Server inside of EDC... just so you know, secrets do not encrypt right out of the box."
 * "Yeah, let's just go ahead and put our passwords right in plain text inside of our manifest, said nobody ever. My god, all of the security people just had a stroke."
 * "Be careful that when you are cleaning up your pods, you're cleaning up all the logs that go with it."
 * "You got to be careful as you're going to find out about putting the wrong label on the wrong object that can lead to some definitely not good unintended consequences."
