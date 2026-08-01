@@ -145,8 +145,16 @@ sequenceDiagram
 
 * A manifest provides a list of descriptions of the things that you want.
 * Manifests are written in YAML, which makes data readable to human eyeballs.
-* Lists or sequences are represented where every item has a dash in front of it.
-* Dictionaries or mappings are key-value pairs separated by colons.
+* Lists or sequences are represented where every item has a dash in front of it. like eggs, milk, break, butter, chicken.
+	* - eggs
+	* - milk
+	* - break
+	* - butter
+	* - chicken
+* Dictionaries or mappings are `key-value` pairs separated by colons.
+	* flavour: yummy
+	* brand: nestle
+	* expiration: JUNE 30
 * Indentation is critically important in YAML because it implies ownership and nested values.
 
 ---
