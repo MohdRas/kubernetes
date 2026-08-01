@@ -110,7 +110,8 @@ sequenceDiagram
 
 ---
 
-```
+```text
+
    kubectl    |   API Server             etcd              scheduler        |   kubelet      containerd
       |       |       |                   |                    |            |      |             |
       |--create Pod-->|                   |                    |            |      |             |
