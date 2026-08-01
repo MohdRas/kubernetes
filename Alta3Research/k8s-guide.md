@@ -253,21 +253,21 @@ sequenceDiagram
 		* Change kind: Deployment to kind: DaemonSet (and remove spec.replicas).
 	    * 
 ```yaml
-			apiVersion: v1
-			kind: Pod
-			metadata:
-			  creationTimestamp: null
-			  labels:
-			    run: my-pod
-			  name: my-pod
-			spec:
-			  containers:
-			  - image: nginx
-			    name: my-pod
-			    resources: {}
-			  dnsPolicy: ClusterFirst
-			  restartPolicy: Always
-			status: {}
+		apiVersion: v1
+		kind: Pod
+		metadata:
+		  creationTimestamp: null
+		  labels:
+			run: my-pod
+		  name: my-pod
+		spec: # Specification
+		  containers:
+		  - image: nginx
+			name: my-pod
+			resources: {}
+		  dnsPolicy: ClusterFirst
+		  restartPolicy: Always
+		status: {}
 
 ```
 
