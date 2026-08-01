@@ -66,8 +66,10 @@
 * `kubelet` is present on every single node and acts like the eyes and ears of the node, making sure that containers are started, stopped, or restarted appropriately.
 * Every single node has some container runtime engine like Docker, and `kubelet` handles running container runtime commands.
 * Container life cycles still apply, requiring an image template and a container registry for storage.
+*
 
-* ```mermaid
+```markdown
+```mermaid
 sequenceDiagram
     autonumber
     box Beachhead
@@ -102,12 +104,11 @@ sequenceDiagram
     etcd-->>API Server: 200
     API Server-->>kubelet: 200
 
- 
- * ---
+```
 
-### Option 2: ASCII / Dash (`-`) Text Sequence Flow
+```
 
-If you want a pure text-based layout using dashes (`-`) and arrows inside a standard Markdown block, here is the accurate representation:
+---
 
 ```text
 [ Beachhead ] |                       [ Controller ]                        |        [ Worker ]
@@ -131,6 +132,8 @@ If you want a pure text-based layout using dashes (`-`) and arrows inside a stan
       |       |       |------write------->|                    |            |      |             |
       |       |       |<-------200--------|                    |            |      |             |
       |       |       |---------------------------------------------------->|      |             |
+
+```
  
 
 ---
