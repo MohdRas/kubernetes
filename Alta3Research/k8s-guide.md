@@ -65,7 +65,73 @@
 * `The controller manager manages a lot of different daemons that control the behavior of how your cluster runs, such as tracking namespaces, role-based access control, and replicas.`
 * `kubelet` is present on every single node and acts like the eyes and ears of the node, making sure that containers are started, stopped, or restarted appropriately.
 * Every single node has some container runtime engine like Docker, and `kubelet` handles running container runtime commands.
-* Container life cycles still apply, requiring an image template and a container registry for storage. 
+* Container life cycles still apply, requiring an image template and a container registry for storage.
+
+* ```mermaid
+sequenceDiagram
+    autonumber
+    box Beachhead
+        participant kubectl
+    end
+    box Controller
+        participant API Server
+        participant etcd
+        participant scheduler
+    end
+    box Worker
+        participant kubelet
+        participant containerd
+    end
+
+    kubectl->>API Server: create Pod
+    API Server->>etcd: write
+    etcd-->>API Server: 200
+    API Server-->>kubectl: 200
+
+    API Server->>scheduler: watch handler new Pod
+    scheduler->>API Server: bind Pod
+    API Server->>etcd: write
+    etcd-->>API Server: 200
+    API Server-->>scheduler: 200
+
+    API Server->>kubelet: watch handler bound Pod
+    kubelet->>containerd: ctr containers start
+    containerd-->>kubelet: 
+    kubelet->>API Server: Pod status update
+    API Server->>etcd: write
+    etcd-->>API Server: 200
+    API Server-->>kubelet: 200
+
+ 
+ * ---
+
+### Option 2: ASCII / Dash (`-`) Text Sequence Flow
+
+If you want a pure text-based layout using dashes (`-`) and arrows inside a standard Markdown block, here is the accurate representation:
+
+```text
+[ Beachhead ] |                       [ Controller ]                        |        [ Worker ]
+   kubectl    |   API Server             etcd              scheduler        |   kubelet      containerd
+      |       |       |                   |                    |            |      |             |
+      |--create Pod-->|                   |                    |            |      |             |
+      |       |       |------write------->|                    |            |      |             |
+      |       |       |<-------200--------|                    |            |      |             |
+      |<--200---------|                   |                    |            |      |             |
+      |       |       |                   |                    |            |      |             |
+      |       |       |-------------watch handler new Pod----->|            |      |             |
+      |       |       |<-------------------bind Pod------------|            |      |             |
+      |       |       |------write------->|                    |            |      |             |
+      |       |       |<-------200--------|                    |            |      |             |
+      |       |       |--------------------200---------------->|            |      |             |
+      |       |       |                   |                    |            |      |             |
+      |       |       |----------------------watch handler bound Pod------->|      |             |
+      |       |       |                   |                    |            |      |--ctr containers start->|
+      |       |       |                   |                    |            |<-----|-------------|
+      |       |       |<---------------------Pod status update--------------|      |             |
+      |       |       |------write------->|                    |            |      |             |
+      |       |       |<-------200--------|                    |            |      |             |
+      |       |       |---------------------------------------------------->|      |             |
+ 
 
 ---
 
