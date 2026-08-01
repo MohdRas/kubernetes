@@ -66,7 +66,7 @@
 * `kubelet` is present on every single node and acts like the eyes and ears of the node, making sure that containers are started, stopped, or restarted appropriately.
 * Every single node has some container runtime engine like Docker, and `kubelet` handles running container runtime commands.
 * Container life cycles still apply, requiring an image template and a container registry for storage.
-*
+* watch at 16 min for below diagram - https://youtu.be/MTHGoGUFpvE?si=r4vNFV6JufZ1t4W7
 
 ```markdown
 ```mermaid
