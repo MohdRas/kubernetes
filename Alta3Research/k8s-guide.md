@@ -110,8 +110,7 @@ sequenceDiagram
 
 ---
 
-```text
-[ Beachhead ] |                       [ Controller ]                        |        [ Worker ]
+```
    kubectl    |   API Server             etcd              scheduler        |   kubelet      containerd
       |       |       |                   |                    |            |      |             |
       |--create Pod-->|                   |                    |            |      |             |
