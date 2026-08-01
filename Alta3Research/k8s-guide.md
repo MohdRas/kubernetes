@@ -146,7 +146,7 @@ sequenceDiagram
 * A manifest provides a list of descriptions of the things that you want.
 * Manifests are written in YAML, which makes data readable to human eyeballs.
 * Lists or sequences are represented where every item has a dash in front of it. like eggs, milk, break, butter, chicken.
-	* - eggs
+	* -- eggs
 	* - milk
 	* - break
 	* - butter
