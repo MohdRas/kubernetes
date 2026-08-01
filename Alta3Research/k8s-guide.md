@@ -1,10 +1,10 @@
-#1.The Goal (Cleaned Verbatim)
+**1.The Goal (Cleaned Verbatim)**
 
 * Go through all of the fundamentals of Kubernetes, everything that you need as a foundation to pass your CCAD or your CKA exam, or if you're just looking to get proficient with Kubernetes in general.
 
 ---
 
-#Why Use Kubernetes
+**Why Use Kubernetes**
 
 * Kubernetes is all about enabling a certain sort of lifestyle in application deployment.
 	* We have some code along with dependencies that are needed in order for that code and its application to run in a style of application deployment known as microservices.
@@ -14,6 +14,7 @@
 * Containers come with a whole bunch of advantages:
 	* It's really easy to spin up containers.
 	* It's really easy to replace containers, meaning updating or making changes to these applications can be done in a snap.
+	* work on my computer & everywhere else too.
 	* Containers are scalable, allowing you to create as many different copies of them as you want.
 
 
@@ -27,7 +28,7 @@
 
 ---
 
-#Pods Nodes And The Cluster
+**Pods Nodes And The Cluster**
 
 * Containers in Kubernetes work exactly the same way they always did, whether created by Docker or something else.
 * Kubernetes containers are placed inside of Kubernetes objects called pods.
@@ -45,7 +46,7 @@
 
 ---
 
-#Control Plane Architecture And CLI
+**Control Plane Architecture And CLI**
 
 * `kubectl` is the CLI tool installed on your personal workstation or laptop, enabling you to access the cluster.
 * All `kubectl` requests are received by the API server because all communication inside of Kubernetes is done through an API.
@@ -60,7 +61,7 @@
 
 ---
 
-#YAML Fundamentals
+**YAML Fundamentals**
 
 * A manifest provides a list of descriptions of the things that you want.
 * Manifests are written in YAML, which makes data readable to human eyeballs.
@@ -70,7 +71,7 @@
 
 ---
 
-#Basic Pod Management
+**Basic Pod Management**
 
 * Pod manifests include three primary values at the top: `apiVersion`, `kind`, and `metadata`.
 	* `kind` tells us what kind of object we are working with and is case-sensitive.
@@ -121,7 +122,7 @@
 * Instructor's Quote: "We could use cube control delete with that file... or you can always just cube control delete. Specify what type of object you're deleting, a pod, and then what's the name of the pod you're trying to delete?"
 ```bash
 	kubectl delete -f pod-manifest.yaml
-	# OR
+	** OR
 	kubectl delete pod engine-x
 
 ```
@@ -131,7 +132,7 @@
 
 ---
 
-#Namespaces And Resource Quotas
+**Namespaces And Resource Quotas**
 
 * Namespaces allow you to isolate and organize objects so they do not get mixed up with system resources or other projects.
 * System integral pods run inside separate system namespaces like `kube-system`.
@@ -164,14 +165,14 @@
 
 ---
 
-#API Versioning And Cluster Upgrades
+**API Versioning And Cluster Upgrades**
 
 * When upgrading Kubernetes, you are upgrading its APIs and its ability to recognize, configure, and manage different kinds of resources.
 * Moving between versions requires updating API versions because fields can change, be added, or be removed.
 
 ---
 
-#Resource Management
+**Resource Management**
 
 * `kubectl top` monitors active resource consumption across nodes and pods.
 * Requests guarantee a minimum amount of resource allocation so containers do not starve.
@@ -219,7 +220,7 @@
 
 ---
 
-#Health Probes
+**Health Probes**
 
 * Probes act as watchdogs that continuously monitor container health and enforce specific behaviors.
 * A liveness probe checks container responsiveness, and after a predetermined number of consecutive failures, it kills the container so it can restart.
@@ -243,7 +244,7 @@
 
 ---
 
-#Imperative Debugging And Container Ephemerality
+**Imperative Debugging And Container Ephemerality**
 
 * `kubectl run` is a quick, imperative way to create pods without writing a full manifest.
 * Port forwarding allows local workstation ports to route directly to container ports inside a pod.
@@ -285,7 +286,7 @@
 
 ---
 
-#ConfigMaps And Subpaths
+**ConfigMaps And Subpaths**
 
 * ConfigMaps store configuration files and environment variables outside of containers so they can be disengaged and shared across multiple identical pods.
 * A ConfigMap is mounted as a volume to the pod, and then that volume is mounted to a specific mount point inside the container.
@@ -329,7 +330,7 @@
 
 ---
 
-#Secrets And Environment Variables
+**Secrets And Environment Variables**
 
 * Secrets are similar to ConfigMaps but store sensitive data like passwords, tokens, and keys.
 * Secrets are stored as opaque plaintext base64 values in etcd by default and are not encrypted out-of-the-box unless custom cluster encryption is configured.
@@ -368,7 +369,7 @@
 
 ---
 
-#Container Logging
+**Container Logging**
 
 * Every container inside a pod generates its own standard output and standard error logs.
 * `kubectl logs` retrieves standard logs for pod containers, supporting container name filtering, multi-container aggregation, and streaming updates in real time.
@@ -416,7 +417,7 @@
 
 ---
 
-#Labels And Label Selectors
+**Labels And Label Selectors**
 
 * Labels are key-value metadata tags attached to Kubernetes objects to group, view, and operate on multiple objects simultaneously.
 * Labels can be modified on running objects by editing manifests, applying overwrite flags, or using removal suffixes.
@@ -464,7 +465,7 @@
 
 ---
 
-#Deployments And ReplicaSets
+**Deployments And ReplicaSets**
 
 * Deployments ensure that a specified number of identical pod replicas are running constantly, automatically replacing pods if they die or fail.
 * Deployments manage ReplicaSets, which in turn directly create and manage pods.
@@ -498,7 +499,7 @@
 
 ---
 
-#Storage Architecture
+**Storage Architecture**
 
 * Storage classes teach the cluster how to handle specific types of external storage backend providers.
 * Persistent Volumes (PV) represent actual chunks of physical storage allocated from a cluster node or cloud provider.
@@ -556,7 +557,7 @@
 
 ---
 
-#Networking And Services
+**Networking And Services**
 
 * Services provide stable network endpoints and load balancing for groups of pods whose underlying IP addresses change dynamically.
 * ClusterIP is the default internal service type providing a stable IP accessible only within the cluster.
@@ -583,7 +584,7 @@
 
 ---
 
-#Visuals And Architecture (Reconstructed)
+**Visuals And Architecture (Reconstructed)**
 
 ```mermaid
 graph TD
@@ -647,7 +648,7 @@ graph TD
 
 ---
 
-#Warnings And Gotchas
+**Warnings And Gotchas**
 
 * "ETSD is something that as either an administrator or as a developer when it comes to Kubernetes, you should be very respectful of it because losing [it] is like lobotomizing your cluster. You are going to lose all track of all things that are running inside of it."
 * "As a general rule, you don't want to be just willy-nilly putting pods on top of the controller node. Why? Well, because the controller node's busy. It needs its resources to, you know, manage the cluster."
