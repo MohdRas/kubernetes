@@ -171,15 +171,27 @@ sequenceDiagram
 
 
 * Instructor's Quote: "We are going to create a manifest here. Pod manifest.yaml and we're going to paste in that manifest that we were looking at earlier."
+* kubectl run my-pod --image=nginx --dry-run=client -o yaml > pod.yaml
+* **--dry-run=client** : Instructs kubectl to process the command locally and construct the resource object without sending it to the Kubernetes API server.
+* **-o yaml** : Formats the output as a clean YAML manifest.
+* **> pod.yaml** : Redirects standard output to save the YAML definition into a file.
+* 
 ```yaml
-	apiVersion: v1
-	kind: Pod
-	metadata:
-	  name: engine-x
-	spec:
-	  containers:
-	  - name: engine-x
-	    image: nginx
+			apiVersion: v1
+			kind: Pod
+			metadata:
+			  creationTimestamp: null
+			  labels:
+			    run: my-pod
+			  name: my-pod
+			spec:
+			  containers:
+			  - image: nginx
+			    name: my-pod
+			    resources: {}
+			  dnsPolicy: ClusterFirst
+			  restartPolicy: Always
+			status: {}
 
 ```
 
