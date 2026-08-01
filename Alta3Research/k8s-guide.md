@@ -169,7 +169,7 @@ sequenceDiagram
 	* `apiVersion` indicates the API responsible for recognizing and configuring specific resource types.
 	* `spec` (specification) is where you define how you want your object to be built.
 
-* **kubectl create <resource_type> <resource_name> [OPTIONS] --dry-run=client -o yaml > <filename>.yaml**
+* **kubectl create <resource_type> <resource_name> [OPTIONS] --dry-run=client -o yaml > <file_name>.yaml**
 * Note: For resources that use kubectl **run instead of kubectl create**, such as **Pods**, the flags remain identical.
   	* **kubectl run my-pod --image=nginx --dry-run=client -o yaml > pod.yaml**
 	*
