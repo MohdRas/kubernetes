@@ -149,7 +149,7 @@
        - Container Runtime Interface
        - lightweight container runtime built specifically for Kubernetes. It implements the CRI and nothing more.
        - 
- - **KUBELET** ( Lister Doer Monitor Reporter Provider ) LDMRP
+ - **KUBELET** ( `Lister Doer Monitor Reporter Provider` ) LDMRP
     - is the main agent on worker node of a k8s cluster.
         - listens for instructions from the control plane - **The Lister**.
         - does the work of running and managing containers - **The Doer**.
