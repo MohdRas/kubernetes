@@ -48,7 +48,7 @@
 
 **Control Plane Architecture And CLI**
 
-* `kubectl` is the CLI tool installed on your personal workstation or laptop, enabling you to access the cluster.
+* `kubectl` / `kube-control` is the CLI tool installed on your personal workstation or laptop, enabling you to access the cluster.
 * All `kubectl` requests are received by the API server because all communication inside of Kubernetes is done through an API.
 * A `kubeconfig` file includes the location of the cluster along with the certificate and key files required to authenticate and talk to that cluster.
 * The API server takes action or returns information and is the only component that talks to `etcd`.
