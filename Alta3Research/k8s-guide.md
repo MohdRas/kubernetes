@@ -171,10 +171,80 @@ sequenceDiagram
 
 
 * Instructor's Quote: "We are going to create a manifest here. Pod manifest.yaml and we're going to paste in that manifest that we were looking at earlier."
-* kubectl run my-pod --image=nginx --dry-run=client -o yaml > pod.yaml
-* **--dry-run=client** : Instructs kubectl to process the command locally and construct the resource object without sending it to the Kubernetes API server.
-* **-o yaml** : Formats the output as a clean YAML manifest.
-* **> pod.yaml** : Redirects standard output to save the YAML definition into a file.
+* **kubectl create <resource_type> <resource_name> [OPTIONS] --dry-run=client -o yaml > <filename>.yaml**
+* (Note: For resources that use kubectl run instead of kubectl create, such as Pods, the flags remain identical).
+  	* kubectl run my-pod --image=nginx --dry-run=client -o yaml > pod.yaml
+* Core Formula Rules
+	* --dry-run=client: Tells kubectl to generate the manifest locally without making an API request to the cluster.
+	* -o yaml: Outputs the generated resource structure in YAML format.
+	* > <filename>.yaml: Redirects the YAML output into a local definition file.
+*
+* 1. Pod
+	* kubectl run my-pod --image=nginx --dry-run=client -o yaml > pod.yaml
+* 2. Service
+	* ClusterIP (Default):
+	* 
+	* 
+	* kubectl create service clusterip my-svc --tcp=80:80 --dry-run=client -o yaml > svc-clusterip.yaml
+	* NodePort:
+	* 
+	* 
+	* kubectl create service nodeport my-svc --tcp=80:80 --dry-run=client -o yaml > svc-nodeport.yaml
+	* Expose directly from a Pod/Deployment:
+	* 
+	* 
+	* kubectl expose deployment my-deploy --name=my-svc --port=80 --target-port=8080 --type=ClusterIP --dry-run=client -o yaml > svc.yaml
+* 3. Namespace
+* 
+	* kubectl create namespace my-namespace --dry-run=client -o yaml > ns.yaml
+* 4. ConfigMap & Secret (Config)
+	* ConfigMap:
+	* 
+	* 
+	* kubectl create configmap my-config --from-literal=KEY=VALUE --dry-run=client -o yaml > cm.yaml
+	* Secret:
+	* 
+	* 
+	* kubectl create secret generic my-secret --from-literal=password=secret123 --dry-run=client -o yaml > secret.yaml
+* 5. Deployment
+	* 
+	* kubectl create deployment my-deploy --image=nginx:1.26 --replicas=3 --dry-run=client -o yaml > deployment.yaml
+* 6. Job & CronJob
+	* Job:
+	* 
+	* 
+	* kubectl create job my-job --image=busybox -- /bin/sh -c "echo Hello" --dry-run=client -o yaml > job.yaml
+	* CronJob:
+	* 
+	* 
+	* kubectl create cronjob my-cronjob --image=busybox --schedule="*/5 * * * *" -- /bin/sh -c "date" --dry-run=client -o yaml > cronjob.yaml
+* 7. ServiceAccount & Role / RoleBinding (RBAC)
+	* ServiceAccount:
+	* 
+	* 
+	* kubectl create serviceaccount my-sa --dry-run=client -o yaml > sa.yaml
+	* Role:
+	* 
+	* 
+	* kubectl create role pod-reader --verb=get,list,watch --resource=pods --dry-run=client -o yaml > role.yaml
+	* RoleBinding:
+	* 
+	* 
+	* kubectl create rolebinding read-pods --role=pod-reader --serviceaccount=default:my-sa --dry-run=client -o yaml > rolebinding.yaml
+	* Resources Without Direct kubectl create Subcommands
+	* Some complex resources (Node, ReplicaSet, StatefulSet, DaemonSet, PersistentVolume, Ingress [in older kubectl versions]) do not have dedicated kubectl create <kind> imperative commands.
+	* 
+* For these resources, use one of the two standard practices:
+* 
+* Method A: Extract from an Existing Cluster Resource
+* If the resource already exists in your cluster (e.g., a Node or an existing DaemonSet), export its structure directly and strip metadata:
+* 
+* 
+	* kubectl get node <node-name> -o yaml > node.yaml
+	* kubectl get statefulset <sts-name> -o yaml > statefulset.yaml
+	* kubectl get daemonset <ds-name> -o yaml > daemonset.yaml
+	* kubectl get replicaset <rs-name> -o yaml > replicaset.yaml
+
 * 
 ```yaml
 			apiVersion: v1
